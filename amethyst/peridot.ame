@@ -1,4 +1,5 @@
 amethyst Peridot_parser{
 	root=expr
-	
+
+	expr="2+2" {42}	
 }
