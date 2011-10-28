@@ -7,5 +7,6 @@ require "compiled/#{f}"
 }
 
 
-puts Peridot_parser.new.parse(:root,"2+2")
-puts Peridot_translator.new.parse(:root,[Func[{:name=>"plus",:ary=>[Var[{:name=>"a"}],Var[{:name=>"b"}]]}]])
+p= Peridot_parser.new.parse(:root,"2+2")
+puts p.inspect
+puts Peridot_translator.new.parse(:root,[p])

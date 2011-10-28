@@ -1,5 +1,5 @@
 amethyst Peridot_parser{
 	root=expr
 
-	expr= number:a ("+" number:b {a+b}:a)* {a}
+	expr= number:a ("+" number:b {Func[{:name=>"plus",:ary=>[a,b]}]}:a)* {a}
 }
