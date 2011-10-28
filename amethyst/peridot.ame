@@ -1,5 +1,10 @@
 amethyst Peridot_parser{
 	root=expr
+	
+	name = alpha:s alnum*:{s+it*""}
+	
+	atom = number
+ 		   | name:n {Var[{:name=>n}]}
 
-	expr= number:a ("+" number:b {Func[{:name=>"plus",:ary=>[a,b]}]}:a)* {a}
+	expr = atom:a ("+" atom:b {Func[{:name=>"plus",:ary=>[a,b]}]}:a)* {a}
 }

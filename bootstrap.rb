@@ -7,6 +7,6 @@ require "compiled/#{f}"
 }
 
 
-p= Peridot_parser.new.parse(:root,"2+2")
+p= Peridot_parser.new.parse(:root,"2+2+a")
 puts p.inspect
 puts Peridot_translator.new.parse(:root,[p])
