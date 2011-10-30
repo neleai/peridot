@@ -1,10 +1,15 @@
 amethyst Peridot_parser{
-	root=expr
-	
+	root= defi*:a .* {a}
+		
+	defi = "def" "" name:name '(' ( ')' break | .:args[])*  expr:ary[] "end" @Def
 	name = alpha:s alnum*:{s+it*""}
 	
-	atom = number
- 		   | name:n {Var[{:name=>n}]}
+	atom = ""
+       ( number
+			 | '{' ('}' break | .:s[])* {CCode[s]}
+			 | name:name '(' expr:ary[] ')' {Call[{:name=>name,:ary=>ary}]}
+ 		   | name:name {Var[{:name=>name}]}
+			 )
 
-	expr = atom:a ("+" atom:b {Func[{:name=>"plus",:ary=>[a,b]}]}:a)* {a}
+	expr = atom:a ("+" atom:b {Call[{:name=>"plus",:ary=>[a,b]}]}:a)* {a}
 }

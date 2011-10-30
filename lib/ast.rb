@@ -1,1 +1,1 @@
-makeclasses(AmethystAST,[:Func,:name],[:Var,:name])
+makeclasses(AmethystAST,[:Call,:name],[:Def,:name,:args],[:Var,:name],[:CCode])

@@ -7,6 +7,7 @@ require "compiled/#{f}"
 }
 
 
-p= Peridot_parser.new.parse(:root,"2+2+a")
+p= Peridot_parser.new.parse(:root,File.new("peridot/prologue.per").read)
 puts p.inspect
-puts Peridot_translator.new.parse(:root,[p])
+File.open("test.c","w"){|f|	f.puts Peridot_translator.new.parse(:root,p) }
+`gcc test.c`
