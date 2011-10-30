@@ -24,6 +24,9 @@ end
 def expr_Peridot_parsercb_1(bind)
 Call[{:name=>"plus",:ary=>[bind[0],bind[1]]}]
 end
+def mulexpr_Peridot_parsercb_1(bind)
+Call[{:name=>"times",:ary=>[bind[0],bind[1]]}]
+end
 def name_Peridot_parsercb_1(bind)
 _append(bind[1],bind[2])
 end
@@ -41,12 +44,12 @@ def peridot_compiled_by
 '32e1bf03e0f843f0f8290a1271d8023d'
 end
 def peridot_source_hash
-'1b2431787a01c63d8599dde4f27be232'
+'1a79861191308158c406f238f757efc4'
 end
 def testversionperidot(r)
  raise "invalid version" if r!=peridot_version
 end
 def peridot_version
-'e40a30e8639783921d6f97cb294d48fd'
+'d127e135fc9bce16dcc6463b01c2f776'
 end
   require 'compiled/peridot_c'

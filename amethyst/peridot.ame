@@ -11,5 +11,6 @@ amethyst Peridot_parser{
  		   | name:name {Var[{:name=>name}]}
 			 )
 
-	expr = atom:a ("+" atom:b {Call[{:name=>"plus",:ary=>[a,b]}]}:a)* {a}
+	expr = mulexpr:a ("+" mulexpr:b {Call[{:name=>"plus",:ary=>[a,b]}]}:a)* {a}
+	mulexpr = atom:a ("*" atom:b {Call[{:name=>"times",:ary=>[a,b]}]}:a)* {a}
 }
