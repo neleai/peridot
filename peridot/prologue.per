@@ -1,13 +1,20 @@
-def plus(a,b)
+def _plus(a,b)
 	{return a+b;}
 end
-def times(a,b)
+def _minus(a,b)
+	{return a-b;}
+end
+def _times(a,b)
 	{return a*b;}
 end
-def puts2(a)
+def _divide(a,b)
+	{return a/b;}
+end
+
+def _puts(a)
 	{printf("%i",a);}
 end
 def main()
-	puts2(2*3+2*4)
-	puts2(2*3+2*4)
+	_puts(2*3+2*4)
+	_puts(2*3-2/4)
 end

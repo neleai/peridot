@@ -2,7 +2,7 @@ amethyst Peridot_parser{
 	root = defi*:a .* {a}
 		
 	defi = "def" "" name:name '(' ( ')' break | .:args[])*  sequence:ary[] "end" @Def
-	name = alpha:s alnum*:{s+it*""}
+	name = (alpha |"_"):s alnum*:{s+it*""}
 	
 	atom = ""
        ( number
@@ -11,8 +11,8 @@ amethyst Peridot_parser{
  		   | name:name &{name!="end"} {Var[{:name=>name}]}
 			 )
 
-	expr = mulexpr:a ("+" mulexpr:b {Call[{:name=>"plus",:ary=>[a,b]}]}:a)* {a}
-	mulexpr = atom:a ("*" atom:b {Call[{:name=>"times",:ary=>[a,b]}]}:a)* {a}
+	expr = mulexpr:a (("+"|"-"):op mulexpr:b {Call[{:name=>leterize(op),:ary=>[a,b]}]}:a)* {a}
+	mulexpr = atom:a (("*"|"/"):op atom:b {Call[{:name=>leterize(op),:ary=>[a,b]}]}:a)* {a}
 	
 	sequence = expr:ary[] ( endline expr:ary[])* @Seq
 }

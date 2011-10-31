@@ -1,5 +1,6 @@
 require '../amethyst/lib/amethyst'
 require 'lib/ast'
+require 'lib/utils'
 ["peridot","translator"].each{|f|
 Compiler::compile("amethyst/#{f}.ame","compiled/#{f}.rb",f)
 
