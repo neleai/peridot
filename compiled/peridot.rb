@@ -1,19 +1,25 @@
 class Peridot_parser < Amethyst
 
 def atom_Peridot_parsercb_1(bind)
-CCode[bind[0]*""]
+If[{:expr=>bind[4],:block=>bind[5]}]
 end
 def atom_Peridot_parsercb_2(bind)
-_append(bind[1],bind[5])
+_append(bind[0],bind[6])
 end
 def atom_Peridot_parsercb_3(bind)
-Call.create( {:ary=>bind[1],:name=>bind[4] })
+CCode[bind[0]*""]
 end
 def atom_Peridot_parsercb_4(bind)
-(bind[4]!="end") || FAIL
+_append(bind[1],bind[8])
 end
 def atom_Peridot_parsercb_5(bind)
-Var[{:name=>bind[4]}]
+Call.create( {:ary=>bind[1],:name=>bind[7] })
+end
+def atom_Peridot_parsercb_6(bind)
+(bind[7]!="end") || FAIL
+end
+def atom_Peridot_parsercb_7(bind)
+Var[{:name=>bind[7]}]
 end
 def defi_Peridot_parsercb_1(bind)
 _append(bind[0],bind[3])
@@ -50,12 +56,12 @@ def peridot_compiled_by
 'b8cd7f2b463428f7d287ec8a4dd97bb4'
 end
 def peridot_source_hash
-'bdb38ba3794c3d4419727b345c15e359'
+'b00e8b9e0bf92f817e03eb9c2b1b043e'
 end
 def testversionperidot(r)
  raise "invalid version" if r!=peridot_version
 end
 def peridot_version
-'59217f34f40ec3a82aa7350a4530d8a6'
+'8c6c2ae726cd9c120e9d06f426b4e7de'
 end
   require 'compiled/peridot_c'

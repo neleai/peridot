@@ -6,6 +6,8 @@ amethyst Peridot_parser{
 	
 	atom = ""
        ( number
+			 | '(' expr:e ')' {e}
+			 | 'if' "(" expr:expr ")" block:block {If[{:expr=>expr,:block=>block}]}
 			 | '{' ('}' break | .:s[])* {CCode[s*""]}
 			 | name:name '(' expr:ary[] ')' @Call
  		   | name:name &{name!="end"} {Var[{:name=>name}]}
@@ -14,5 +16,7 @@ amethyst Peridot_parser{
 	expr = mulexpr:a (("+"|"-"):op mulexpr:b {Call[{:name=>leterize(op),:ary=>[a,b]}]}:a)* {a}
 	mulexpr = atom:a (("*"|"/"):op atom:b {Call[{:name=>leterize(op),:ary=>[a,b]}]}:a)* {a}
 	
+	block = "{" sequence:s '}' {s}
+
 	sequence = expr:ary[] ( endline expr:ary[])* @Seq
 }
