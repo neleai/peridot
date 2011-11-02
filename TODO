@@ -1,3 +1,12 @@
 persistent sockets
 
 protocols, algebraic description...
+
+functors to supports static analyzers like code enclosed by 
+without_error(Type_error){block}            
+without_error(Division_by_zero){block}
+block does not contain type error/cant divide by zero
+
+define local variable by variable:=expr for sane scoping
+
+binding object
