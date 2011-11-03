@@ -1,10 +1,11 @@
+$LOAD_PATH << "."
 require '../amethyst/lib/amethyst'
-require 'lib/ast'
-require 'lib/utils'
+require './lib/ast'
+require './lib/utils'
 ["peridot","translator"].each{|f|
 Compiler::compile("amethyst/#{f}.ame","compiled/#{f}.rb",f)
 
-require "compiled/#{f}"
+require "./compiled/#{f}"
 }
 
 

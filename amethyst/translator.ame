@@ -1,7 +1,7 @@
 amethyst Peridot_translator{
 	root= trans*
 	
-	trans = Def[ trans:body {"int #{@name}(#{@args}){#{body};}" }]
+	trans = Def[ trans:body {"int #{@name}(#{@args*""}){#{body};}" }]
 				| Call[trans*:args  {"#{@name}(#{args*","})"} ]
 				| CCode[ .]
 				| If[ @expr=>trans:expr @block=>trans:block {"if (#{expr}){#{block};}" }]

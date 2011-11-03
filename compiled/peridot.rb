@@ -19,7 +19,7 @@ def atom_Peridot_parsercb_6(bind)
 (bind[7]!="end") || FAIL
 end
 def atom_Peridot_parsercb_7(bind)
-Var[{:name=>bind[7]}]
+Var.create( {:ary=>bind[1],:name=>bind[7] })
 end
 def defi_Peridot_parsercb_1(bind)
 _append(bind[0],bind[3])
@@ -39,13 +39,13 @@ end
 def name_Peridot_parsercb_2(bind)
 bind[0]+bind[3]*""
 end
-def sequence_Peridot_parsercb_1(bind)
+def root_Peridot_parsercb_1(bind)
 _append(bind[0],bind[1])
 end
-def sequence_Peridot_parsercb_2(bind)
+def sequence_Peridot_parsercb_1(bind)
 _append(bind[0],bind[2])
 end
-def sequence_Peridot_parsercb_3(bind)
+def sequence_Peridot_parsercb_2(bind)
 Seq.create( {:ary=>bind[0] })
 end
 
@@ -53,15 +53,15 @@ end
 
 
 def peridot_compiled_by
-'b8cd7f2b463428f7d287ec8a4dd97bb4'
+'68f1ee9e61385fab0ca401b476c6da05'
 end
 def peridot_source_hash
-'b00e8b9e0bf92f817e03eb9c2b1b043e'
+'dc2b2e6e2cb41d120a96bfddca768fdb'
 end
 def testversionperidot(r)
  raise "invalid version" if r!=peridot_version
 end
 def peridot_version
-'8c6c2ae726cd9c120e9d06f426b4e7de'
+'9a482940b95dbd2f88558360f3aad6c3'
 end
   require 'compiled/peridot_c'
