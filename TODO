@@ -10,3 +10,5 @@ block does not contain type error/cant divide by zero
 define local variable by variable:=expr for sane scoping
 
 binding object
+
+errors etc to crossref files(crossref file syntax text <inserted text> more text

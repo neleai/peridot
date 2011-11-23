@@ -6,6 +6,7 @@ amethyst Peridot_translator{
 				| CCode[ .]
 				| If[ @expr=>trans:expr @block=>trans:block {"if (#{expr}){#{block};}" }]
         | Var[ @name ]
+				| Assign[@expr=>trans:expr {"#{@name}=#{expr}"}]
 				| Seq[ trans*:{it*";"}]
 				| .
 }
