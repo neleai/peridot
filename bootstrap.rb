@@ -1,4 +1,10 @@
 $LOAD_PATH << "."
+$profiling=false
+$OPT=" -march=core2"
+$debug=1
+$compile_1_8_7=false
+$compile_1_9_3=true
+
 require '../amethyst/lib/amethyst'
 require './lib/ast'
 require './lib/utils'

@@ -12,3 +12,5 @@ define local variable by variable:=expr for sane scoping
 binding object
 
 errors etc to crossref files(crossref file syntax text <inserted text> more text
+
+garbage collection bfs to fit pages
