@@ -43,7 +43,7 @@ static VALUE sy_Peridot_parser__append;
 static VALUE sy_Peridot_parser_bind;
 static VALUE sy_alnum;
 static VALUE sy_alpha;
-static VALUE sy_endline;
+static VALUE sy_newline;
 static VALUE sy_number;
 static VALUE sy_seq;
 static VALUE sy_token;
@@ -223,7 +223,7 @@ VALUE Peridot_parser_sequence(VALUE self ){VALUE vals[0]; VALUE bind=bind_new2(4
 
 it=rb_ary_new3(0); bind_aset(bind,0/*ary*/,it);
   it=Peridot_parser_expr(self ); FAILTEST(fail); bind_aset(bind,1/*autovar*/,it);
-it=rb_funcall(self,sy_Peridot_parser__append,1,bind); int oldpos1; while(1){oldpos1=ame_getpos(self);   it=rb_funcall(self,sy_endline,0); FAILTEST(break1);  it=Peridot_parser_expr(self ); FAILTEST(break1); bind_aset(bind,2/*autovar*/,it);
+it=rb_funcall(self,sy_Peridot_parser__append,1,bind); int oldpos1; while(1){oldpos1=ame_getpos(self);   it=rb_funcall(self,sy_newline,0); FAILTEST(break1);  it=Peridot_parser_expr(self ); FAILTEST(break1); bind_aset(bind,2/*autovar*/,it);
 it=rb_funcall(self,sy_Peridot_parser__append7,1,bind);  if (ame_getstop(self)!=Qnil){{oldpos1=ame_getpos(self);goto break1;} } } break1: ame_setstop(self,Qnil);  ame_setpos(self,oldpos1); it=rb_funcall(self,sy_Peridot_parser_Seq,1,bind);  bind_aset(bind,3/*_result*/,it);
 it=bind_aget(bind,3/*_result*/);
 return it;
@@ -264,7 +264,7 @@ sy_Peridot_parser__append=rb_intern("Peridot_parser__append");
 sy_Peridot_parser_bind=rb_intern("Peridot_parser_bind");
 sy_alnum=rb_intern("alnum");
 sy_alpha=rb_intern("alpha");
-sy_endline=rb_intern("endline");
+sy_newline=rb_intern("newline");
 sy_number=rb_intern("number");
 sy_seq=rb_intern("seq");
 sy_token=rb_intern("token");
@@ -277,4 +277,4 @@ rb_define_method(cls_Peridot_parser,"mulexpr",Peridot_parser_mulexpr,0);
 rb_define_method(cls_Peridot_parser,"name",Peridot_parser_name,0);
 rb_define_method(cls_Peridot_parser,"root",Peridot_parser_root,0);
 rb_define_method(cls_Peridot_parser,"sequence",Peridot_parser_sequence,0);
- rb_eval_string("testversionperidot('6cc5a7ebbd9cf77a905bd7c3cc676cae')");}
+ rb_eval_string("testversionperidot('0f98743713f7adedd0113b3cdbca916c')");}

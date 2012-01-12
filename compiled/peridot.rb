@@ -59,12 +59,12 @@ def peridot_compiled_by
 '49423aced524e15ddb60e70ea1141f77'
 end
 def peridot_source_hash
-'28a43029abc93fc42928479d7f27d1b8'
+'51d4239a2dd13f5c056f6ac63ca70485'
 end
 def testversionperidot(r)
  raise "invalid version" if r!=peridot_version
 end
 def peridot_version
-'6cc5a7ebbd9cf77a905bd7c3cc676cae'
+'0f98743713f7adedd0113b3cdbca916c'
 end
-require Amethyst_path+"/compiled/#{RUBY_VERSION}/peridot_c"
+require File.expand_path(File.dirname(__FILE__))+"/#{RUBY_VERSION}/peridot_c"
