@@ -1,8 +1,9 @@
 amethyst Peridot_parser{
 	root = defi*:a .* {a}
 		
-	defi = "def" "" name:name '(' ( ')' break | .:args[])*  sequence:ary[] "end" @Def
-	name = (alpha |"_"):s alnum*:{s+it*""}
+	defi = "def" "" name2:name '(' ( ')' break | .:args[])*  sequence:ary[] "end" @Def
+	name2 = (<^ \t\r\n()>)*:x {leterize(x*"")}
+	name = <a-zA-Z_>:s <a-zA-Z0-9_>*:{s+it*""}
 	
 	atom = ""
        ( number
