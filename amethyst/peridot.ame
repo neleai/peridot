@@ -14,11 +14,12 @@ amethyst Peridot_parser{
 			 )
 
   expr = "" name:name '=' expr:expr @Assign
-			 | addexpr
+			 | expr_ar1
 
-	addexpr = mulexpr:a (("+"|"-"):op mulexpr:b {Call[{:name=>leterize(op),:ary=>[a,b]}]}:a)* {a}
-	mulexpr = atom:a (("*"|"/"):op atom:b {Call[{:name=>leterize(op),:ary=>[a,b]}]}:a)* {a}
-	
+	expr_ar1 = expr_ar2:a (("+"|"-"):op expr_ar2:b {Call[{:name=>leterize(op),:ary=>[a,b]}]}:a)* {a}
+	expr_ar2 = atom2:a (("*"|"/"):op atom2:b {Call[{:name=>leterize(op),:ary=>[a,b]}]}:a)* {a}
+	atom2  =  atom:a (("**"):op atom:b {Call[{:name=>leterize(op),:ary=>[a,b]}]}:a)* {a}
+
 	block = "{" sequence:s '}' {s}
 
 	sequence = expr:ary[] ( newline expr:ary[])* @Seq
