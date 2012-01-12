@@ -1,12 +1,12 @@
 amethyst Peridot_translator{
 	root= trans*
 	
-	trans = Def[ trans:body {"int #{@name}(#{@args*""}){#{body};}" }]
+	trans = Def[{@@names=["placeholder"]} trans:body {"int #{@name}(#{@args*""}){int #{@@names.uniq*","}; #{body};}" }]
 				| Call[trans*:args  {"#{@name}(#{args*","})"} ]
 				| CCode[ .]
 				| If[ @expr=>trans:expr @block=>trans:block {"if (#{expr}){#{block};}" }]
-        | Var[ @name ]
-				| Assign[@expr=>trans:expr {"#{@name}=#{expr}"}]
+        | Var[                       {@@names<<@name}  @name ]
+				| Assign[@expr=>trans:expr   {@@names<<@name}  {"#{@name}=#{expr}"}]
 				| Seq[ trans*:{it*";"}]
 				| .
 }
