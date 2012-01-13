@@ -7,19 +7,28 @@ amethyst Peridot_parser{
 	
 	atom = ""
        ( number
-			 | '(' expr:e ')' {e}
+			 | '(' expr:e ")" {e}
 			 | 'if' "(" expr:expr ")" block:block {If[{:expr=>expr,:block=>block}]}
 			 | '{' ('}' break | .:s[])* {CCode[s*""]}
-			 | name:name '(' expr:ary[] ')' @Call
+			 | name:name '(' args:ary[] ')' @Call
  		   | name:name &{name!="end"} @Var
 			 )
+
+	args = expr
+	method = name
+	
+	expr_postfixed = atom:a 
+                          ( '[' args:arg "]"         -> Method["[]",a,arg]
+													| '.' method
+	                        )* {a}
+               
 
   expr = "" name:name '=' expr:expr @Assign
 			 | expr_ar1
 
 	expr_ar1 = expr_ar2:a (("+"|"-"):op expr_ar2:b {Call[{:name=>leterize(op),:ary=>[a,b]}]}:a)* {a}
 	expr_ar2 = expr_ar3:a (("*"|"/"):op expr_ar3:b {Call[{:name=>leterize(op),:ary=>[a,b]}]}:a)* {a}
-	expr_ar3 = atom:a     (("**"):op    atom:b     {Call[{:name=>leterize(op),:ary=>[a,b]}]}:a)* {a}
+	expr_ar3 = expr_postfixed:a     (("**"):op    expr_postfixed:b     {Call[{:name=>leterize(op),:ary=>[a,b]}]}:a)* {a}
 
 	block = "{" sequence:s '}' {s}
 

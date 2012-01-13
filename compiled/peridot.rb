@@ -21,6 +21,10 @@ end
 def Peridot_parser_If(bind)
 If[{:expr=>bind[4],:block=>bind[5]}]
 end
+def Peridot_parser_Method(bind)
+Method["[]",bind[0],bind[1]]
+
+end
 def Peridot_parser_Seq(bind)
 Seq.create( {:ary=>bind[0] })
 end
@@ -49,13 +53,13 @@ def Peridot_parser__append7(bind)
 _append(bind[0],bind[2])
 end
 def Peridot_parser__divide(bind)
-/[^ \t\r\n()]/
-end
-def Peridot_parser__divide2(bind)
 /[a-zA-Z_]/
 end
-def Peridot_parser__divide3(bind)
+def Peridot_parser__divide2(bind)
 /[a-zA-Z0-9_]/
+end
+def Peridot_parser__divide3(bind)
+/[^ \t\r\n()]/
 end
 def Peridot_parser_bind(bind)
 bind[0]+bind[3]*""
@@ -71,12 +75,12 @@ def peridot_compiled_by
 '49423aced524e15ddb60e70ea1141f77'
 end
 def peridot_source_hash
-'5575cc2d1942e00bcb0cbc8b9e052f09'
+'d8e9f0e02d0d5c592274cf1b9372e575'
 end
 def testversionperidot(r)
  raise "invalid version" if r!=peridot_version
 end
 def peridot_version
-'79d3d9c796c9a9a6c94eed3f46592d84'
+'6bb441beaca253a91828f96dca236829'
 end
 require File.expand_path(File.dirname(__FILE__))+"/#{RUBY_VERSION}/peridot_c"
