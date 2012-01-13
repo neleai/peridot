@@ -1,18 +1,18 @@
 def +(obj a,obj b)
-	{return a+b;}
+	{return Int(a.in+b.in);}
 end
 def -(obj a,obj b)
-	{return a-b;}
+	{return Int(a.in-b.in);}
 end
 def *(obj a,obj b)
-	{return a*b;}
+	{return Int(a.in*b.in);}
 end
 def /(obj a,obj b)
-	{return a/b;}
+	{return Int(a.in/b.in);}
 end
 
 def _puts(obj a)
-	{printf("%i\n",a);}
+	{printf("%i\n",a.in);}
 end
 def main()
 	_puts(2*3+2*4)
