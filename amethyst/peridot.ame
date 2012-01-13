@@ -1,6 +1,8 @@
 amethyst Peridot_parser{
-	root = defi*:a .* {a}
-		
+	root = (defi|sequence)*:a .* {a}
+	
+	body = "class" name:name defi*:defs "end" @Klass
+	
 	defi = "def" "" defname:name '(' ( ')' break | .:args[])*  sequence:ary[] "end" @Def
 	name = <a-zA-Z_>:s <a-zA-Z0-9_>*:{s+it*""}
 	defname = (<^ \t\r\n()>)*:x {leterize(x*"")}
@@ -18,7 +20,7 @@ amethyst Peridot_parser{
 	method = name
 	
 	expr_postfixed = atom:a 
-                          ( '[' args:arg "]"         -> Method["[]",a,arg]
+                          ( '[' args:arg "]"         -> Method[leterize("[]"),a,arg]
 													| '.' method
 	                        )* {a}
                
