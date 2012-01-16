@@ -1,8 +1,8 @@
 amethyst Peridot_translator{
 	root= {@@fnames=[]} trans*:t {"obj_fn *methods[100]; void init(); enum fnums{#{@@fnames*","} };#{t*""}void init(){methods[0]=(obj_fn *)malloc(100);#{@@fnames.map{|f| "methods[0][#{f}]=_#{f};"}*""}}"}
 	
-	trans = 
-         Def[{@@fnames<<@name} {@@names=["placeholder"]} trans:body {"obj _#{@name}(#{@args*""}){obj #{@@names.uniq*","}; #{body};}\n" }]
+	trans = Klass[ trans*]:{it.join}
+        | Def[{@@fnames<<@name} {@@names=["placeholder"]} trans:body {"obj _#{@name}(#{@args*""}){obj #{@@names.uniq*","}; #{body};}\n" }]
 				| Call[trans*:args  {"methods[(#{args[0]}).class][#{@name}](#{args*","})"} ]
 				| CCode[ .]
 				| If[ @expr=>trans:expr @block=>trans:block {"if ((#{expr}).in){#{block};\n}" }]

@@ -1,25 +1,29 @@
-def +(obj a,obj b)
-	{return Int(a.in+b.in);}
+class Fixint
+	def +(obj a,obj b)
+		{return Int(a.in+b.in);}
+	end
+	def -(obj a,obj b)
+		{return Int(a.in-b.in);}
+	end
+	def *(obj a,obj b)
+		{return Int(a.in*b.in);}
+	end
+	def /(obj a,obj b)
+		{return Int(a.in/b.in);}
+	end
+	def _puts(obj a)
+		{printf("%i\n",a.in);}
+	end
 end
-def -(obj a,obj b)
-	{return Int(a.in-b.in);}
-end
-def *(obj a,obj b)
-	{return Int(a.in*b.in);}
-end
-def /(obj a,obj b)
-	{return Int(a.in/b.in);}
-end
-def [](obj a,obj b)
-  {return a.ary[b.in];}
-end
-def []=(obj a,obj b,obj c)
-  {return a.ary[b.in]=c;}
+class Array
+	def [](obj a,obj b)
+  	{return a.ary[b.in];}
+	end
+	def []=(obj a,obj b,obj c)
+  	{return a.ary[b.in]=c;}
+	end
 end
 
-def _puts(obj a)
-	{printf("%i\n",a.in);}
-end
 def _start()
 	{init()}
 	_puts(2*3+2*4)

@@ -1,7 +1,7 @@
 amethyst Peridot_parser{
-	root = (defi|sequence)*:a .* {a}
+	root = (body|defi|sequence)*:a .* {a}
 	
-	body = "class" name:name defi*:defs "end" @Klass
+	body = "class" "" name:name defi*:ary "end" @Klass
 	
 	defi = "def" "" defname:name '(' ( ')' break | .:args[])*  sequence:ary[] "end" @Def
 	name = <a-zA-Z_>:s <a-zA-Z0-9_>*:{s+it*""}
