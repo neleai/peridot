@@ -1,9 +1,9 @@
 amethyst Peridot_translator{
-	root= {@@fnames=[]} trans*:t {["typedef struct {"]+@@fnames.map{|f| "obj (*#{f})();"}+["} fns; fns ifns;void init();"]+t+[" void init(){#{@@fnames.map{|f| "ifns.#{f}=#{f};"}*""}}" ]}
+	root= {@@fnames=[]} trans*:t {"obj_fn iary[100]; void init(); enum fnums{#{@@fnames*","} };#{t*""}void init(){#{@@fnames.map{|f| "iary[#{f}]=_#{f};"}*""}}"}
 	
 	trans = 
-         Def[{@@fnames<<@name} {@@names=["placeholder"]} trans:body {"obj #{@name}(#{@args*""}){obj #{@@names.uniq*","}; #{body};}" }]
-				| Call[trans*:args  {"ifns.#{@name}(#{args*","})"} ]
+         Def[{@@fnames<<@name} {@@names=["placeholder"]} trans:body {"obj _#{@name}(#{@args*""}){obj #{@@names.uniq*","}; #{body};}" }]
+				| Call[trans*:args  {"iary[#{@name}](#{args*","})"} ]
 				| CCode[ .]
 				| If[ @expr=>trans:expr @block=>trans:block {"if ((#{expr}).in){#{block};}" }]
         | Var[                       {@@names<<@name}  @name ]
