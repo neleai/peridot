@@ -3,9 +3,6 @@ class Peridot_parser < Amethyst
 def Peridot_parser_(bind)
 '{'+bind[7][0]+'}'
 end
-def Peridot_parser_2(bind)
-(bind[12]!="end") || FAIL
-end
 def Peridot_parser_Assign(bind)
 Assign.create( {:expr=>bind[1],:name=>bind[0] })
 end
@@ -17,7 +14,7 @@ def Peridot_parser_CCode__lbbi_55b5(bind)
 CCode[bind[0]*""]
 end
 def Peridot_parser_Call(bind)
-Call.create( {:ary=>bind[1],:name=>bind[12] })
+Call.create( {:ary=>bind[1],:name=>bind[10] })
 end
 def Peridot_parser_Call__lb(bind)
 Call[{:name=>leterize("[]="),:ary=>[bind[0],bind[2],bind[3]]}]
@@ -43,7 +40,7 @@ def Peridot_parser_Seq(bind)
 Seq.create( {:ary=>bind[0] })
 end
 def Peridot_parser_Var(bind)
-Var.create( {:ary=>bind[1],:name=>bind[12] })
+Var.create( {:ary=>bind[1],:name=>bind[10] })
 end
 def Peridot_parser___append(bind)
 _append(bind[0],bind[1])
@@ -64,7 +61,7 @@ def Peridot_parser___append6(bind)
 _append(bind[0],bind[9])
 end
 def Peridot_parser___append7(bind)
-_append(bind[1],bind[13])
+_append(bind[1],bind[11])
 end
 def Peridot_parser___append8(bind)
 _append(bind[0],bind[2])
@@ -95,12 +92,12 @@ def peridot_compiled_by
 'a9ea4d17b41039dd30ac4cedaad0ee5b'
 end
 def peridot_source_hash
-'982f800e159c34cdbe1a369c9795b1e7'
+'a5563f8b237305cc46cd93c053217ca4'
 end
 def testversionperidot(r)
  raise "invalid version" if r!=peridot_version
 end
 def peridot_version
-'b4575979f2069b3281e4051fe3e6a704'
+'87ece2ec8e8ffa453e9de1445257fe61'
 end
 require File.expand_path(File.dirname(__FILE__))+"/#{RUBY_VERSION}/peridot_c"
