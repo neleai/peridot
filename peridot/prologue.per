@@ -10,11 +10,17 @@ end
 def /(obj a,obj b)
 	{return Int(a.in/b.in);}
 end
+def [](obj a,obj b)
+  {return a.ary[b.in];}
+end
+def []=(obj a,obj b,obj c)
+  {return a.ary[b.in]=c;}
+end
 
 def _puts(obj a)
 	{printf("%i\n",a.in);}
 end
-def start()
+def _start()
 	{init()}
 	_puts(2*3+2*4)
 	a=4
@@ -22,4 +28,4 @@ def start()
 	_puts(2*3-2/4)
 	if(2){_puts(2)}
 end
-{main(){_start();}}
+{main(){___start();}}

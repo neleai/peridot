@@ -9,29 +9,29 @@ end
 def Peridot_parser_Assign(bind)
 Assign.create( {:expr=>bind[1],:name=>bind[0] })
 end
-def Peridot_parser_CCode(bind)
+def Peridot_parser_CCode__lb(bind)
 CCode["Int(#{bind[2]})"]
 
 end
-def Peridot_parser_CCode2(bind)
+def Peridot_parser_CCode__lbbi_55b5(bind)
 CCode[bind[0]*""]
 end
 def Peridot_parser_Call(bind)
 Call.create( {:ary=>bind[1],:name=>bind[12] })
 end
-def Peridot_parser_Call2(bind)
+def Peridot_parser_Call__lb(bind)
 Call[{:name=>leterize(bind[1]),:ary=>[bind[0],bind[2]]}]
 end
 def Peridot_parser_Def(bind)
 Def.create( {:args=>bind[0],:ary=>bind[1],:name=>bind[2] })
 end
-def Peridot_parser_If(bind)
+def Peridot_parser_If__lb(bind)
 If[{:expr=>bind[5],:block=>bind[6]}]
 end
 def Peridot_parser_Klass(bind)
 Klass.create( {:name=>bind[0] })
 end
-def Peridot_parser_Method(bind)
+def Peridot_parser_Method__lbl_4255(bind)
 Method[leterize("[]"),bind[0],bind[1]]
 
 end
@@ -41,59 +41,62 @@ end
 def Peridot_parser_Var(bind)
 Var.create( {:ary=>bind[1],:name=>bind[12] })
 end
-def Peridot_parser__append(bind)
+def Peridot_parser___append(bind)
 _append(bind[0],bind[1])
 end
-def Peridot_parser__append2(bind)
+def Peridot_parser___append2(bind)
 _append(bind[0],bind[3])
 end
-def Peridot_parser__append3(bind)
+def Peridot_parser___append3(bind)
 _append(bind[1],bind[4])
 end
-def Peridot_parser__append4(bind)
+def Peridot_parser___append4(bind)
 _append(bind[1],bind[2])
 end
-def Peridot_parser__append5(bind)
+def Peridot_parser___append5(bind)
 _append(bind[0],bind[8])
 end
-def Peridot_parser__append6(bind)
+def Peridot_parser___append6(bind)
 _append(bind[0],bind[9])
 end
-def Peridot_parser__append7(bind)
+def Peridot_parser___append7(bind)
 _append(bind[1],bind[13])
 end
-def Peridot_parser__append8(bind)
+def Peridot_parser___append8(bind)
 _append(bind[0],bind[2])
 end
-def Peridot_parser__divide(bind)
-/[a-zA-Z_]/
-end
-def Peridot_parser__divide2(bind)
-/[a-zA-Z0-9_]/
-end
-def Peridot_parser__divide3(bind)
+def Peridot_parser___divide__lb(bind)
 /[^ \t\r\n()]/
 end
-def Peridot_parser_bind(bind)
+def Peridot_parser___divide__lba__minuszA__minusZ_4f92(bind)
+/[a-zA-Z0-9_]/
+end
+def Peridot_parser___divide__lba__minuszA__minusZ_6114(bind)
+/[a-zA-Z_]/
+end
+def Peridot_parser_bind__lb0__rb__plus_4fd1(bind)
 bind[0]+bind[3]*""
 end
 def Peridot_parser_leterize_92ea(bind)
 leterize(bind[2]*"")
+end
+def Peridot_parser_leterize_fe70(bind)
+leterize(bind[7])
 end
 
 end
 
 
 def peridot_compiled_by
-'ed2342cc54b9365f684d1e6d55f62db7'
+'a9ea4d17b41039dd30ac4cedaad0ee5b'
 end
 def peridot_source_hash
-'417e538483639d70e66153cd39f66b97'
+'b087b866944289a7173887bc5ec9d121'
 end
 def testversionperidot(r)
  raise "invalid version" if r!=peridot_version
 end
 def peridot_version
-'527fd08a87b0e110dc8d3dd5a2cd770b'
+'cd410a69c185fbd925f10311d9cf5e33'
 end
 require File.expand_path(File.dirname(__FILE__))+"/#{RUBY_VERSION}/peridot_c"
