@@ -19,9 +19,10 @@ amethyst Peridot_parser{
 	args = expr
 	method = name
 	
-	expr_postfixed = atom:a 
-                          ( '[' args:arg "]"         -> Method[leterize("[]"),a,arg]
-													| '.' method
+	expr_postfixed = atom:a ( 
+                          ( '[' args:arg "]" "=" expr:arg2        -> Call[{:name=>leterize("[]="),:ary=>[a,arg,arg2]}]
+													| '[' args:arg "]"                      -> Call[{:name=>leterize("[]") ,:ary=>[a,arg]}]
+													| '.' method):a
 	                        )* {a}
                
 

@@ -40,11 +40,12 @@ static VALUE sy_Peridot_parser_Assign;
 static VALUE sy_Peridot_parser_CCode__lb;
 static VALUE sy_Peridot_parser_CCode__lbbi_55b5;
 static VALUE sy_Peridot_parser_Call;
+static VALUE sy_Peridot_parser_Call__lb2;
+static VALUE sy_Peridot_parser_Call__lb3;
 static VALUE sy_Peridot_parser_Call__lb;
 static VALUE sy_Peridot_parser_Def;
 static VALUE sy_Peridot_parser_If__lb;
 static VALUE sy_Peridot_parser_Klass;
-static VALUE sy_Peridot_parser_Method__lbl_4255;
 static VALUE sy_Peridot_parser_Seq;
 static VALUE sy_Peridot_parser_Var;
 static VALUE sy_Peridot_parser___append2;
@@ -214,7 +215,7 @@ ame_setcut(self,Qnil);goto accept1;
   alt1_3:  ame_setpos(self,oldpos2); goto break1;
  accept1:;
   it=Peridot_parser_expr_ar2(self ); FAILTEST(break1); bind_aset(bind,2/*b*/,it);
-it=rb_funcall(self,sy_Peridot_parser_Call__lb,1,bind);  bind_aset(bind,0/*a*/,it);
+it=rb_funcall(self,sy_Peridot_parser_Call__lb3,1,bind);  bind_aset(bind,0/*a*/,it);
  if (ame_getstop(self)!=Qnil){{oldpos1=ame_getpos(self);goto break1;} } } break1: ame_setstop(self,Qnil);  ame_setpos(self,oldpos1); it=bind_aget(bind,0/*a*/); bind_aset(bind,3/*_result*/,it);
 it=bind_aget(bind,3/*_result*/);
 return it;
@@ -234,7 +235,7 @@ ame_setcut(self,Qnil);goto accept1;
   alt1_3:  ame_setpos(self,oldpos2); goto break1;
  accept1:;
   it=Peridot_parser_expr_ar3(self ); FAILTEST(break1); bind_aset(bind,2/*b*/,it);
-it=rb_funcall(self,sy_Peridot_parser_Call__lb,1,bind);  bind_aset(bind,0/*a*/,it);
+it=rb_funcall(self,sy_Peridot_parser_Call__lb3,1,bind);  bind_aset(bind,0/*a*/,it);
  if (ame_getstop(self)!=Qnil){{oldpos1=ame_getpos(self);goto break1;} } } break1: ame_setstop(self,Qnil);  ame_setpos(self,oldpos1); it=bind_aget(bind,0/*a*/); bind_aset(bind,3/*_result*/,it);
 it=bind_aget(bind,3/*_result*/);
 return it;
@@ -244,26 +245,41 @@ VALUE Peridot_parser_expr_ar3(VALUE self ){VALUE vals[0]; VALUE bind=bind_new2(4
   it=Peridot_parser_expr_postfixed(self ); FAILTEST(fail); bind_aset(bind,0/*a*/,it);
 int oldpos1; while(1){oldpos1=ame_getpos(self);  it=rb_obj_clone(s___times__times_514f); arg0=it; it=rb_funcall(self,sy_token,1,arg0); FAILTEST(break1); bind_aset(bind,1/*op*/,it);
   it=Peridot_parser_expr_postfixed(self ); FAILTEST(break1); bind_aset(bind,2/*b*/,it);
-it=rb_funcall(self,sy_Peridot_parser_Call__lb,1,bind);  bind_aset(bind,0/*a*/,it);
+it=rb_funcall(self,sy_Peridot_parser_Call__lb3,1,bind);  bind_aset(bind,0/*a*/,it);
  if (ame_getstop(self)!=Qnil){{oldpos1=ame_getpos(self);goto break1;} } } break1: ame_setstop(self,Qnil);  ame_setpos(self,oldpos1); it=bind_aget(bind,0/*a*/); bind_aset(bind,3/*_result*/,it);
 it=bind_aget(bind,3/*_result*/);
 return it;
 fail: return failobj; }
-VALUE Peridot_parser_expr_postfixed(VALUE self ){VALUE vals[0]; VALUE bind=bind_new2(3);  int x;VALUE arg0,arg1,arg2,arg3;VALUE it; cstruct *ptr; Data_Get_Struct(self,cstruct,ptr);
+VALUE Peridot_parser_expr_postfixed(VALUE self ){VALUE vals[0]; VALUE bind=bind_new2(5);  int x;VALUE arg0,arg1,arg2,arg3;VALUE it; cstruct *ptr; Data_Get_Struct(self,cstruct,ptr);
 
   it=Peridot_parser_atom(self ); FAILTEST(fail); bind_aset(bind,0/*a*/,it);
 int oldpos1; while(1){oldpos1=ame_getpos(self); int oldpos2=ame_getpos(self);
 alt1_1: ame_setpos(self,oldpos2);if (ame_getcut(self)!=Qnil) {ame_setcut(self,Qnil); goto break1;}
-  it=rb_obj_clone(s___lb_8154); arg0=it; it=rb_funcall(self,sy_seq,1,arg0); FAILTEST(alt1_2);  it=Peridot_parser_args(self ); FAILTEST(alt1_2); bind_aset(bind,1/*arg*/,it);
- it=rb_obj_clone(s___rb_0fbd); arg0=it; it=rb_funcall(self,sy_token,1,arg0); FAILTEST(alt1_2);it=rb_funcall(self,sy_Peridot_parser_Method__lbl_4255,1,bind);  
+  it=rb_obj_clone(s___lb_8154); arg0=it; it=rb_funcall(self,sy_seq,1,arg0); FAILTEST(alt1_2);  it=Peridot_parser_args(self ); FAILTEST(alt1_2); bind_aset(bind,1/*autovar*/,it);
+int oldpos3=ame_getpos(self);
+alt2_1: ame_setpos(self,oldpos3);if (ame_getcut(self)!=Qnil) {ame_setcut(self,Qnil); goto alt1_2;}
+ it=bind_aget(bind,1/*autovar*/); bind_aset(bind,2/*arg*/,it);
+ it=rb_obj_clone(s___rb_0fbd); arg0=it; it=rb_funcall(self,sy_token,1,arg0); FAILTEST(alt2_2); it=rb_obj_clone(s___assign_43ec); arg0=it; it=rb_funcall(self,sy_token,1,arg0); FAILTEST(alt2_2);  it=Peridot_parser_expr(self ); FAILTEST(alt2_2); bind_aset(bind,3/*arg2*/,it);
+it=rb_funcall(self,sy_Peridot_parser_Call__lb,1,bind);  bind_aset(bind,0/*a*/,it);
+ 
+ame_setcut(self,Qnil);goto accept2;
+alt2_2: ame_setpos(self,oldpos3);if (ame_getcut(self)!=Qnil) {ame_setcut(self,Qnil); goto alt1_2;}
+ it=bind_aget(bind,1/*autovar*/); bind_aset(bind,2/*arg*/,it);
+ it=rb_obj_clone(s___rb_0fbd); arg0=it; it=rb_funcall(self,sy_token,1,arg0); FAILTEST(alt2_3);it=rb_funcall(self,sy_Peridot_parser_Call__lb2,1,bind);  bind_aset(bind,0/*a*/,it);
+ 
+ame_setcut(self,Qnil);goto accept2;
+  alt2_3:  ame_setpos(self,oldpos3); goto alt1_2;
+ accept2:;
+ 
 ame_setcut(self,Qnil);goto accept1;
 alt1_2: ame_setpos(self,oldpos2);if (ame_getcut(self)!=Qnil) {ame_setcut(self,Qnil); goto break1;}
-  it=rb_obj_clone(s_5); arg0=it; it=rb_funcall(self,sy_seq,1,arg0); FAILTEST(alt1_3);  it=Peridot_parser_method(self ); FAILTEST(alt1_3); 
+  it=rb_obj_clone(s_5); arg0=it; it=rb_funcall(self,sy_seq,1,arg0); FAILTEST(alt1_3);  it=Peridot_parser_method(self ); FAILTEST(alt1_3); bind_aset(bind,0/*a*/,it);
+ 
 ame_setcut(self,Qnil);goto accept1;
   alt1_3:  ame_setpos(self,oldpos2); goto break1;
  accept1:;
- if (ame_getstop(self)!=Qnil){{oldpos1=ame_getpos(self);goto break1;} } } break1: ame_setstop(self,Qnil);  ame_setpos(self,oldpos1); it=bind_aget(bind,0/*a*/); bind_aset(bind,2/*_result*/,it);
-it=bind_aget(bind,2/*_result*/);
+ if (ame_getstop(self)!=Qnil){{oldpos1=ame_getpos(self);goto break1;} } } break1: ame_setstop(self,Qnil);  ame_setpos(self,oldpos1); it=bind_aget(bind,0/*a*/); bind_aset(bind,4/*_result*/,it);
+it=bind_aget(bind,4/*_result*/);
 return it;
 fail: return failobj; }
 VALUE Peridot_parser_method(VALUE self ){VALUE vals[0]; VALUE bind=bind_new2(1);  int x;VALUE arg0,arg1,arg2,arg3;VALUE it; cstruct *ptr; Data_Get_Struct(self,cstruct,ptr);
@@ -337,11 +353,12 @@ sy_Peridot_parser_Assign=rb_intern("Peridot_parser_Assign");
 sy_Peridot_parser_CCode__lb=rb_intern("Peridot_parser_CCode__lb");
 sy_Peridot_parser_CCode__lbbi_55b5=rb_intern("Peridot_parser_CCode__lbbi_55b5");
 sy_Peridot_parser_Call=rb_intern("Peridot_parser_Call");
+sy_Peridot_parser_Call__lb2=rb_intern("Peridot_parser_Call__lb2");
+sy_Peridot_parser_Call__lb3=rb_intern("Peridot_parser_Call__lb3");
 sy_Peridot_parser_Call__lb=rb_intern("Peridot_parser_Call__lb");
 sy_Peridot_parser_Def=rb_intern("Peridot_parser_Def");
 sy_Peridot_parser_If__lb=rb_intern("Peridot_parser_If__lb");
 sy_Peridot_parser_Klass=rb_intern("Peridot_parser_Klass");
-sy_Peridot_parser_Method__lbl_4255=rb_intern("Peridot_parser_Method__lbl_4255");
 sy_Peridot_parser_Seq=rb_intern("Peridot_parser_Seq");
 sy_Peridot_parser_Var=rb_intern("Peridot_parser_Var");
 sy_Peridot_parser___append2=rb_intern("Peridot_parser___append2");
@@ -378,4 +395,4 @@ rb_define_method(cls_Peridot_parser,"method",Peridot_parser_method,0);
 rb_define_method(cls_Peridot_parser,"name",Peridot_parser_name,0);
 rb_define_method(cls_Peridot_parser,"root",Peridot_parser_root,0);
 rb_define_method(cls_Peridot_parser,"sequence",Peridot_parser_sequence,0);
- rb_eval_string("testversionperidot('cd410a69c185fbd925f10311d9cf5e33')");}
+ rb_eval_string("testversionperidot('6937bcdbebff1dc8cab4adabedbd4375')");}
