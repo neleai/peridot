@@ -1,10 +1,15 @@
+$av=0
+def autovar
+$av+=1
+"autovar"+$av.to_s
+end
 amethyst Peridot_translator{
-	root= {@@fnames=[]} trans*:t {"obj_fn *methods[100];  enum fnums{#{@@fnames*","} };#{t*""}"}
+	root= {@@fnames=[]} trans*:t {"obj_fn *methods[100];  enum fnums{#{@@fnames*","} }; #{($av+1).times.map{|i| "obj autovar#{i};"}*""}  #{t*""}"}
 	
 	trans = Klass[{@@init=[];@@cls=(@name=="Array"?1:0)} trans*:r  { r*""+"init_#{@name}(){methods[#{@@cls}]=malloc(100);#{@@init*""}}"   }]
         | Def[{@@fnames<<@name} {@@names=["placeholder"]} trans:body {@@init<<"methods[#{@@cls}][#{@name}]=_#{@name};"} 
                                 {"obj _#{@name}(#{@args*""}){obj #{@@names.uniq*","}; #{body};}\n" }]
-				| Call[trans*:args  {"methods[(#{args[0]}).class][#{@name}](#{args*","})"} ]
+				| Call[trans*:args {autovar}:a {"methods[(#{a}=#{args[0]}).class][#{@name}](#{([a]+args[1..-1])*","})"} ]
 				| CCode[ .]
 				| If[ @expr=>trans:expr @block=>trans:block {"if ((#{expr}).in){#{block};\n}" }]
         | Var[                       {@@names<<@name}  @name ]

@@ -1,18 +1,18 @@
 class Fixint
 	def +(obj a,obj b)
-		{return Int(a.in+b.in);}
+		{return Int(obj2int(a)+obj2int(b));}
 	end
 	def -(obj a,obj b)
-		{return Int(a.in-b.in);}
+		{return Int(obj2int(a)-obj2int(b));}
 	end
 	def *(obj a,obj b)
-		{return Int(a.in*b.in);}
+		{return Int(obj2int(a)*obj2int(b));}
 	end
 	def /(obj a,obj b)
-		{return Int(a.in/b.in);}
+		{return Int(obj2int(a)/obj2int(b));}
 	end
 	def _puts(obj a)
-		{printf("%i\n",a.in);}
+		{printf("%i\n",obj2int(a));}
 	end
 end
 class Array

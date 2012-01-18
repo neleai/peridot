@@ -23,6 +23,7 @@ File.open("test.c","w"){|f|
          typedef struct _obj {int class;int in; struct _obj * ary;} obj;
          typedef obj (* obj_fn)();
          obj Int(int i){obj o;  o.class=0;o.in=i;return o;}
+				 int obj2int(obj o){return o.in;}
          obj Array(){obj o;o.class=1;o.ary=(obj *) malloc(100);return o;}"
 			
  f.puts Peridot_translator.new.parse(:root,p) 
