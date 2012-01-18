@@ -11,7 +11,7 @@ class Fixint
 	def /(obj a,obj b)
 		{return Int(a.in/b.in);}
 	end
-	def _puts(obj a)
+	def puts(obj a)
 		{printf("%i\n",a.in);}
 	end
 end
@@ -26,14 +26,14 @@ end
 
 def _start()
 	{init_Fixint();init_Array();}
-	_puts(2*3+2*4)
+	puts(2*3+2*4)
 	a=4
 	b=a+3-3
-	_puts(2*3-2/4)
-	if(2){_puts(2)}
+	puts(2*3-2/4)
+	if(2){puts(2)}
 	c={Array()}
 	c[2]=3
-	_puts(c[2])
-	_puts(c[1])
+	puts(c[2])
+	puts(c[1])
 end
 {main(){___start();}}
