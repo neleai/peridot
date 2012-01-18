@@ -17,10 +17,10 @@ class Fixint
 end
 class Array
 	def [](obj a,obj b)
-  	{return a.ary[b.in];}
+  	{return obj2ary(a)[obj2int(b)];}
 	end
 	def []=(obj a,obj b,obj c)
-  	{return a.ary[b.in]=c;}
+  	{return obj2ary(a)[obj2int(b)]=c;}
 	end
 end
 
@@ -34,6 +34,6 @@ def _start()
 	c={Array()}
 	c[2]=3
 	_puts(c[2])
-	_puts(c[1])
+	_puts(c[2])
 end
 {main(){___start();}}
