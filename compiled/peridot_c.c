@@ -45,6 +45,8 @@ static VALUE sy__CCode__lbbi_c1c3;
 static VALUE sy__Call;
 static VALUE sy__Call__lb2;
 static VALUE sy__Call__lb3;
+static VALUE sy__Call__lb4;
+static VALUE sy__Call__lb5;
 static VALUE sy__Call__lb;
 static VALUE sy__Def;
 static VALUE sy__If__lb;
@@ -67,7 +69,6 @@ static VALUE sy_expr_ar2;
 static VALUE sy_expr_ar3;
 static VALUE sy_expr_ar4;
 static VALUE sy_expr_postfixed;
-static VALUE sy_method;
 static VALUE sy_name;
 static VALUE sy_newline;
 static VALUE sy_number;
@@ -972,7 +973,7 @@ accept2:
         bind_aset(bind2,1,_op);
         bind_aset(bind2,2,_a);
         bind_aset(bind2,3,_b);
-        it=rb_funcall(self,sy__Call__lb3,1,bind2);
+        it=rb_funcall(self,sy__Call__lb5,1,bind2);
         _op=bind_aget(bind2,1);;
         _a=bind_aget(bind2,2);;
         _b=bind_aget(bind2,3);;
@@ -1048,7 +1049,7 @@ accept2:
         bind_aset(bind2,1,_op);
         bind_aset(bind2,2,_a);
         bind_aset(bind2,3,_b);
-        it=rb_funcall(self,sy__Call__lb3,1,bind2);
+        it=rb_funcall(self,sy__Call__lb5,1,bind2);
         _op=bind_aget(bind2,1);;
         _a=bind_aget(bind2,2);;
         _b=bind_aget(bind2,3);;
@@ -1102,7 +1103,7 @@ alt1_1:
         bind_aset(bind2,1,_op);
         bind_aset(bind2,2,_a);
         bind_aset(bind2,3,_b);
-        it=rb_funcall(self,sy__Call__lb3,1,bind2);
+        it=rb_funcall(self,sy__Call__lb5,1,bind2);
         _op=bind_aget(bind2,1);;
         _a=bind_aget(bind2,2);;
         _b=bind_aget(bind2,3);;
@@ -1146,7 +1147,7 @@ fail:
 }
 VALUE Peridot_parser_expr_postfixed(VALUE self ) {
     VALUE vals[0];
-    VALUE it ,_a,_autovar,_arg,_arg2,__result;
+    VALUE it ,_a,_autovar,_arg,_arg2,_autovar_2,_name,__result;
     VALUE bind2=bind_new2(16);
     int x;
     VALUE arg0,arg1,arg2,arg3;
@@ -1244,9 +1245,79 @@ alt1_2:
             ;
         case 'a' ... 'z':
             ;
-            it=rb_funcall(self,sy_method,0);
+            it=rb_funcall(self,sy_name,0);
             FAILTEST(alt1_3);
+            _autovar_2=it;;
+            int oldpos3=ptr->pos;
+            int cut3=0;
+alt3_1:
+            ;
+            it=_autovar_2;
+            _name=it;;
+            it=rb_obj_clone(s_);
+            arg0=it;
+            it=rb_funcall(self,sy_seq,1,arg0);
+            FAILTEST(alt3_2);
+            it=rb_funcall(self,sy_args,0);
+            FAILTEST(alt3_2);
+            _arg=it;;
+            it=rb_obj_clone(s_2);
+            arg0=it;
+            it=rb_funcall(self,sy_seq,1,arg0);
+            FAILTEST(alt3_2);
+            bind_aset(bind2,1,_name);
+            bind_aset(bind2,2,_a);
+            bind_aset(bind2,3,_arg);
+            it=rb_funcall(self,sy__Call__lb3,1,bind2);
+            _name=bind_aget(bind2,1);;
+            _a=bind_aget(bind2,2);;
+            _arg=bind_aget(bind2,3);;
             _a=it;;
+
+            ;
+            goto accept3;
+alt3_2:
+            ptr->pos=oldpos3;
+            it=_autovar_2;
+            _name=it;;
+            int oldpos4=ptr->pos;
+            int cut4=0;
+alt4_1:
+            ;
+            it=rb_obj_clone(s_);
+            arg0=it;
+            it=rb_funcall(self,sy_seq,1,arg0);
+            FAILTEST(alt4_2);
+            it=rb_obj_clone(s_2);
+            arg0=it;
+            it=rb_funcall(self,sy_token,1,arg0);
+            FAILTEST(alt4_2);
+            ;
+            goto accept4;
+alt4_2:
+            ptr->pos=oldpos4;
+            it=Qnil;
+            ;
+            goto accept4;
+alt4_3:
+            ptr->pos=oldpos4;
+            goto alt3_3;
+accept4:
+            ;
+            bind_aset(bind2,1,_name);
+            bind_aset(bind2,2,_a);
+            it=rb_funcall(self,sy__Call__lb4,1,bind2);
+            _name=bind_aget(bind2,1);;
+            _a=bind_aget(bind2,2);;
+            _a=it;;
+
+            ;
+            goto accept3;
+alt3_3:
+            ptr->pos=oldpos3;
+            goto alt1_3;
+accept3:
+            ;
             break;
         }
         ;
@@ -1564,6 +1635,8 @@ void Init_peridot_c() {
     sy__Call=rb_intern("_Call");
     sy__Call__lb2=rb_intern("_Call__lb2");
     sy__Call__lb3=rb_intern("_Call__lb3");
+    sy__Call__lb4=rb_intern("_Call__lb4");
+    sy__Call__lb5=rb_intern("_Call__lb5");
     sy__Call__lb=rb_intern("_Call__lb");
     sy__Def=rb_intern("_Def");
     sy__If__lb=rb_intern("_If__lb");
@@ -1586,7 +1659,6 @@ void Init_peridot_c() {
     sy_expr_ar3=rb_intern("expr_ar3");
     sy_expr_ar4=rb_intern("expr_ar4");
     sy_expr_postfixed=rb_intern("expr_postfixed");
-    sy_method=rb_intern("method");
     sy_name=rb_intern("name");
     sy_newline=rb_intern("newline");
     sy_number=rb_intern("number");
@@ -1610,5 +1682,5 @@ void Init_peridot_c() {
     rb_define_method(cls_Peridot_parser,"name",Peridot_parser_name,0);
     rb_define_method(cls_Peridot_parser,"root",Peridot_parser_root,0);
     rb_define_method(cls_Peridot_parser,"sequence",Peridot_parser_sequence,0);
-    rb_eval_string("testversionperidot('7d9206491434048dda1e3a1c5f98fadf')");
+    rb_eval_string("testversionperidot('828c083e9cb0e1d505729f393bc8bc91')");
 }

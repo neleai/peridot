@@ -29,6 +29,14 @@ Call[{:name=>leterize("[]") ,:ary=>[bind[1],bind[2]]}]
 
 end
 def _Call__lb3(bind)
+Call[{:name=>leterize(bind[1]) ,:ary=>[bind[2],bind[3]]}]
+
+end
+def _Call__lb4(bind)
+Call[{:name=>leterize(bind[1]) ,:ary=>[bind[2]]}]
+
+end
+def _Call__lb5(bind)
 Call[{:name=>leterize(bind[1]),:ary=>[bind[2],bind[3]]}]
 end
 def _Def(bind)
@@ -66,12 +74,12 @@ def peridot_compiled_by
 '5c1f7afec2544ad21e4acaa04236182d'
 end
 def peridot_source_hash
-'16ff3baeec898e4b341842004637a022'
+'b47410707c7a99539f2f9c0aac49233f'
 end
 def testversionperidot(r)
  raise "invalid version" if r!=peridot_version
 end
 def peridot_version
-'7d9206491434048dda1e3a1c5f98fadf'
+'828c083e9cb0e1d505729f393bc8bc91'
 end
 require File.expand_path(File.dirname(__FILE__))+"/#{RUBY_VERSION}/peridot_c"
