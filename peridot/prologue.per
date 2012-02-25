@@ -27,6 +27,9 @@ class String
   def _puts(obj a)
     {printf("%s",obj2str(a))}
   end
+  def +(obj a,obj b)
+    {char *s=malloc(strlen(obj2str(a))+strlen(obj2str(b))+1);strcpy(s,obj2str(a));strcat(s,obj2str(b));return Str(s); }
+  end
 end
 
 def _start()
@@ -40,7 +43,8 @@ def _start()
 	c[2]=3
   z="abc"
   _puts(z)
+  _puts(z+"def")
 	puti(c[2])
 	puti(c[2])
 end
-{main(){___start();}}
+{main(){___start_3();}}
