@@ -10,6 +10,10 @@ def _CCode__lb(bind)
 CCode["Int(#{bind[1]})"]
 
 end
+def _CCode__lb2(bind)
+CCode["Str(#{bind[1].inspect})"]
+
+end
 def _CCode__lbbi_c1c3(bind)
 CCode[bind[1]*""]
 end
@@ -59,15 +63,15 @@ end
 
 
 def peridot_compiled_by
-'fbc86debcdabb39e79f0a134753db4ed'
+'5c1f7afec2544ad21e4acaa04236182d'
 end
 def peridot_source_hash
-'a5563f8b237305cc46cd93c053217ca4'
+'16ff3baeec898e4b341842004637a022'
 end
 def testversionperidot(r)
  raise "invalid version" if r!=peridot_version
 end
 def peridot_version
-'0ab2e27059aecfd3f7de1c6d0e5ff1cb'
+'7d9206491434048dda1e3a1c5f98fadf'
 end
 require File.expand_path(File.dirname(__FILE__))+"/#{RUBY_VERSION}/peridot_c"

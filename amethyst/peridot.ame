@@ -8,7 +8,8 @@ amethyst Peridot_parser{
 	defname = (<^ \t\r\n()>)*:x {leterize(x*"")}
 	
 	atom = ""
-       ( number:n -> CCode["Int(#{n})"]
+       ( number:n         -> CCode["Int(#{n})"]
+       | '"' until('"'):s -> CCode["Str(#{s.inspect})"]
 			 | '(' expr:e ")" {e}
 			 | 'if' "(" expr:expr ")" block:block {If[{:expr=>expr,:block=>block}]}
 			 | '{' ('}' break | &'{' atom:{'{'+it[0]+'}'}:s[] | .:s[])* {CCode[s*""]}
@@ -31,7 +32,8 @@ amethyst Peridot_parser{
 
 	expr_ar1 = expr_ar2:a (("+"|"-"):op expr_ar2:b {Call[{:name=>leterize(op),:ary=>[a,b]}]}:a)* {a}
 	expr_ar2 = expr_ar3:a (("*"|"/"):op expr_ar3:b {Call[{:name=>leterize(op),:ary=>[a,b]}]}:a)* {a}
-	expr_ar3 = expr_postfixed:a     (("**"):op    expr_postfixed:b     {Call[{:name=>leterize(op),:ary=>[a,b]}]}:a)* {a}
+	expr_ar3 = expr_ar4:a (("**"):op    expr_ar4:b {Call[{:name=>leterize(op),:ary=>[a,b]}]}:a)* {a}
+  expr_ar4 = expr_postfixed  
 
 	block = "{" sequence:s '}' {s}
 

@@ -12,6 +12,7 @@ VALUE Peridot_parser_expr(VALUE self );
 VALUE Peridot_parser_expr_ar1(VALUE self );
 VALUE Peridot_parser_expr_ar2(VALUE self );
 VALUE Peridot_parser_expr_ar3(VALUE self );
+VALUE Peridot_parser_expr_ar4(VALUE self );
 VALUE Peridot_parser_expr_postfixed(VALUE self );
 VALUE Peridot_parser_method(VALUE self );
 VALUE Peridot_parser_name(VALUE self );
@@ -21,6 +22,7 @@ static VALUE s_2;
 static VALUE s_3;
 static VALUE s_4;
 static VALUE s_5;
+static VALUE s_6;
 static VALUE s_;
 static VALUE s___assign_43ec;
 static VALUE s___divide_6666;
@@ -37,6 +39,7 @@ static VALUE s_end_7f02;
 static VALUE s_if_39c8;
 static VALUE sy__;
 static VALUE sy__Assign;
+static VALUE sy__CCode__lb2;
 static VALUE sy__CCode__lb;
 static VALUE sy__CCode__lbbi_c1c3;
 static VALUE sy__Call;
@@ -62,6 +65,7 @@ static VALUE sy_expr;
 static VALUE sy_expr_ar1;
 static VALUE sy_expr_ar2;
 static VALUE sy_expr_ar3;
+static VALUE sy_expr_ar4;
 static VALUE sy_expr_postfixed;
 static VALUE sy_method;
 static VALUE sy_name;
@@ -70,6 +74,7 @@ static VALUE sy_number;
 static VALUE sy_seq;
 static VALUE sy_sequence;
 static VALUE sy_token;
+static VALUE sy_until;
 VALUE profile_report_Peridot_parser(VALUE self) {
     cstruct *ptr;
     Data_Get_Struct(self,cstruct,ptr);
@@ -132,41 +137,59 @@ alt1_1:
         goto accept1;
 alt1_2:
         ptr->pos=oldpos1;
-        it=rb_obj_clone(s_);
+        it=rb_obj_clone(s_3);
         arg0=it;
         it=rb_funcall(self,sy_seq,1,arg0);
         FAILTEST(alt1_3);
-        it=rb_funcall(self,sy_expr,0);
-        FAILTEST(alt1_3);
-        _e=it;;
-        it=rb_obj_clone(s_2);
+        it=rb_obj_clone(s_3);
         arg0=it;
-        it=rb_funcall(self,sy_token,1,arg0);
+        it=rb_funcall(self,sy_until,1,arg0);
         FAILTEST(alt1_3);
-        it=_e;
+        _s=it;;
+        bind_aset(bind2,1,_s);
+        it=rb_funcall(self,sy__CCode__lb2,1,bind2);
+        _s=bind_aget(bind2,1);;
         __result=it;;
 
         ;
         goto accept1;
 alt1_3:
         ptr->pos=oldpos1;
-        it=rb_obj_clone(s_if_39c8);
+        it=rb_obj_clone(s_);
         arg0=it;
         it=rb_funcall(self,sy_seq,1,arg0);
         FAILTEST(alt1_4);
-        it=rb_obj_clone(s_);
-        arg0=it;
-        it=rb_funcall(self,sy_token,1,arg0);
-        FAILTEST(alt1_4);
         it=rb_funcall(self,sy_expr,0);
         FAILTEST(alt1_4);
-        _expr=it;;
+        _e=it;;
         it=rb_obj_clone(s_2);
         arg0=it;
         it=rb_funcall(self,sy_token,1,arg0);
         FAILTEST(alt1_4);
+        it=_e;
+        __result=it;;
+
+        ;
+        goto accept1;
+alt1_4:
+        ptr->pos=oldpos1;
+        it=rb_obj_clone(s_if_39c8);
+        arg0=it;
+        it=rb_funcall(self,sy_seq,1,arg0);
+        FAILTEST(alt1_5);
+        it=rb_obj_clone(s_);
+        arg0=it;
+        it=rb_funcall(self,sy_token,1,arg0);
+        FAILTEST(alt1_5);
+        it=rb_funcall(self,sy_expr,0);
+        FAILTEST(alt1_5);
+        _expr=it;;
+        it=rb_obj_clone(s_2);
+        arg0=it;
+        it=rb_funcall(self,sy_token,1,arg0);
+        FAILTEST(alt1_5);
         it=rb_funcall(self,sy_block,0);
-        FAILTEST(alt1_4);
+        FAILTEST(alt1_5);
         _block=it;;
         bind_aset(bind2,1,_expr);
         bind_aset(bind2,2,_block);
@@ -177,12 +200,12 @@ alt1_3:
 
         ;
         goto accept1;
-alt1_4:
+alt1_5:
         ptr->pos=oldpos1;
-        it=rb_obj_clone(s_3);
+        it=rb_obj_clone(s_4);
         arg0=it;
         it=rb_funcall(self,sy_seq,1,arg0);
-        FAILTEST(alt1_5);
+        FAILTEST(alt1_6);
         it=rb_ary_new3(0);
         int stop1=0;
         while(!stop1) {
@@ -190,7 +213,7 @@ alt1_4:
             int cut2=0;
 alt2_1:
             ;
-            it=rb_obj_clone(s_4);
+            it=rb_obj_clone(s_5);
             arg0=it;
             it=rb_funcall(self,sy_seq,1,arg0);
             FAILTEST(alt2_2);
@@ -200,9 +223,9 @@ alt2_1:
             goto accept2;
 alt2_2:
             ptr->pos=oldpos2;
-            if (cut2) goto alt1_5;
+            if (cut2) goto alt1_6;
             int oldpos3=ptr->pos;
-            it=rb_obj_clone(s_3);
+            it=rb_obj_clone(s_4);
             arg0=it;
             it=rb_funcall(self,sy_seq,1,arg0);
             FAILTEST(reject1);
@@ -242,7 +265,7 @@ alt2_3:
             goto accept2;
 alt2_4:
             ptr->pos=oldpos2;
-            goto alt1_5;
+            goto alt1_6;
 accept2:
             ;
         }
@@ -253,7 +276,7 @@ accept2:
 
         ;
         goto accept1;
-alt1_5:
+alt1_6:
         ptr->pos=oldpos1;
         int oldpos4=ptr->pos;
         int cut3=0;
@@ -269,13 +292,13 @@ alt3_1:
         goto accept4;
 alt3_2:
         ptr->pos=oldpos4;
-        if (cut3) goto alt1_6;
+        if (cut3) goto alt1_7;
         it=Qnil;
         ;
         goto accept4;
 alt3_3:
         ptr->pos=oldpos4;
-        goto alt1_6;
+        goto alt1_7;
 accept4:
         ;
         switch((unsigned char)*ame_curstr2(ptr)) {
@@ -287,7 +310,7 @@ accept4:
             ;
         case '{' ... UC(255):
             ;
-            goto alt1_6;
+            goto alt1_7;
             break;
         case 'A' ... 'Z':
             ;
@@ -296,7 +319,7 @@ accept4:
         case 'a' ... 'z':
             ;
             it=rb_funcall(self,sy_name,0);
-            FAILTEST(alt1_6);
+            FAILTEST(alt1_7);
             _name=it;;
             break;
         }
@@ -309,7 +332,7 @@ accept4:
 
         ;
         goto accept1;
-alt1_6:
+alt1_7:
         ptr->pos=oldpos1;
         goto fail;
 accept1:
@@ -337,41 +360,59 @@ alt4_1:
         goto accept5;
 alt4_2:
         ptr->pos=oldpos5;
-        it=rb_obj_clone(s_);
+        it=rb_obj_clone(s_3);
         arg0=it;
         it=rb_funcall(self,sy_seq,1,arg0);
         FAILTEST(alt4_3);
-        it=rb_funcall(self,sy_expr,0);
-        FAILTEST(alt4_3);
-        _e=it;;
-        it=rb_obj_clone(s_2);
+        it=rb_obj_clone(s_3);
         arg0=it;
-        it=rb_funcall(self,sy_token,1,arg0);
+        it=rb_funcall(self,sy_until,1,arg0);
         FAILTEST(alt4_3);
-        it=_e;
+        _s=it;;
+        bind_aset(bind2,1,_s);
+        it=rb_funcall(self,sy__CCode__lb2,1,bind2);
+        _s=bind_aget(bind2,1);;
         __result=it;;
 
         ;
         goto accept5;
 alt4_3:
         ptr->pos=oldpos5;
-        it=rb_obj_clone(s_if_39c8);
+        it=rb_obj_clone(s_);
         arg0=it;
         it=rb_funcall(self,sy_seq,1,arg0);
         FAILTEST(alt4_4);
-        it=rb_obj_clone(s_);
-        arg0=it;
-        it=rb_funcall(self,sy_token,1,arg0);
-        FAILTEST(alt4_4);
         it=rb_funcall(self,sy_expr,0);
         FAILTEST(alt4_4);
-        _expr=it;;
+        _e=it;;
         it=rb_obj_clone(s_2);
         arg0=it;
         it=rb_funcall(self,sy_token,1,arg0);
         FAILTEST(alt4_4);
+        it=_e;
+        __result=it;;
+
+        ;
+        goto accept5;
+alt4_4:
+        ptr->pos=oldpos5;
+        it=rb_obj_clone(s_if_39c8);
+        arg0=it;
+        it=rb_funcall(self,sy_seq,1,arg0);
+        FAILTEST(alt4_5);
+        it=rb_obj_clone(s_);
+        arg0=it;
+        it=rb_funcall(self,sy_token,1,arg0);
+        FAILTEST(alt4_5);
+        it=rb_funcall(self,sy_expr,0);
+        FAILTEST(alt4_5);
+        _expr=it;;
+        it=rb_obj_clone(s_2);
+        arg0=it;
+        it=rb_funcall(self,sy_token,1,arg0);
+        FAILTEST(alt4_5);
         it=rb_funcall(self,sy_block,0);
-        FAILTEST(alt4_4);
+        FAILTEST(alt4_5);
         _block=it;;
         bind_aset(bind2,1,_expr);
         bind_aset(bind2,2,_block);
@@ -382,12 +423,12 @@ alt4_3:
 
         ;
         goto accept5;
-alt4_4:
+alt4_5:
         ptr->pos=oldpos5;
-        it=rb_obj_clone(s_3);
+        it=rb_obj_clone(s_4);
         arg0=it;
         it=rb_funcall(self,sy_seq,1,arg0);
-        FAILTEST(alt4_5);
+        FAILTEST(alt4_6);
         it=rb_ary_new3(0);
         int stop2=0;
         while(!stop2) {
@@ -395,7 +436,7 @@ alt4_4:
             int cut5=0;
 alt5_1:
             ;
-            it=rb_obj_clone(s_4);
+            it=rb_obj_clone(s_5);
             arg0=it;
             it=rb_funcall(self,sy_seq,1,arg0);
             FAILTEST(alt5_2);
@@ -405,9 +446,9 @@ alt5_1:
             goto accept6;
 alt5_2:
             ptr->pos=oldpos6;
-            if (cut5) goto alt4_5;
+            if (cut5) goto alt4_6;
             int oldpos7=ptr->pos;
-            it=rb_obj_clone(s_3);
+            it=rb_obj_clone(s_4);
             arg0=it;
             it=rb_funcall(self,sy_seq,1,arg0);
             FAILTEST(reject2);
@@ -447,7 +488,7 @@ alt5_3:
             goto accept6;
 alt5_4:
             ptr->pos=oldpos6;
-            goto alt4_5;
+            goto alt4_6;
 accept6:
             ;
         }
@@ -458,10 +499,10 @@ accept6:
 
         ;
         goto accept5;
-alt4_5:
+alt4_6:
         ptr->pos=oldpos5;
         it=rb_funcall(self,sy_name,0);
-        FAILTEST(alt4_6);
+        FAILTEST(alt4_7);
         _it=it;;
         bind_aset(bind2,1,_it);
         it=rb_funcall(self,sy__leterize_fbae,1,bind2);
@@ -470,9 +511,9 @@ alt4_5:
         it=rb_obj_clone(s_);
         arg0=it;
         it=rb_funcall(self,sy_seq,1,arg0);
-        FAILTEST(alt4_6);
+        FAILTEST(alt4_7);
         it=rb_funcall(self,sy_args,0);
-        FAILTEST(alt4_6);
+        FAILTEST(alt4_7);
         _autovar_3=it;;
         bind_aset(bind2,1,_ary);
         bind_aset(bind2,2,_autovar_3);
@@ -482,7 +523,7 @@ alt4_5:
         it=rb_obj_clone(s_2);
         arg0=it;
         it=rb_funcall(self,sy_seq,1,arg0);
-        FAILTEST(alt4_6);
+        FAILTEST(alt4_7);
         bind_aset(bind2,1,_name);
         bind_aset(bind2,2,_ary);
         it=rb_funcall(self,sy__Call,1,bind2);
@@ -492,7 +533,7 @@ alt4_5:
 
         ;
         goto accept5;
-alt4_6:
+alt4_7:
         ptr->pos=oldpos5;
         int oldpos8=ptr->pos;
         int cut6=0;
@@ -508,13 +549,13 @@ alt6_1:
         goto accept8;
 alt6_2:
         ptr->pos=oldpos8;
-        if (cut6) goto alt4_7;
+        if (cut6) goto alt4_8;
         it=Qnil;
         ;
         goto accept8;
 alt6_3:
         ptr->pos=oldpos8;
-        goto alt4_7;
+        goto alt4_8;
 accept8:
         ;
         switch((unsigned char)*ame_curstr2(ptr)) {
@@ -526,7 +567,7 @@ accept8:
             ;
         case '{' ... UC(255):
             ;
-            goto alt4_7;
+            goto alt4_8;
             break;
         case 'A' ... 'Z':
             ;
@@ -535,7 +576,7 @@ accept8:
         case 'a' ... 'z':
             ;
             it=rb_funcall(self,sy_name,0);
-            FAILTEST(alt4_7);
+            FAILTEST(alt4_8);
             _name=it;;
             break;
         }
@@ -548,7 +589,7 @@ accept8:
 
         ;
         goto accept5;
-alt4_7:
+alt4_8:
         ptr->pos=oldpos5;
         goto fail;
 accept5:
@@ -567,14 +608,14 @@ VALUE Peridot_parser_block(VALUE self ) {
     VALUE arg0,arg1,arg2,arg3;
     cstruct *ptr;
     Data_Get_Struct(self,cstruct,ptr);
-    it=rb_obj_clone(s_3);
+    it=rb_obj_clone(s_4);
     arg0=it;
     it=rb_funcall(self,sy_token,1,arg0);
     FAILTEST(fail);
     it=rb_funcall(self,sy_sequence,0);
     FAILTEST(fail);
     _s=it;;
-    it=rb_obj_clone(s_4);
+    it=rb_obj_clone(s_5);
     arg0=it;
     it=rb_funcall(self,sy_seq,1,arg0);
     FAILTEST(fail);
@@ -1041,7 +1082,7 @@ VALUE Peridot_parser_expr_ar3(VALUE self ) {
     VALUE arg0,arg1,arg2,arg3;
     cstruct *ptr;
     Data_Get_Struct(self,cstruct,ptr);
-    it=rb_funcall(self,sy_expr_postfixed,0);
+    it=rb_funcall(self,sy_expr_ar4,0);
     FAILTEST(fail);
     _a=it;;
     int stop1=0;
@@ -1055,7 +1096,7 @@ alt1_1:
         it=rb_funcall(self,sy_token,1,arg0);
         FAILTEST(alt1_2);
         _op=it;;
-        it=rb_funcall(self,sy_expr_postfixed,0);
+        it=rb_funcall(self,sy_expr_ar4,0);
         FAILTEST(alt1_2);
         _b=it;;
         bind_aset(bind2,1,_op);
@@ -1081,6 +1122,22 @@ accept1:
         ;
     }
     it=_a;
+    __result=it;;
+
+    return it;
+fail:
+    return failobj;
+}
+VALUE Peridot_parser_expr_ar4(VALUE self ) {
+    VALUE vals[0];
+    VALUE it ,__result;
+    VALUE bind2=bind_new2(16);
+    int x;
+    VALUE arg0,arg1,arg2,arg3;
+    cstruct *ptr;
+    Data_Get_Struct(self,cstruct,ptr);
+    it=rb_funcall(self,sy_expr_postfixed,0);
+    FAILTEST(fail);
     __result=it;;
 
     return it;
@@ -1166,7 +1223,7 @@ accept2:
         goto accept1;
 alt1_2:
         ptr->pos=oldpos1;
-        it=rb_obj_clone(s_5);
+        it=rb_obj_clone(s_6);
         arg0=it;
         it=rb_funcall(self,sy_seq,1,arg0);
         FAILTEST(alt1_3);
@@ -1463,12 +1520,14 @@ void Init_peridot_c() {
     rb_define_method(cls_Peridot_parser,"profile_report",profile_report_Peridot_parser,0);
     s_2=rb_str_new2(")");
     rb_global_variable(&s_2);
-    s_3=rb_str_new2("{");
+    s_3=rb_str_new2("\"");
     rb_global_variable(&s_3);
-    s_4=rb_str_new2("}");
+    s_4=rb_str_new2("{");
     rb_global_variable(&s_4);
-    s_5=rb_str_new2(".");
+    s_5=rb_str_new2("}");
     rb_global_variable(&s_5);
+    s_6=rb_str_new2(".");
+    rb_global_variable(&s_6);
     s_=rb_str_new2("(");
     rb_global_variable(&s_);
     s___assign_43ec=rb_str_new2("=");
@@ -1499,6 +1558,7 @@ void Init_peridot_c() {
     rb_global_variable(&s_if_39c8);
     sy__=rb_intern("_");
     sy__Assign=rb_intern("_Assign");
+    sy__CCode__lb2=rb_intern("_CCode__lb2");
     sy__CCode__lb=rb_intern("_CCode__lb");
     sy__CCode__lbbi_c1c3=rb_intern("_CCode__lbbi_c1c3");
     sy__Call=rb_intern("_Call");
@@ -1524,6 +1584,7 @@ void Init_peridot_c() {
     sy_expr_ar1=rb_intern("expr_ar1");
     sy_expr_ar2=rb_intern("expr_ar2");
     sy_expr_ar3=rb_intern("expr_ar3");
+    sy_expr_ar4=rb_intern("expr_ar4");
     sy_expr_postfixed=rb_intern("expr_postfixed");
     sy_method=rb_intern("method");
     sy_name=rb_intern("name");
@@ -1532,6 +1593,7 @@ void Init_peridot_c() {
     sy_seq=rb_intern("seq");
     sy_sequence=rb_intern("sequence");
     sy_token=rb_intern("token");
+    sy_until=rb_intern("until");
     rb_define_method(cls_Peridot_parser,"args",Peridot_parser_args,0);
     rb_define_method(cls_Peridot_parser,"atom",Peridot_parser_atom,0);
     rb_define_method(cls_Peridot_parser,"block",Peridot_parser_block,0);
@@ -1542,10 +1604,11 @@ void Init_peridot_c() {
     rb_define_method(cls_Peridot_parser,"expr_ar1",Peridot_parser_expr_ar1,0);
     rb_define_method(cls_Peridot_parser,"expr_ar2",Peridot_parser_expr_ar2,0);
     rb_define_method(cls_Peridot_parser,"expr_ar3",Peridot_parser_expr_ar3,0);
+    rb_define_method(cls_Peridot_parser,"expr_ar4",Peridot_parser_expr_ar4,0);
     rb_define_method(cls_Peridot_parser,"expr_postfixed",Peridot_parser_expr_postfixed,0);
     rb_define_method(cls_Peridot_parser,"method",Peridot_parser_method,0);
     rb_define_method(cls_Peridot_parser,"name",Peridot_parser_name,0);
     rb_define_method(cls_Peridot_parser,"root",Peridot_parser_root,0);
     rb_define_method(cls_Peridot_parser,"sequence",Peridot_parser_sequence,0);
-    rb_eval_string("testversionperidot('0ab2e27059aecfd3f7de1c6d0e5ff1cb')");
+    rb_eval_string("testversionperidot('7d9206491434048dda1e3a1c5f98fadf')");
 }
