@@ -32,11 +32,14 @@ class TopLevel
 	def puti(obj self,obj b)
 		{printf("%i\n",obj2int(b));}
 	end
+  def geti(obj self)
+    {int i;scanf("%i",&i);return Int(i);}
+  end
 end
 def _start(obj self)
 	{init_Fixint();init_Array();init_String();init_TopLevel();}
 	puti(2*3+2*4)
-	a={geti()}
+  a=geti()
 	b=a+3-3
 	puti(b*3-2/4)
 	if(2){puti(2)}

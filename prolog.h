@@ -18,4 +18,3 @@ int   obj2int(obj o){return ((obj_fixint*)o)->in;}
 obj*  obj2ary(obj o){return ((obj_array *)o)->ary;}
 char* obj2str(obj o){return ((obj_string*)o)->ary;}
 
-obj geti(){int i;scanf("%i",&i);return Int(i);}
