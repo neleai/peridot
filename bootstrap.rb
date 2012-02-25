@@ -21,5 +21,5 @@ File.open("test.c","w"){|f|
  f.puts "#include \"prolog.h\""
  f.puts Peridot_translator.new.parse(:root,p) 
 }
-puts `gcc test.c`
+puts `gcc test.c -g`
 puts `./a.out`

@@ -14,5 +14,6 @@ obj Str(char *c){obj_string *o=malloc(sizeof(obj_string));  o->class=2;o->ary=c;
 
 int obj2int(obj o){return ((obj_fixint*)o)->in;}
 obj geti(){int i;scanf("%i",&i);return Int(i);}
-obj* obj2ary(obj o){return ((obj_array*)o)->ary;}
+obj*  obj2ary(obj o){return ((obj_array *)o)->ary;}
+char* obj2str(obj o){return ((obj_string*)o)->ary;}
 

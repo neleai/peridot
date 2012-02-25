@@ -23,9 +23,14 @@ class Array
   	{return obj2ary(a)[obj2int(b)]=c;}
 	end
 end
+class String
+  def _puts(obj a)
+    {printf("%s",obj2str(a))}
+  end
+end
 
 def _start()
-	{init_Fixint();init_Array();}
+	{init_Fixint();init_Array();init_String();}
 	puti(2*3+2*4)
 	a={geti()}
 	b=a+3-3
@@ -33,6 +38,8 @@ def _start()
 	if(2){puti(2)}
 	c={Array()}
 	c[2]=3
+  z="abc"
+  _puts(z)
 	puti(c[2])
 	puti(c[2])
 end
