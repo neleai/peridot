@@ -62,6 +62,12 @@ end
 def ___append(bind)
 _append(bind[1],bind[2])
 end
+def ___lb(bind)
+["obj self"]
+end
+def _bind__lb1__rb__assign_0627(bind)
+bind[1]=bind[1]+[','] if bind[1].size==1
+end
 def _bind__lb1__rb__plus_947c(bind)
 bind[1]+bind[2]*""
 end
@@ -76,12 +82,12 @@ def peridot_compiled_by
 '5c1f7afec2544ad21e4acaa04236182d'
 end
 def peridot_source_hash
-'cec4e74e0da4fffe02878fedfc38b208'
+'62b55f25108f30e4f11e3f4943a88c50'
 end
 def testversionperidot(r)
  raise "invalid version" if r!=peridot_version
 end
 def peridot_version
-'b85e09884e287f723ff6b6d96c1cf518'
+'86ad72fd687dca03c07ac7c0b3f6fc23'
 end
 require File.expand_path(File.dirname(__FILE__))+"/#{RUBY_VERSION}/peridot_c"

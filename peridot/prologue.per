@@ -1,42 +1,42 @@
 class Fixint
-	def +(obj self,obj b)
+	def +(obj b)
 		{return Int(obj2int(self)+obj2int(b));}
 	end
-	def -(obj self,obj b)
+	def -(obj b)
 		{return Int(obj2int(self)-obj2int(b));}
 	end
-	def *(obj self,obj b)
+	def *(obj b)
 		{return Int(obj2int(self)*obj2int(b));}
 	end
-	def /(obj self,obj b)
+	def /(obj b)
 		{return Int(obj2int(self)/obj2int(b));}
 	end
 end
 class Array
-	def [](obj self,obj b)
+	def [](obj b)
   	{return obj2ary(self)[obj2int(b)];}
 	end
-	def []=(obj self,obj b,obj c)
+	def []=(obj b,obj c)
   	{return obj2ary(self)[obj2int(b)]=c;}
 	end
 end
 class String
-  def +(obj self,obj b)
+  def +(obj b)
     {char *s=malloc(strlen(obj2str(self))+strlen(obj2str(b))+1);strcpy(s,obj2str(self));strcat(s,obj2str(b));return Str(s); }
   end
 end
 class TopLevel
-  def _puts(obj self,obj b)
+  def _puts(obj b)
     {printf("%s",obj2str(b))}
   end
-	def puti(obj self,obj b)
+	def puti(obj b)
 		{printf("%i\n",obj2int(b));}
 	end
-  def geti(obj self)
+  def geti()
     {int i;scanf("%i",&i);return Int(i);}
   end
 end
-def _start(obj self)
+def _start()
 	{init_Fixint();init_Array();init_String();init_TopLevel();}
 	puti(2*3+2*4)
   a=geti()

@@ -55,6 +55,8 @@ static VALUE sy__Klass;
 static VALUE sy__Seq;
 static VALUE sy__Var;
 static VALUE sy____append;
+static VALUE sy____lb;
+static VALUE sy__bind__lb1__rb__assign_0627;
 static VALUE sy__bind__lb1__rb__plus_947c;
 static VALUE sy__leterize_5878;
 static VALUE sy_args;
@@ -733,14 +735,12 @@ fail:
 }
 VALUE Peridot_parser_defi(VALUE self ) {
     VALUE vals[0];
-    VALUE it ,_args,_ary,_name,_autovar,_autovar_2,__result;
+    VALUE it ,_ary,_name,_args,_autovar,_autovar_2,__result;
     VALUE bind2=bind_new2(16);
     int x;
     VALUE arg0,arg1,arg2,arg3;
     cstruct *ptr;
     Data_Get_Struct(self,cstruct,ptr);
-    it=rb_ary_new3(0);
-    _args=it;;
     it=rb_ary_new3(0);
     _ary=it;;
     it=rb_obj_clone(s_def_4ed9);
@@ -753,6 +753,8 @@ VALUE Peridot_parser_defi(VALUE self ) {
     FAILTEST(fail);
     it=rb_funcall(self,sy_defname,0);
     _name=it;;
+    it=rb_funcall(self,sy____lb,1,bind2);
+    _args=it;;
     it=rb_obj_clone(s_);
     arg0=it;
     it=rb_funcall(self,sy_seq,1,arg0);
@@ -775,6 +777,9 @@ alt1_1:
 alt1_2:
         ptr->pos=oldpos1;
         if (cut1) goto fail;
+        bind_aset(bind2,1,_args);
+        it=rb_funcall(self,sy__bind__lb1__rb__assign_0627,1,bind2);
+        _args=bind_aget(bind2,1);;
         it=AmethystCore_anything(self );
         FAILTEST(alt1_3);
         _autovar=it;;
@@ -1665,6 +1670,8 @@ void Init_peridot_c() {
     sy__Seq=rb_intern("_Seq");
     sy__Var=rb_intern("_Var");
     sy____append=rb_intern("___append");
+    sy____lb=rb_intern("___lb");
+    sy__bind__lb1__rb__assign_0627=rb_intern("_bind__lb1__rb__assign_0627");
     sy__bind__lb1__rb__plus_947c=rb_intern("_bind__lb1__rb__plus_947c");
     sy__leterize_5878=rb_intern("_leterize_5878");
     sy_args=rb_intern("args");
@@ -1702,5 +1709,5 @@ void Init_peridot_c() {
     rb_define_method(cls_Peridot_parser,"name",Peridot_parser_name,0);
     rb_define_method(cls_Peridot_parser,"root",Peridot_parser_root,0);
     rb_define_method(cls_Peridot_parser,"sequence",Peridot_parser_sequence,0);
-    rb_eval_string("testversionperidot('b85e09884e287f723ff6b6d96c1cf518')");
+    rb_eval_string("testversionperidot('86ad72fd687dca03c07ac7c0b3f6fc23')");
 }
