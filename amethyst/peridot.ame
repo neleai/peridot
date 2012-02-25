@@ -13,7 +13,7 @@ amethyst Peridot_parser{
 			 | '(' expr:e ")" {e}
 			 | 'if' "(" expr:expr ")" block:block {If[{:expr=>expr,:block=>block}]}
 			 | '{' ('}' break | &'{' atom:{'{'+it[0]+'}'}:s[] | .:s[])* {CCode[s*""]}
-			 | name:{leterize(it)}:name '(' args:ary[] ')' @Call
+			 | name:name '(' args:arg ')' -> Call[{:name=>leterize(name),:ary=>["self",arg]}]
  		   | ~'end' name:name @Var
 			 )
 

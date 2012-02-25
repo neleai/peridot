@@ -11,9 +11,6 @@ class Fixint
 	def /(obj self,obj b)
 		{return Int(obj2int(self)/obj2int(b));}
 	end
-	def puti(obj self)
-		{printf("%i\n",obj2int(self));}
-	end
 end
 class Array
 	def [](obj self,obj b)
@@ -24,22 +21,24 @@ class Array
 	end
 end
 class String
-  def _puts(obj self)
-    {printf("%s",obj2str(self))}
-  end
   def +(obj self,obj b)
     {char *s=malloc(strlen(obj2str(self))+strlen(obj2str(b))+1);strcpy(s,obj2str(self));strcat(s,obj2str(b));return Str(s); }
   end
 end
 class TopLevel
+  def _puts(obj self,obj b)
+    {printf("%s",obj2str(b))}
+  end
+	def puti(obj self,obj b)
+		{printf("%i\n",obj2int(b));}
+	end
 end
 def _start(obj self)
-	{init_Fixint();init_Array();init_String();}
+	{init_Fixint();init_Array();init_String();init_TopLevel();}
 	puti(2*3+2*4)
 	a={geti()}
 	b=a+3-3
 	puti(b*3-2/4)
-  b.puti
 	if(2){puti(2)}
 	c={Array()}
 	c[2]=3
