@@ -1,15 +1,15 @@
 class Fixint
-	def +(obj b)
-		{return Int(obj2int(self)+obj2int(b));}
+	def +(obj_fixint *b)
+		{return Int(obj2int(self)+b->in);}
 	end
-	def -(obj b)
-		{return Int(obj2int(self)-obj2int(b));}
+	def -(obj_fixint *b)
+		{return Int(obj2int(self)-b->in);}
 	end
-	def *(obj b)
-		{return Int(obj2int(self)*obj2int(b));}
+	def *(obj_fixint *b)
+		{return Int(obj2int(self)*b->in);}
 	end
-	def /(obj b)
-		{return Int(obj2int(self)/obj2int(b));}
+	def /(obj_fixint *b)
+		{return Int(obj2int(self)/b->in);}
 	end
 end
 class Array
