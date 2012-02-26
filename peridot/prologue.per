@@ -13,24 +13,24 @@ class Fixint
 	end
 end
 class Array
-	def [](obj b)
-  	{return obj2ary(self)[obj2int(b)];}
+	def  [](obj_fixint* b)
+  	{return obj2ary(self)[b->in];}
 	end
-	def []=(obj b,obj c)
-  	{return obj2ary(self)[obj2int(b)]=c;}
+	def []=(obj_fixint* b,obj c)
+  	{return obj2ary(self)[b->in]=c;}
 	end
 end
 class String
-  def +(obj b)
-    {char *s=malloc(strlen(obj2str(self))+strlen(obj2str(b))+1);strcpy(s,obj2str(self));strcat(s,obj2str(b));return Str(s); }
+  def +(obj_string* b)
+    {char *s=malloc(strlen(obj2str(self))+strlen(b->ary)+1);strcpy(s,obj2str(self));strcat(s,b->ary);return Str(s); }
   end
 end
 class TopLevel
-  def _puts(obj b)
-    {printf("%s",obj2str(b))}
+  def _puts(obj_string* b)
+    {printf("%s",b->ary)}
   end
-	def puti(obj b)
-		{printf("%i\n",obj2int(b));}
+	def puti(obj_fixint *b)
+		{printf("%i\n",b->in);}
 	end
   def geti()
     {int i;scanf("%i",&i);return Int(i);}
