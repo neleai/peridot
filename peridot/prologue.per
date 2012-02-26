@@ -27,10 +27,14 @@ class String
   def +(obj_String* b)
     {char *s=malloc(strlen(obj2str(self))+strlen(b->ary)+1);strcpy(s,obj2str(self));strcat(s,b->ary);return Str(s); }
   end
+  def to_s()
+    {return self;}
+  end
 end
 class TopLevel
-  def _puts(obj_String* b)
-    {printf("%s\n",b->ary)}
+  def _puts(obj b)
+    c={b}.to_s
+    {printf("%s\n",obj2str(c))}
   end
 	def puti(obj_Fixint *b)
     _puts({b}.to_s)
@@ -41,16 +45,16 @@ class TopLevel
 end
 def _start()
 	{init_Fixint();init_Array();init_String();init_TopLevel();}
-	puti(2*3+2*4)
+	_puts(2*3+2*4)
   a=geti()
 	b=a+3-3
-	puti(b*3-2/4)
-	if(2){puti(2)}
+	_puts(b*3-2/4)
+	if(2){_puts(2)}
 	c={Array()}
 	c[2]=3
   z="abc"
   _puts(z+"def")
-	puti(c[2])
-	puti(c[2])
+	_puts(c[2])
+	_puts(c[2])
 end
 {main(){___start_4(Toplevel());}}
