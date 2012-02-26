@@ -3,18 +3,18 @@
 #include <string.h>
 typedef struct {int class;} _obj;
 typedef _obj* obj;
-typedef struct {int class;int    in;} obj_fixint;
-typedef struct {int class;obj  *ary;} obj_array;
-typedef struct {int class;char *ary;} obj_string;
+typedef struct {int class;int    in;} obj_Fixint;
+typedef struct {int class;obj  *ary;} obj_Array;
+typedef struct {int class;char *ary;} obj_String;
 
 
 typedef obj (* obj_fn)();
-obj Int(int i)  {obj_fixint *o=malloc(sizeof(obj_fixint));  o->class=0;o->in=i;                   return (obj)o;}
-obj Array()     {obj_array  *o=malloc(sizeof(obj_array ));  o->class=1;o->ary=(obj *) malloc(100);return (obj)o;}
-obj Str(char *c){obj_string *o=malloc(sizeof(obj_string));  o->class=2;o->ary=c;                  return (obj)o;}
+obj Int(int i)  {obj_Fixint *o=malloc(sizeof(obj_Fixint));  o->class=0;o->in=i;                   return (obj)o;}
+obj Array()     {obj_Array  *o=malloc(sizeof(obj_Array ));  o->class=1;o->ary=(obj *) malloc(100);return (obj)o;}
+obj Str(char *c){obj_String *o=malloc(sizeof(obj_String));  o->class=2;o->ary=c;                  return (obj)o;}
 obj Toplevel()  {_obj       *o=malloc(sizeof(_obj));        o->class=3;                           return (obj)o;}
 
-int   obj2int(obj o){return ((obj_fixint*)o)->in;}
-obj*  obj2ary(obj o){return ((obj_array *)o)->ary;}
-char* obj2str(obj o){return ((obj_string*)o)->ary;}
+int   obj2int(obj o){return ((obj_Fixint*)o)->in;}
+obj*  obj2ary(obj o){return ((obj_Array *)o)->ary;}
+char* obj2str(obj o){return ((obj_String*)o)->ary;}
 

@@ -1,35 +1,35 @@
 class Fixint
-	def +(obj_fixint *b)
+	def +(obj_Fixint *b)
 		{return Int(obj2int(self)+b->in);}
 	end
-	def -(obj_fixint *b)
+	def -(obj_Fixint *b)
 		{return Int(obj2int(self)-b->in);}
 	end
-	def *(obj_fixint *b)
+	def *(obj_Fixint *b)
 		{return Int(obj2int(self)*b->in);}
 	end
-	def /(obj_fixint *b)
+	def /(obj_Fixint *b)
 		{return Int(obj2int(self)/b->in);}
 	end
 end
 class Array
-	def  [](obj_fixint* b)
+	def  [](obj_Fixint* b)
   	{return obj2ary(self)[b->in];}
 	end
-	def []=(obj_fixint* b,obj c)
+	def []=(obj_Fixint* b,obj c)
   	{return obj2ary(self)[b->in]=c;}
 	end
 end
 class String
-  def +(obj_string* b)
+  def +(obj_String* b)
     {char *s=malloc(strlen(obj2str(self))+strlen(b->ary)+1);strcpy(s,obj2str(self));strcat(s,b->ary);return Str(s); }
   end
 end
 class TopLevel
-  def _puts(obj_string* b)
+  def _puts(obj_String* b)
     {printf("%s",b->ary)}
   end
-	def puti(obj_fixint *b)
+	def puti(obj_Fixint *b)
 		{printf("%i\n",b->in);}
 	end
   def geti()
