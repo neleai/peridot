@@ -11,6 +11,9 @@ class Fixint
 	def /(obj_Fixint *b)
 		{return Int(obj2int(self)/b->in);}
 	end
+  def to_s()
+    {char *c=(char*)malloc(20); sprintf(c,"%i",obj2int(self)); return Str(c);}
+  end
 end
 class Array
 	def  [](obj_Fixint* b)
@@ -27,10 +30,10 @@ class String
 end
 class TopLevel
   def _puts(obj_String* b)
-    {printf("%s",b->ary)}
+    {printf("%s\n",b->ary)}
   end
 	def puti(obj_Fixint *b)
-		{printf("%i\n",b->in);}
+    _puts({b}.to_s)
 	end
   def geti()
     {int i;scanf("%i",&i);return Int(i);}
