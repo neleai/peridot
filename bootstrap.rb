@@ -13,7 +13,9 @@ Compiler::compile("amethyst/#{f}.ame","compiled/#{f}.rb",f)
 
 require "./compiled/#{f}"
 }
-
+def Object.peridot_eval(s)
+  puts s
+end
 
 p= Peridot_parser.new.parse(:root,File.new("peridot/prologue.per").read)
 puts p.inspect

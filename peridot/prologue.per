@@ -42,6 +42,9 @@ class TopLevel
   def geti()
     {int i;scanf("%i",&i);return Int(i);}
   end
+  def eval(obj_String* s)
+    {peridot_eval(s->ary)}
+  end
 end
 def _start()
 	{init_Fixint();init_Array();init_String();init_TopLevel();}
@@ -56,5 +59,6 @@ def _start()
   _puts(z+"def")
 	_puts(c[2])
 	_puts(c[2])
+  eval("4+4")
 end
 {main(){___start_4(Toplevel());}}
