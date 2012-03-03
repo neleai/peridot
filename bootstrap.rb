@@ -20,6 +20,7 @@ puts `gcc -shared -o Load.so load.o -L. -L/usr/lib -L. -rdynamic -Wl,-export-dyn
 require 'Load'
 
 def Object.peridot_eval(s)
+  $translated=[]
   p= Peridot_parser.new.parse(:root,s)
   puts p.inspect
   t=Peridot_translator.new.parse(:root,p)
@@ -30,11 +31,16 @@ def Object.peridot_eval(s)
   }
   puts `gcc #{file}.c -shared -fPIC -o #{file}.so`
   Object.peridot_library("#{file}.so")
-#  Object.peridot_method(0,0,"_bla_5")
+  $translated.each{|cl,me,name|
+#  Object.peridot_method(cl,me,name)
+  }
 end
 
 p= Peridot_parser.new.parse(:root,File.new("peridot/prologue.per").read)
 puts p.inspect
+
+$methods=[]
+$translated=[]
 File.open("test.c","w"){|f|
  f.puts "#include \"prolog.h\""
  f.puts Peridot_translator.new.parse(:root,p) 

@@ -8,8 +8,8 @@ amethyst Peridot_translator{
 	root= {@@fnames=[]} trans*:t {"extern obj_fn *methods[100];  enum fnums{#{@@fnames.uniq*","} }; #{($av+1).times.map{|i| "obj autovar#{i};"}*""}  #{t*""}"}
 	
 	trans = Klass[{@@init=[];@@cls=($clasno);$clasno+=1} trans*:r  {Object.peridot_class(@@cls) ; r*""+"init_#{@name}(){#{@@init*""}}"   }]
-        | Def[{@@fnames<<@name} {@@names=["placeholder"]} trans:body {@@init<<"methods[#{@@cls}][#{@name}]=_#{@name}_#{$clasno};"} 
-                                {"obj _#{@name}_#{$clasno}(#{@args*""}){obj #{@@names.uniq*","}; #{body};}\n" }]
+        | Def[{@@fnames<<@name} {@@names=["placeholder"]} trans:body {$methods<<@name;$translated<<[@@cls,$methods.index(@name),"_#{@name}_#{@@cls}"]; @@init<<"methods[#{@@cls}][#{@name}]=_#{@name}_#{@@cls};"} 
+                                {"obj _#{@name}_#{@@cls}(#{@args*""}){obj #{@@names.uniq*","}; #{body};}\n" }]
 				| Call[trans*:args {autovar}:a {"methods[(#{a}=#{args[0]})->class][#{@name}](#{([a]+args[1..-1])*","})"} ]
 				| CCode[ .]
 				| If[ @expr=>trans:expr @block=>trans:block {"if (obj2int(#{expr})){#{block};\n}" }]
