@@ -7,7 +7,7 @@ $clasno=0
 amethyst Peridot_translator{
 	root= {@@fnames=[]} trans*:t {"extern obj_fn *methods[100];  enum fnums{#{@@fnames.uniq*","} }; #{($av+1).times.map{|i| "obj autovar#{i};"}*""}  #{t*""}"}
 	
-	trans = Klass[{@@init=[];@@cls=($clasno);$clasno+=1} trans*:r  { r*""+"init_#{@name}(){methods[#{@@cls}]=malloc(100);#{@@init*""}}"   }]
+	trans = Klass[{@@init=[];@@cls=($clasno);$clasno+=1} trans*:r  {Object.peridot_class(@@cls) ; r*""+"init_#{@name}(){#{@@init*""}}"   }]
         | Def[{@@fnames<<@name} {@@names=["placeholder"]} trans:body {@@init<<"methods[#{@@cls}][#{@name}]=_#{@name}_#{$clasno};"} 
                                 {"obj _#{@name}_#{$clasno}(#{@args*""}){obj #{@@names.uniq*","}; #{body};}\n" }]
 				| Call[trans*:args {autovar}:a {"methods[(#{a}=#{args[0]})->class][#{@name}](#{([a]+args[1..-1])*","})"} ]
