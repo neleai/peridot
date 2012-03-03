@@ -20,11 +20,17 @@ VALUE set_sl(VALUE self,VALUE lib){
   sl=dlopen(RSTRING_PTR(lib),RTLD_NOW);
   return Qnil;
 }
-VALUE add_class(VALUE self,VALUE no){
-  if (!methods[FIX2INT(no)])
-    methods[FIX2INT(no)]=calloc(sizeof(void *),100);
-  return Qnil;
+char *classes[100];int clasno;
+VALUE add_class(VALUE self,VALUE name){int i;
+  char *clasname=RSTRING_PTR(name);
+  for (i=0;i<clasno;i++)
+    if (!strcmp(clasname,classes[i])) return INT2FIX(i);
+  classes[clasno]=strdup(clasname);
+  methods[clasno]=calloc(sizeof(void *),100);
+  clasno++;
+  return INT2FIX(clasno-1);
 }
+
 void peridot_eval(char *s){
   rb_funcall(rb_cObject,rb_intern("peridot_eval"),1,rb_str_new2(s));
 }
