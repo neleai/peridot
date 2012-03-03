@@ -21,13 +21,15 @@ VALUE set_sl(VALUE self,VALUE lib){
   return Qnil;
 }
 VALUE add_class(VALUE self,VALUE no){
-  methods[FIX2INT(no)]=malloc(sizeof(void *)*100);
+  if (!methods[FIX2INT(no)])
+    methods[FIX2INT(no)]=calloc(sizeof(void *),100);
   return Qnil;
 }
 void peridot_eval(char *s){
   rb_funcall(rb_cObject,rb_intern("peridot_eval"),1,rb_str_new2(s));
 }
-int Init_Load(){
+int Init_Load(){int i;
+  for(i=0;i<100;i++) methods[i]=NULL;
   rb_define_method(rb_cObject,"load_test",load_test,0);
   rb_define_method(rb_cObject,"peridot_library",set_sl,1);
   rb_define_method(rb_cObject,"peridot_method",add_methodrb,3);

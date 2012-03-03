@@ -59,10 +59,11 @@ def _start()
   _puts(z+"def")
 	_puts(c[2])
 	_puts(c[2])
-  eval("class Foo
-def bla()
-{return 42;}
+  eval("class Fixint
+def bar()
+{return Int(42);}
 end
 end")
+_puts(4.bar())
 end
 {main(){___start_3(Toplevel());}}
