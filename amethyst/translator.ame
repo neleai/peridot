@@ -7,9 +7,9 @@ $clasno=0
 amethyst Peridot_translator{
 	root= {@@fnames=[]} trans*:t {"extern obj_fn *methods[100];  enum fnums{#{@@fnames.uniq*","} }; #{($av+1).times.map{|i| "obj autovar#{i};"}*""}  #{t*""}"}
 	
-	trans = Klass[{@@init=[];$classes<<@name unless $classes.include?(@name); @@cls=$classes.index(@name);Object.peridot_class(@@cls)} trans*:r  { r*""+"init_#{@name}(){#{@@init*""}}"   }]
-        | Def[{@@fnames<<@name} {@@names=["placeholder"]} trans:body {$methods<<@name unless $methods.include?(@name);$translated<<[@@cls,$methods.index(@name),"_#{@name}_#{@@cls}"]; @@init<<""} 
-                                {"obj _#{@name}_#{@@cls}(#{@args*""}){obj #{@@names.uniq*","}; #{body};}\n" }]
+	trans = Klass[{@@init=[];@@clas=@name;$classes<<@name unless $classes.include?(@name); @@cls=$classes.index(@name);Object.peridot_class(@@cls)} trans*:r  { r*""+"init_#{@name}(){#{@@init*""}}"   }]
+        | Def[{@@fnames<<@name} {@@names=["placeholder"]} trans:body {$methods<<@name unless $methods.include?(@name);$translated<<[@@cls,$methods.index(@name),"_#{@name}_#{@@clas}"]; @@init<<""} 
+                                {"obj _#{@name}_#{@@clas}(#{@args*""}){obj #{@@names.uniq*","}; #{body};}\n" }]
 				| Call[trans*:args {autovar}:a {$methods<<@name unless $methods.include?(@name);"methods[(#{a}=#{args[0]})->class][#{$methods.index(@name)}/*#{@name}*/](#{([a]+args[1..-1])*","})"} ]
 				| CCode[ .]
 				| If[ @expr=>trans:expr @block=>trans:block {"if (obj2int(#{expr})){#{block};\n}" }]
