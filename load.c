@@ -1,13 +1,13 @@
 #include "ruby.h"
 #include <dlfcn.h>
+
+void *sl;
 VALUE load_test(){
-  void *testl=dlopen("./test.so",RTLD_NOW);
-  void (*man)()=dlsym(testl,"main");
+  void (*man)()=dlsym(sl,"main");
   man();
   return Qnil;
 }
 
-void *sl;
 void** methods[100];
 void add_method(int clas,int num,char *name){
   methods[clas][num]=dlsym(sl,name);

@@ -46,6 +46,11 @@ class TopLevel
     {peridot_eval(s->ary)}
   end
 end
+class Class
+  def to_s()
+    {Str("new")}
+  end
+end
 def _start()
 	_puts(2*3+2*4)
   a=geti()
@@ -65,4 +70,4 @@ end
 end")
 _puts(4.bar())
 end
-{main(){___start_3(Toplevel());}}
+{main(){___start_4(Toplevel());}}
