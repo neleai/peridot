@@ -13,7 +13,7 @@ obj Int(int i)  {obj_Fixint *o=malloc(sizeof(obj_Fixint));  o->class=0;o->in=i; 
 obj Array()     {obj_Array  *o=malloc(sizeof(obj_Array ));  o->class=1;o->ary=(obj *) malloc(100);return (obj)o;}
 obj Str(char *c){obj_String *o=malloc(sizeof(obj_String));  o->class=2;o->ary=c;                  return (obj)o;}
 obj Toplevel()  {_obj       *o=malloc(sizeof(_obj));        o->class=3;                           return (obj)o;}
-
+obj Foo()       {_obj       *o=malloc(sizeof(_obj));        o->class=4;                           return (obj)o;}
 int   obj2int(obj o){return ((obj_Fixint*)o)->in;}
 obj*  obj2ary(obj o){return ((obj_Array *)o)->ary;}
 char* obj2str(obj o){return ((obj_String*)o)->ary;}

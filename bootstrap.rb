@@ -32,6 +32,9 @@ def Object.peridot_eval(s)
   puts `gcc #{file}.c -shared -fPIC -o #{file}.so`
   Object.peridot_library("#{file}.so")
   $translated.each{|cl,me,name|
+  puts cl
+  puts me
+  puts name
 #  Object.peridot_method(cl,me,name)
   }
 end
