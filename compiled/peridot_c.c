@@ -54,7 +54,6 @@ static VALUE sy__If__lb;
 static VALUE sy__Klass;
 static VALUE sy__Seq;
 static VALUE sy__Var;
-static VALUE sy____append;
 static VALUE sy____lb;
 static VALUE sy__bind__lb1__rb__assign_0627;
 static VALUE sy__bind__lb1__rb__plus_947c;
@@ -245,11 +244,7 @@ accept3:
             it=rb_funcall(self,sy__,1,bind2);
             _it=bind_aget(bind2,1);;
             _autovar=it;;
-            bind_aset(bind2,1,_s);
-            bind_aset(bind2,2,_autovar);
-            it=rb_funcall(self,sy____append,1,bind2);
-            _s=bind_aget(bind2,1);;
-            _autovar=bind_aget(bind2,2);;
+            it=AmethystCore_append(self,_s,_autovar);
             ;
             goto accept2;
 alt2_3:
@@ -257,11 +252,7 @@ alt2_3:
             it=AmethystCore_anything(self );
             FAILTEST(alt2_4);
             _autovar_2=it;;
-            bind_aset(bind2,1,_s);
-            bind_aset(bind2,2,_autovar_2);
-            it=rb_funcall(self,sy____append,1,bind2);
-            _s=bind_aget(bind2,1);;
-            _autovar_2=bind_aget(bind2,2);;
+            it=AmethystCore_append(self,_s,_autovar_2);
             ;
             goto accept2;
 alt2_4:
@@ -466,11 +457,7 @@ accept7:
             it=rb_funcall(self,sy__,1,bind2);
             _it=bind_aget(bind2,1);;
             _autovar=it;;
-            bind_aset(bind2,1,_s);
-            bind_aset(bind2,2,_autovar);
-            it=rb_funcall(self,sy____append,1,bind2);
-            _s=bind_aget(bind2,1);;
-            _autovar=bind_aget(bind2,2);;
+            it=AmethystCore_append(self,_s,_autovar);
             ;
             goto accept6;
 alt5_3:
@@ -478,11 +465,7 @@ alt5_3:
             it=AmethystCore_anything(self );
             FAILTEST(alt5_4);
             _autovar_2=it;;
-            bind_aset(bind2,1,_s);
-            bind_aset(bind2,2,_autovar_2);
-            it=rb_funcall(self,sy____append,1,bind2);
-            _s=bind_aget(bind2,1);;
-            _autovar_2=bind_aget(bind2,2);;
+            it=AmethystCore_append(self,_s,_autovar_2);
             ;
             goto accept6;
 alt5_4:
@@ -698,11 +681,7 @@ alt1_1:
         it=rb_funcall(self,sy_defi,0);
         FAILTEST(alt1_2);
         _autovar_2=it;;
-        bind_aset(bind2,1,_autovar);
-        bind_aset(bind2,2,_autovar_2);
-        it=rb_funcall(self,sy____append,1,bind2);
-        _autovar=bind_aget(bind2,1);;
-        _autovar_2=bind_aget(bind2,2);;
+        it=AmethystCore_append(self,_autovar,_autovar_2);
         ;
         goto accept1;
 alt1_2:
@@ -783,11 +762,7 @@ alt1_2:
         it=AmethystCore_anything(self );
         FAILTEST(alt1_3);
         _autovar=it;;
-        bind_aset(bind2,1,_args);
-        bind_aset(bind2,2,_autovar);
-        it=rb_funcall(self,sy____append,1,bind2);
-        _args=bind_aget(bind2,1);;
-        _autovar=bind_aget(bind2,2);;
+        it=AmethystCore_append(self,_args,_autovar);
         ;
         goto accept1;
 alt1_3:
@@ -799,11 +774,7 @@ accept1:
     it=rb_funcall(self,sy_sequence,0);
     FAILTEST(fail);
     _autovar_2=it;;
-    bind_aset(bind2,1,_ary);
-    bind_aset(bind2,2,_autovar_2);
-    it=rb_funcall(self,sy____append,1,bind2);
-    _ary=bind_aget(bind2,1);;
-    _autovar_2=bind_aget(bind2,2);;
+    it=AmethystCore_append(self,_ary,_autovar_2);
     it=rb_obj_clone(s_end_7f02);
     arg0=it;
     it=rb_funcall(self,sy_token,1,arg0);
@@ -847,11 +818,7 @@ VALUE Peridot_parser_defname(VALUE self ) {
             it=rb_str_new(ptr->str+ptr->pos,1);
             ptr->pos++;
             _autovar_2=it;;
-            bind_aset(bind2,1,_autovar);
-            bind_aset(bind2,2,_autovar_2);
-            it=rb_funcall(self,sy____append,1,bind2);
-            _autovar=bind_aget(bind2,1);;
-            _autovar_2=bind_aget(bind2,2);;
+            it=AmethystCore_append(self,_autovar,_autovar_2);
             break;
         case UC(9) ... UC(10):
             ;
@@ -1455,11 +1422,7 @@ VALUE Peridot_parser_name(VALUE self ) {
                 it=rb_str_new(ptr->str+ptr->pos,1);
                 ptr->pos++;
                 _autovar_2=it;;
-                bind_aset(bind2,1,_autovar);
-                bind_aset(bind2,2,_autovar_2);
-                it=rb_funcall(self,sy____append,1,bind2);
-                _autovar=bind_aget(bind2,1);;
-                _autovar_2=bind_aget(bind2,2);;
+                it=AmethystCore_append(self,_autovar,_autovar_2);
                 break;
             }
         }
@@ -1524,11 +1487,7 @@ alt2_4:
         goto alt1_2;
 accept2:
         ;
-        bind_aset(bind2,1,_autovar);
-        bind_aset(bind2,2,_autovar_2);
-        it=rb_funcall(self,sy____append,1,bind2);
-        _autovar=bind_aget(bind2,1);;
-        _autovar_2=bind_aget(bind2,2);;
+        it=AmethystCore_append(self,_autovar,_autovar_2);
         ;
         goto accept1;
 alt1_2:
@@ -1566,11 +1525,7 @@ VALUE Peridot_parser_sequence(VALUE self ) {
     it=rb_funcall(self,sy_expr,0);
     FAILTEST(fail);
     _autovar=it;;
-    bind_aset(bind2,1,_ary);
-    bind_aset(bind2,2,_autovar);
-    it=rb_funcall(self,sy____append,1,bind2);
-    _ary=bind_aget(bind2,1);;
-    _autovar=bind_aget(bind2,2);;
+    it=AmethystCore_append(self,_ary,_autovar);
     it=rb_ary_new3(0);
     int stop1=0;
     while(!stop1) {
@@ -1583,11 +1538,7 @@ alt1_1:
         it=rb_funcall(self,sy_expr,0);
         FAILTEST(alt1_2);
         _autovar_2=it;;
-        bind_aset(bind2,1,_ary);
-        bind_aset(bind2,2,_autovar_2);
-        it=rb_funcall(self,sy____append,1,bind2);
-        _ary=bind_aget(bind2,1);;
-        _autovar_2=bind_aget(bind2,2);;
+        it=AmethystCore_append(self,_ary,_autovar_2);
         ;
         goto accept1;
 alt1_2:
@@ -1669,7 +1620,6 @@ void Init_peridot_c() {
     sy__Klass=rb_intern("_Klass");
     sy__Seq=rb_intern("_Seq");
     sy__Var=rb_intern("_Var");
-    sy____append=rb_intern("___append");
     sy____lb=rb_intern("___lb");
     sy__bind__lb1__rb__assign_0627=rb_intern("_bind__lb1__rb__assign_0627");
     sy__bind__lb1__rb__plus_947c=rb_intern("_bind__lb1__rb__plus_947c");
@@ -1709,5 +1659,5 @@ void Init_peridot_c() {
     rb_define_method(cls_Peridot_parser,"name",Peridot_parser_name,0);
     rb_define_method(cls_Peridot_parser,"root",Peridot_parser_root,0);
     rb_define_method(cls_Peridot_parser,"sequence",Peridot_parser_sequence,0);
-    rb_eval_string("testversionperidot('86ad72fd687dca03c07ac7c0b3f6fc23')");
+    rb_eval_string("testversionperidot('3e97476ddde023146fcfc7328a6b7c63')");
 }

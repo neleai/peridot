@@ -59,9 +59,6 @@ end
 def _Var(bind)
 Var.create( {:name=>bind[1] })
 end
-def ___append(bind)
-_append(bind[1],bind[2])
-end
 def ___lb(bind)
 ["obj self"]
 end
@@ -79,7 +76,7 @@ end
 
 
 def peridot_compiled_by
-'5c1f7afec2544ad21e4acaa04236182d'
+'bc8b9836da9a8f546598a8c83101f2c6'
 end
 def peridot_source_hash
 '62b55f25108f30e4f11e3f4943a88c50'
@@ -88,6 +85,6 @@ def testversionperidot(r)
  raise "invalid version" if r!=peridot_version
 end
 def peridot_version
-'86ad72fd687dca03c07ac7c0b3f6fc23'
+'3e97476ddde023146fcfc7328a6b7c63'
 end
 require File.expand_path(File.dirname(__FILE__))+"/#{RUBY_VERSION}/peridot_c"

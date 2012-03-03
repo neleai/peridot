@@ -14,10 +14,15 @@ Compiler::compile("amethyst/#{f}.ame","compiled/#{f}.rb",f)
 require "./compiled/#{f}"
 }
 def Object.peridot_eval(s)
-p= Peridot_parser.new.parse(:root,s)
-puts p.inspect
-t=Peridot_translator.new.parse(:root,p)
-puts t.inspect
+  p= Peridot_parser.new.parse(:root,s)
+  puts p.inspect
+  t=Peridot_translator.new.parse(:root,p)
+  file="test_eval"
+  File.open("#{file}.c","w"){|f|
+    f.puts "#include \"prolog.h\""
+    f.puts t
+  }
+  puts `gcc #{file}.c -shared -fPIC -o #{file}.so`
 end
 
 p= Peridot_parser.new.parse(:root,File.new("peridot/prologue.per").read)
