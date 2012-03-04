@@ -1,5 +1,5 @@
 class Gadget_Inner
-  attr_accessor :inputs,:outputs,:links
+  attr_accessor :inputs,:outputs,:links,:ccode
 end
 class Gadget_Outer
   attr_accessor :inputs,:outputs,:inner
@@ -41,10 +41,12 @@ end
 plus=Gadget_Inner.new
 plus.inputs=[Chi.new("x",plus),Chi.new("y",plus)]
 plus.outputs=[Chi.new("result",plus)]
+plus.ccode="result=x+y;"
 
 times=Gadget_Inner.new
 times.inputs=[Chi.new("x",times),Chi.new("y",times)]
 times.outputs=[Chi.new("result",times)]
+times.ccode="result=x*y;"
 
 function= Gadget_Inner.new 
 function.outputs=[Chi.new("a",function),Chi.new("b",function)]
@@ -61,18 +63,20 @@ Link.new(function,plus1.outputs[0],times1.inputs[1])
 Link.new(function,times1.outputs[0],function.inputs[0])
 
 
-def traverse(f)
-  ary=[f]
+def to_c(f)
+puts "int test(){"
+ ary=[f]
   i=0
   while i<ary.size
     elem=ary[i];    i+=1;
-    puts elem.inspect
-    elem.outputs.each{|e| 
-      puts e.outlinks(f).inspect
+    puts elem.ccode if elem.ccode
+    elem.outputs.each{|e|
       e.outlinks(f).each{|el|
-        ary << el.to.cell unless ary.include?(el.to.cell)  
+        puts "#{el.to.label}=#{el.from.label};"
+        ary << el.to.cell unless ary.include?(el.to.cell)
       }
     }
   end
+puts "}"
 end
-traverse(function)
+to_c(function)
