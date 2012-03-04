@@ -2,10 +2,17 @@ class Gadget_Inner
   attr_accessor :inputs,:outputs,:links
 end
 class Gadget_Outer
+  attr_accessor :inputs,:outputs,:inner
+  def initialize (innr)
+    @inner=innr
+    @inputs  = @inner.inputs.clone
+    @outputs = @inner.outputs.clone
+  end
 end
 class Chi
-  attr_accessor :label,:inedges,:outedges
-  def initialize(label)
+  attr_accessor :label,:inedges,:outedges,:cell
+  def initialize(label,cell)
+    @cell=cell
     @label=label
     @inedges=[];@outedges=[]
   end
@@ -31,27 +38,41 @@ class Link
   end
 end
 
-plus=Gadget.new
-plus.inputs=[Chi.new("x"),Chi.new("y")]
-plus.outputs=[Chi.new("result")]
+plus=Gadget_Inner.new
+plus.inputs=[Chi.new("x",plus),Chi.new("y",plus)]
+plus.outputs=[Chi.new("result",plus)]
 
-times=Gadget.new
-times.inputs=[Chi.new("x"),Chi.new("y")]
-times.outputs=[Chi.new("result")]
+times=Gadget_Inner.new
+times.inputs=[Chi.new("x",times),Chi.new("y",times)]
+times.outputs=[Chi.new("result",times)]
 
-function= Gadget.new 
-function.inputs=[Chi.new("a"),Chi.new("b")]
-function.outputs=[Chi.new("c"),Chi.new("d")]
+function= Gadget_Inner.new 
+function.outputs=[Chi.new("a",function),Chi.new("b",function)]
+function.inputs=[Chi.new("c",function),Chi.new("d",function)]
 
-Link.new(function,function.inputs[0],plus.inputs[0])
-Link.new(function,function.inputs[1],plus.inputs[1])
-Link.new(function,plus.outputs[0],times.inputs[0])
-Link.new(function,plus.outputs[0],times.inputs[1])
-Link.new(function,times.outputs[0],function.outputs[0])
+plus1=Gadget_Outer.new(plus)
+plus2=Gadget_Outer.new(plus)
+times1=Gadget_Outer.new(times)
+
+Link.new(function,function.outputs[0],plus1.inputs[0])
+Link.new(function,function.outputs[1],plus1.inputs[1])
+Link.new(function,plus1.outputs[0],times1.inputs[0])
+Link.new(function,plus1.outputs[0],times1.inputs[1])
+Link.new(function,times1.outputs[0],function.inputs[0])
 
 
-puts function.inspect
 def traverse(f)
-  f.inputs.each{|e| puts e.outlinks(f).inspect}
+  ary=[f]
+  i=0
+  while i<ary.size
+    elem=ary[i];    i+=1;
+    puts elem.inspect
+    elem.outputs.each{|e| 
+      puts e.outlinks(f).inspect
+      e.outlinks(f).each{|el|
+        ary << el.to.cell unless ary.include?(el.to.cell)  
+      }
+    }
+  end
 end
 traverse(function)
