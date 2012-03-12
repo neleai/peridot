@@ -4,19 +4,18 @@ $av+=1
 "autovar"+$av.to_s
 end
 amethyst Peridot_translator{
-	root= {@@fnames=[]} trans*:t {"extern obj_fn *methods[100];  enum fnums{#{@@fnames.uniq*","} }; #{($av+1).times.map{|i| "obj autovar#{i};"}*""}  #{t*""}"}
+	root= {@@fnames=[];@@ginit=[]} trans*:t {"extern obj_fn *methods[100];  enum fnums{#{@@fnames.uniq*","} };  #{($av+1).times.map{|i| "obj autovar#{i};"}*""} #{@@ginit*""}  #{t*""}"}
 	
 	trans = Klass[{@@init=[];@@clas=@name; @@cls=Object.peridot_class(@name)} trans*:r  { r*""+"init_#{@name}(){#{@@init*""}}"   }]
         | Def[{@@fnames<<@name} {@@names=["placeholder"]} trans:body {$methods<<@name unless $methods.include?(@name);$translated<<[@@cls,$methods.index(@name),"_#{@name}_#{@@clas}"]; @@init<<""} 
-                                {"obj _#{@name}_#{@@clas}(#{@args*""}){obj_Binding *bnd=(obj_Binding*)Binding();obj #{@@names.uniq*","}; #{body};}\n" }]
-        | Call[ @name:n &{n=="bind_get"} {r="";@@names.size.times{|i| r<< "bnd->locals[i]=#{@@names[i]};" };r } ]
-        | Call[ @name:n &{n=="bind_set"} {r="";@@names.size.times{|i| r<< "#{@@names[i]}=bnd->locals[i];" };r } ]
+                                {"obj _#{@name}_#{@@clas}(#{@args*""}){obj_Binding *bnd=(obj_Binding*)Binding();obj #{@@names*","}; #{r="";@@names.size.times{|i| r<<"bnd->locals[#{i}]=&#{@@names[i]};"};r}  #{body};}\n" }]
 
 				| Call[trans*:args {autovar}:a {$methods<<@name unless $methods.include?(@name);"(#{a}=#{args[0]})->class->methods[#{$methods.index(@name)}/*#{@name}*/](#{([a]+args[1..-1])*","})"} ]
 				| CCode[ .]
+        | Lambda[ trans:e   ] -> ind=($av+=1); @@ginit<<"obj  lambda#{ind}(obj_Binding *bnd){obj #{@@names*","};#{r="";@@names.size.times{|i| r<<"#{@@names[i]}=*bnd->locals[#{i}];"};r} #{e} ;#{r="";@@names.size.times{|i| r<<"*bnd->locals[#{i}]=#{@@names[i]};"};r}  }";"Lambda(lambda#{ind},bnd)"
 				| If[ @expr=>trans:expr @block=>trans:block {"if (obj2int(#{expr})){#{block};\n}" }]
-        | Var[                       {@@names<<@name}  @name ]
-				| Assign[@expr=>trans:expr   {@@names<<@name}  {"#{@name}=#{expr}"}]
+        | Var[                       {@@names<<@name unless @@names.include?(@name)}  @name ]
+				| Assign[@expr=>trans:expr   {@@names<<@name unless @@names.include?(@name)}  {"#{@name}=#{expr}"}]
 				| Seq[ trans*:{it*";\n"}]
 				| .
 }

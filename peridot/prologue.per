@@ -46,6 +46,11 @@ class TopLevel
     {peridot_eval(s->ary)}
   end
 end
+class Lambda
+  def call()
+    {return ((obj_Lambda *)self)->lam( ((obj_Lambda *)self)->bnd);}
+  end
+end
 class Class
   def to_s()
     {Str("new")}
@@ -62,6 +67,11 @@ def _start()
   z="abc"
   _puts(z+"def")
 	_puts(c[2])
+	_puts(c[2])
+  l=(| c[2]=c[2]+1 |)
+  l.call()
+ 	_puts(c[2])
+  l.call()
 	_puts(c[2])
   eval("class Fixint
 def bar()

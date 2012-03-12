@@ -19,3 +19,5 @@ garbage collection bfs to fit pages
 objects
 
 profiling regions user gives brownie point reward for speedup
+
+lambda can escape
