@@ -91,27 +91,32 @@ VALUE Peridot_parser_args(VALUE self ) {
     cstruct *ptr;
     Data_Get_Struct(self,cstruct,ptr);
     it=rb_funcall(self,sy_expr,0);
-    FAILTEST(fail);
+    if (it==failobj) {
+        it=failobj;
+        goto fail;
+    }
     __result=it;;
 
-    return it;
 fail:
-    return failobj;
+    return it;
 }
 VALUE Peridot_parser_atom(VALUE self ) {
     VALUE vals[0];
-    VALUE it ,_s,_n,__result,_e,_expr,_block,_it,_autovar,_autovar_2,_name,_autovar_3,_autovar_4,_arg;
+    VALUE it ,_s,_n,__result,_e,_expr,_block,_it,_autovar,_autovar_2,_name,_autovar_3,_arg;
     VALUE bind2=bind_new2(16);
     int x;
     VALUE arg0,arg1,arg2,arg3;
     cstruct *ptr;
     Data_Get_Struct(self,cstruct,ptr);
-    it=rb_ary_new3(0);
-    _s=it;;
     it=rb_obj_clone(s__d41d);
     arg0=it;
     it=rb_funcall(self,sy_token,1,arg0);
-    FAILTEST(fail);
+    if (it==failobj) {
+        it=failobj;
+        goto fail;
+    }
+    it=rb_ary_new3(0);
+    _s=it;;
     switch((unsigned char)*ame_curstr2(ptr)) {
     case UC(0) ... '@':
         ;
@@ -126,7 +131,10 @@ VALUE Peridot_parser_atom(VALUE self ) {
 alt1_1:
         ;
         it=rb_funcall(self,sy_number,0);
-        FAILTEST(alt1_2);
+        if (it==failobj) {
+            it=failobj;
+            goto alt1_2;
+        }
         _n=it;;
         bind_aset(bind2,1,_n);
         it=rb_funcall(self,sy__CCode__lb,1,bind2);
@@ -140,11 +148,17 @@ alt1_2:
         it=rb_obj_clone(s_3);
         arg0=it;
         it=rb_funcall(self,sy_seq,1,arg0);
-        FAILTEST(alt1_3);
+        if (it==failobj) {
+            it=failobj;
+            goto alt1_3;
+        }
         it=rb_obj_clone(s_3);
         arg0=it;
         it=rb_funcall(self,sy_until,1,arg0);
-        FAILTEST(alt1_3);
+        if (it==failobj) {
+            it=failobj;
+            goto alt1_3;
+        }
         _s=it;;
         bind_aset(bind2,1,_s);
         it=rb_funcall(self,sy__CCode__lb2,1,bind2);
@@ -158,14 +172,23 @@ alt1_3:
         it=rb_obj_clone(s_);
         arg0=it;
         it=rb_funcall(self,sy_seq,1,arg0);
-        FAILTEST(alt1_4);
+        if (it==failobj) {
+            it=failobj;
+            goto alt1_4;
+        }
         it=rb_funcall(self,sy_expr,0);
-        FAILTEST(alt1_4);
+        if (it==failobj) {
+            it=failobj;
+            goto alt1_4;
+        }
         _e=it;;
         it=rb_obj_clone(s_2);
         arg0=it;
         it=rb_funcall(self,sy_token,1,arg0);
-        FAILTEST(alt1_4);
+        if (it==failobj) {
+            it=failobj;
+            goto alt1_4;
+        }
         it=_e;
         __result=it;;
 
@@ -176,20 +199,35 @@ alt1_4:
         it=rb_obj_clone(s_if_39c8);
         arg0=it;
         it=rb_funcall(self,sy_seq,1,arg0);
-        FAILTEST(alt1_5);
+        if (it==failobj) {
+            it=failobj;
+            goto alt1_5;
+        }
         it=rb_obj_clone(s_);
         arg0=it;
         it=rb_funcall(self,sy_token,1,arg0);
-        FAILTEST(alt1_5);
+        if (it==failobj) {
+            it=failobj;
+            goto alt1_5;
+        }
         it=rb_funcall(self,sy_expr,0);
-        FAILTEST(alt1_5);
+        if (it==failobj) {
+            it=failobj;
+            goto alt1_5;
+        }
         _expr=it;;
         it=rb_obj_clone(s_2);
         arg0=it;
         it=rb_funcall(self,sy_token,1,arg0);
-        FAILTEST(alt1_5);
+        if (it==failobj) {
+            it=failobj;
+            goto alt1_5;
+        }
         it=rb_funcall(self,sy_block,0);
-        FAILTEST(alt1_5);
+        if (it==failobj) {
+            it=failobj;
+            goto alt1_5;
+        }
         _block=it;;
         bind_aset(bind2,1,_expr);
         bind_aset(bind2,2,_block);
@@ -205,8 +243,10 @@ alt1_5:
         it=rb_obj_clone(s_4);
         arg0=it;
         it=rb_funcall(self,sy_seq,1,arg0);
-        FAILTEST(alt1_6);
-        it=rb_ary_new3(0);
+        if (it==failobj) {
+            it=failobj;
+            goto alt1_6;
+        }
         int stop1=0;
         while(!stop1) {
             int oldpos2=ptr->pos;
@@ -216,19 +256,28 @@ alt2_1:
             it=rb_obj_clone(s_5);
             arg0=it;
             it=rb_funcall(self,sy_seq,1,arg0);
-            FAILTEST(alt2_2);
+            if (it==failobj) {
+                it=failobj;
+                goto alt2_2;
+            }
             cut2=1;
             stop1=1;
             ;
             goto accept2;
 alt2_2:
             ptr->pos=oldpos2;
-            if (cut2) goto alt1_6;
+            if (cut2) {
+                it=failobj;
+                goto alt1_6;
+            }
             int oldpos3=ptr->pos;
             it=rb_obj_clone(s_4);
             arg0=it;
             it=rb_funcall(self,sy_seq,1,arg0);
-            FAILTEST(reject1);
+            if (it==failobj) {
+                it=failobj;
+                goto reject1;
+            }
             x=1;
             goto accept3;
 reject1:
@@ -236,9 +285,15 @@ reject1:
 accept3:
             it=Qnil;
             ptr->pos=oldpos3;
-            if (x==0) goto alt2_3;
+            if (x==0) {
+                it=failobj;
+                goto alt2_3;
+            }
             it=rb_funcall(self,sy_atom,0);
-            FAILTEST(alt2_3);
+            if (it==failobj) {
+                it=failobj;
+                goto alt2_3;
+            }
             _it=it;;
             bind_aset(bind2,1,_it);
             it=rb_funcall(self,sy__,1,bind2);
@@ -250,14 +305,20 @@ accept3:
 alt2_3:
             ptr->pos=oldpos2;
             it=AmethystCore_anything(self );
-            FAILTEST(alt2_4);
+            if (it==failobj) {
+                it=failobj;
+                goto alt2_4;
+            }
             _autovar_2=it;;
             it=AmethystCore_append(self,_s,_autovar_2);
             ;
             goto accept2;
 alt2_4:
             ptr->pos=oldpos2;
-            goto alt1_6;
+            if (1) {
+                it=failobj;
+                goto alt1_6;
+            };
 accept2:
             ;
         }
@@ -277,20 +338,32 @@ alt3_1:
         it=rb_obj_clone(s_end_7f02);
         arg0=it;
         it=rb_funcall(self,sy_seq,1,arg0);
-        FAILTEST(alt3_2);
+        if (it==failobj) {
+            it=failobj;
+            goto alt3_2;
+        }
         cut3=1;
-        goto alt3_2;
+        if (1) {
+            it=failobj;
+            goto alt3_2;
+        }
         ;
         goto accept4;
 alt3_2:
         ptr->pos=oldpos4;
-        if (cut3) goto alt1_7;
+        if (cut3) {
+            it=failobj;
+            goto alt1_7;
+        }
         it=Qnil;
         ;
         goto accept4;
 alt3_3:
         ptr->pos=oldpos4;
-        goto alt1_7;
+        if (1) {
+            it=failobj;
+            goto alt1_7;
+        };
 accept4:
         ;
         switch((unsigned char)*ame_curstr2(ptr)) {
@@ -302,7 +375,10 @@ accept4:
             ;
         case '{' ... UC(255):
             ;
-            goto alt1_7;
+            if (1) {
+                it=failobj;
+                goto alt1_7;
+            }
             break;
         case 'A' ... 'Z':
             ;
@@ -311,7 +387,10 @@ accept4:
         case 'a' ... 'z':
             ;
             it=rb_funcall(self,sy_name,0);
-            FAILTEST(alt1_7);
+            if (it==failobj) {
+                it=failobj;
+                goto alt1_7;
+            }
             _name=it;;
             break;
         }
@@ -324,7 +403,10 @@ accept4:
         goto accept1;
 alt1_7:
         ptr->pos=oldpos1;
-        goto fail;
+        if (1) {
+            it=failobj;
+            goto fail;
+        };
 accept1:
         ;
         break;
@@ -339,7 +421,10 @@ accept1:
 alt4_1:
         ;
         it=rb_funcall(self,sy_number,0);
-        FAILTEST(alt4_2);
+        if (it==failobj) {
+            it=failobj;
+            goto alt4_2;
+        }
         _n=it;;
         bind_aset(bind2,1,_n);
         it=rb_funcall(self,sy__CCode__lb,1,bind2);
@@ -353,11 +438,17 @@ alt4_2:
         it=rb_obj_clone(s_3);
         arg0=it;
         it=rb_funcall(self,sy_seq,1,arg0);
-        FAILTEST(alt4_3);
+        if (it==failobj) {
+            it=failobj;
+            goto alt4_3;
+        }
         it=rb_obj_clone(s_3);
         arg0=it;
         it=rb_funcall(self,sy_until,1,arg0);
-        FAILTEST(alt4_3);
+        if (it==failobj) {
+            it=failobj;
+            goto alt4_3;
+        }
         _s=it;;
         bind_aset(bind2,1,_s);
         it=rb_funcall(self,sy__CCode__lb2,1,bind2);
@@ -371,14 +462,23 @@ alt4_3:
         it=rb_obj_clone(s_);
         arg0=it;
         it=rb_funcall(self,sy_seq,1,arg0);
-        FAILTEST(alt4_4);
+        if (it==failobj) {
+            it=failobj;
+            goto alt4_4;
+        }
         it=rb_funcall(self,sy_expr,0);
-        FAILTEST(alt4_4);
+        if (it==failobj) {
+            it=failobj;
+            goto alt4_4;
+        }
         _e=it;;
         it=rb_obj_clone(s_2);
         arg0=it;
         it=rb_funcall(self,sy_token,1,arg0);
-        FAILTEST(alt4_4);
+        if (it==failobj) {
+            it=failobj;
+            goto alt4_4;
+        }
         it=_e;
         __result=it;;
 
@@ -389,20 +489,35 @@ alt4_4:
         it=rb_obj_clone(s_if_39c8);
         arg0=it;
         it=rb_funcall(self,sy_seq,1,arg0);
-        FAILTEST(alt4_5);
+        if (it==failobj) {
+            it=failobj;
+            goto alt4_5;
+        }
         it=rb_obj_clone(s_);
         arg0=it;
         it=rb_funcall(self,sy_token,1,arg0);
-        FAILTEST(alt4_5);
+        if (it==failobj) {
+            it=failobj;
+            goto alt4_5;
+        }
         it=rb_funcall(self,sy_expr,0);
-        FAILTEST(alt4_5);
+        if (it==failobj) {
+            it=failobj;
+            goto alt4_5;
+        }
         _expr=it;;
         it=rb_obj_clone(s_2);
         arg0=it;
         it=rb_funcall(self,sy_token,1,arg0);
-        FAILTEST(alt4_5);
+        if (it==failobj) {
+            it=failobj;
+            goto alt4_5;
+        }
         it=rb_funcall(self,sy_block,0);
-        FAILTEST(alt4_5);
+        if (it==failobj) {
+            it=failobj;
+            goto alt4_5;
+        }
         _block=it;;
         bind_aset(bind2,1,_expr);
         bind_aset(bind2,2,_block);
@@ -418,8 +533,10 @@ alt4_5:
         it=rb_obj_clone(s_4);
         arg0=it;
         it=rb_funcall(self,sy_seq,1,arg0);
-        FAILTEST(alt4_6);
-        it=rb_ary_new3(0);
+        if (it==failobj) {
+            it=failobj;
+            goto alt4_6;
+        }
         int stop2=0;
         while(!stop2) {
             int oldpos6=ptr->pos;
@@ -429,19 +546,28 @@ alt5_1:
             it=rb_obj_clone(s_5);
             arg0=it;
             it=rb_funcall(self,sy_seq,1,arg0);
-            FAILTEST(alt5_2);
+            if (it==failobj) {
+                it=failobj;
+                goto alt5_2;
+            }
             cut5=1;
             stop2=1;
             ;
             goto accept6;
 alt5_2:
             ptr->pos=oldpos6;
-            if (cut5) goto alt4_6;
+            if (cut5) {
+                it=failobj;
+                goto alt4_6;
+            }
             int oldpos7=ptr->pos;
             it=rb_obj_clone(s_4);
             arg0=it;
             it=rb_funcall(self,sy_seq,1,arg0);
-            FAILTEST(reject2);
+            if (it==failobj) {
+                it=failobj;
+                goto reject2;
+            }
             x=1;
             goto accept7;
 reject2:
@@ -449,9 +575,15 @@ reject2:
 accept7:
             it=Qnil;
             ptr->pos=oldpos7;
-            if (x==0) goto alt5_3;
+            if (x==0) {
+                it=failobj;
+                goto alt5_3;
+            }
             it=rb_funcall(self,sy_atom,0);
-            FAILTEST(alt5_3);
+            if (it==failobj) {
+                it=failobj;
+                goto alt5_3;
+            }
             _it=it;;
             bind_aset(bind2,1,_it);
             it=rb_funcall(self,sy__,1,bind2);
@@ -463,14 +595,20 @@ accept7:
 alt5_3:
             ptr->pos=oldpos6;
             it=AmethystCore_anything(self );
-            FAILTEST(alt5_4);
+            if (it==failobj) {
+                it=failobj;
+                goto alt5_4;
+            }
             _autovar_2=it;;
             it=AmethystCore_append(self,_s,_autovar_2);
             ;
             goto accept6;
 alt5_4:
             ptr->pos=oldpos6;
-            goto alt4_6;
+            if (1) {
+                it=failobj;
+                goto alt4_6;
+            };
 accept6:
             ;
         }
@@ -484,27 +622,37 @@ accept6:
 alt4_6:
         ptr->pos=oldpos5;
         it=rb_funcall(self,sy_name,0);
-        FAILTEST(alt4_7);
+        if (it==failobj) {
+            it=failobj;
+            goto alt4_7;
+        }
         _autovar_3=it;;
-        it=_autovar_3;
-        _autovar_4=it;;
+        it=rb_obj_clone(s_);
+        arg0=it;
+        it=rb_funcall(self,sy_seq,1,arg0);
+        if (it==failobj) {
+            it=failobj;
+            goto alt4_7;
+        }
         int oldpos8=ptr->pos;
         int cut6=0;
 alt6_1:
         ;
-        it=_autovar_4;
+        it=_autovar_3;
         _name=it;;
-        it=rb_obj_clone(s_);
-        arg0=it;
-        it=rb_funcall(self,sy_seq,1,arg0);
-        FAILTEST(alt6_2);
         it=rb_funcall(self,sy_args,0);
-        FAILTEST(alt6_2);
+        if (it==failobj) {
+            it=failobj;
+            goto alt6_2;
+        }
         _arg=it;;
         it=rb_obj_clone(s_2);
         arg0=it;
         it=rb_funcall(self,sy_seq,1,arg0);
-        FAILTEST(alt6_2);
+        if (it==failobj) {
+            it=failobj;
+            goto alt6_2;
+        }
         bind_aset(bind2,1,_name);
         bind_aset(bind2,2,_arg);
         it=rb_funcall(self,sy__Call__lb,1,bind2);
@@ -516,16 +664,15 @@ alt6_1:
         goto accept8;
 alt6_2:
         ptr->pos=oldpos8;
-        it=_autovar_4;
-        _name=it;;
-        it=rb_obj_clone(s_);
-        arg0=it;
-        it=rb_funcall(self,sy_seq,1,arg0);
-        FAILTEST(alt6_3);
         it=rb_obj_clone(s_2);
         arg0=it;
         it=rb_funcall(self,sy_token,1,arg0);
-        FAILTEST(alt6_3);
+        if (it==failobj) {
+            it=failobj;
+            goto alt6_3;
+        }
+        it=_autovar_3;
+        _name=it;;
         bind_aset(bind2,1,_name);
         it=rb_funcall(self,sy__Call__lb2,1,bind2);
         _name=bind_aget(bind2,1);;
@@ -535,7 +682,10 @@ alt6_2:
         goto accept8;
 alt6_3:
         ptr->pos=oldpos8;
-        goto alt4_7;
+        if (1) {
+            it=failobj;
+            goto alt4_7;
+        };
 accept8:
         ;
 
@@ -550,20 +700,32 @@ alt7_1:
         it=rb_obj_clone(s_end_7f02);
         arg0=it;
         it=rb_funcall(self,sy_seq,1,arg0);
-        FAILTEST(alt7_2);
+        if (it==failobj) {
+            it=failobj;
+            goto alt7_2;
+        }
         cut7=1;
-        goto alt7_2;
+        if (1) {
+            it=failobj;
+            goto alt7_2;
+        }
         ;
         goto accept9;
 alt7_2:
         ptr->pos=oldpos9;
-        if (cut7) goto alt4_8;
+        if (cut7) {
+            it=failobj;
+            goto alt4_8;
+        }
         it=Qnil;
         ;
         goto accept9;
 alt7_3:
         ptr->pos=oldpos9;
-        goto alt4_8;
+        if (1) {
+            it=failobj;
+            goto alt4_8;
+        };
 accept9:
         ;
         switch((unsigned char)*ame_curstr2(ptr)) {
@@ -575,7 +737,10 @@ accept9:
             ;
         case '{' ... UC(255):
             ;
-            goto alt4_8;
+            if (1) {
+                it=failobj;
+                goto alt4_8;
+            }
             break;
         case 'A' ... 'Z':
             ;
@@ -584,7 +749,10 @@ accept9:
         case 'a' ... 'z':
             ;
             it=rb_funcall(self,sy_name,0);
-            FAILTEST(alt4_8);
+            if (it==failobj) {
+                it=failobj;
+                goto alt4_8;
+            }
             _name=it;;
             break;
         }
@@ -597,14 +765,16 @@ accept9:
         goto accept5;
 alt4_8:
         ptr->pos=oldpos5;
-        goto fail;
+        if (1) {
+            it=failobj;
+            goto fail;
+        };
 accept5:
         ;
         break;
     }
-    return it;
 fail:
-    return failobj;
+    return it;
 }
 VALUE Peridot_parser_block(VALUE self ) {
     VALUE vals[0];
@@ -617,20 +787,28 @@ VALUE Peridot_parser_block(VALUE self ) {
     it=rb_obj_clone(s_4);
     arg0=it;
     it=rb_funcall(self,sy_token,1,arg0);
-    FAILTEST(fail);
+    if (it==failobj) {
+        it=failobj;
+        goto fail;
+    }
     it=rb_funcall(self,sy_sequence,0);
-    FAILTEST(fail);
+    if (it==failobj) {
+        it=failobj;
+        goto fail;
+    }
     _s=it;;
     it=rb_obj_clone(s_5);
     arg0=it;
     it=rb_funcall(self,sy_seq,1,arg0);
-    FAILTEST(fail);
+    if (it==failobj) {
+        it=failobj;
+        goto fail;
+    }
     it=_s;
     __result=it;;
 
-    return it;
 fail:
-    return failobj;
+    return it;
 }
 VALUE Peridot_parser_body(VALUE self ) {
     VALUE vals[0];
@@ -643,11 +821,17 @@ VALUE Peridot_parser_body(VALUE self ) {
     it=rb_obj_clone(s_class_a2f2);
     arg0=it;
     it=rb_funcall(self,sy_token,1,arg0);
-    FAILTEST(fail);
+    if (it==failobj) {
+        it=failobj;
+        goto fail;
+    }
     it=rb_obj_clone(s__d41d);
     arg0=it;
     it=rb_funcall(self,sy_token,1,arg0);
-    FAILTEST(fail);
+    if (it==failobj) {
+        it=failobj;
+        goto fail;
+    }
     switch((unsigned char)*ame_curstr2(ptr)) {
     case UC(0) ... '@':
         ;
@@ -657,7 +841,10 @@ VALUE Peridot_parser_body(VALUE self ) {
         ;
     case '{' ... UC(255):
         ;
-        goto fail;
+        if (1) {
+            it=failobj;
+            goto fail;
+        }
         break;
     case 'A' ... 'Z':
         ;
@@ -666,7 +853,10 @@ VALUE Peridot_parser_body(VALUE self ) {
     case 'a' ... 'z':
         ;
         it=rb_funcall(self,sy_name,0);
-        FAILTEST(fail);
+        if (it==failobj) {
+            it=failobj;
+            goto fail;
+        }
         _name=it;;
         break;
     }
@@ -679,7 +869,10 @@ VALUE Peridot_parser_body(VALUE self ) {
 alt1_1:
         ;
         it=rb_funcall(self,sy_defi,0);
-        FAILTEST(alt1_2);
+        if (it==failobj) {
+            it=failobj;
+            goto alt1_2;
+        }
         _autovar_2=it;;
         it=AmethystCore_append(self,_autovar,_autovar_2);
         ;
@@ -691,16 +884,22 @@ alt1_2:
         goto accept1;
 alt1_3:
         ptr->pos=oldpos1;
-        goto fail;
+        if (1) {
+            it=failobj;
+            goto fail;
+        };
 accept1:
         ;
     }
-    it=_autovar;
-    _ary=it;;
     it=rb_obj_clone(s_end_7f02);
     arg0=it;
     it=rb_funcall(self,sy_token,1,arg0);
-    FAILTEST(fail);
+    if (it==failobj) {
+        it=failobj;
+        goto fail;
+    }
+    it=_autovar;
+    _ary=it;;
     bind_aset(bind2,1,_name);
     bind_aset(bind2,2,_ary);
     it=rb_funcall(self,sy__Klass,1,bind2);
@@ -708,9 +907,8 @@ accept1:
     _ary=bind_aget(bind2,2);;
     __result=it;;
 
-    return it;
 fail:
-    return failobj;
+    return it;
 }
 VALUE Peridot_parser_defi(VALUE self ) {
     VALUE vals[0];
@@ -720,16 +918,22 @@ VALUE Peridot_parser_defi(VALUE self ) {
     VALUE arg0,arg1,arg2,arg3;
     cstruct *ptr;
     Data_Get_Struct(self,cstruct,ptr);
-    it=rb_ary_new3(0);
-    _ary=it;;
     it=rb_obj_clone(s_def_4ed9);
     arg0=it;
     it=rb_funcall(self,sy_token,1,arg0);
-    FAILTEST(fail);
+    if (it==failobj) {
+        it=failobj;
+        goto fail;
+    }
     it=rb_obj_clone(s__d41d);
     arg0=it;
     it=rb_funcall(self,sy_token,1,arg0);
-    FAILTEST(fail);
+    if (it==failobj) {
+        it=failobj;
+        goto fail;
+    }
+    it=rb_ary_new3(0);
+    _ary=it;;
     it=rb_funcall(self,sy_defname,0);
     _name=it;;
     it=rb_funcall(self,sy____lb,1,bind2);
@@ -737,8 +941,10 @@ VALUE Peridot_parser_defi(VALUE self ) {
     it=rb_obj_clone(s_);
     arg0=it;
     it=rb_funcall(self,sy_seq,1,arg0);
-    FAILTEST(fail);
-    it=rb_ary_new3(0);
+    if (it==failobj) {
+        it=failobj;
+        goto fail;
+    }
     int stop1=0;
     while(!stop1) {
         int oldpos1=ptr->pos;
@@ -748,37 +954,55 @@ alt1_1:
         it=rb_obj_clone(s_2);
         arg0=it;
         it=rb_funcall(self,sy_seq,1,arg0);
-        FAILTEST(alt1_2);
+        if (it==failobj) {
+            it=failobj;
+            goto alt1_2;
+        }
         cut1=1;
         stop1=1;
         ;
         goto accept1;
 alt1_2:
         ptr->pos=oldpos1;
-        if (cut1) goto fail;
+        if (cut1) {
+            it=failobj;
+            goto fail;
+        }
         bind_aset(bind2,1,_args);
         it=rb_funcall(self,sy__bind__lb1__rb__assign_0627,1,bind2);
         _args=bind_aget(bind2,1);;
         it=AmethystCore_anything(self );
-        FAILTEST(alt1_3);
+        if (it==failobj) {
+            it=failobj;
+            goto alt1_3;
+        }
         _autovar=it;;
         it=AmethystCore_append(self,_args,_autovar);
         ;
         goto accept1;
 alt1_3:
         ptr->pos=oldpos1;
-        goto fail;
+        if (1) {
+            it=failobj;
+            goto fail;
+        };
 accept1:
         ;
     }
     it=rb_funcall(self,sy_sequence,0);
-    FAILTEST(fail);
+    if (it==failobj) {
+        it=failobj;
+        goto fail;
+    }
     _autovar_2=it;;
     it=AmethystCore_append(self,_ary,_autovar_2);
     it=rb_obj_clone(s_end_7f02);
     arg0=it;
     it=rb_funcall(self,sy_token,1,arg0);
-    FAILTEST(fail);
+    if (it==failobj) {
+        it=failobj;
+        goto fail;
+    }
     bind_aset(bind2,1,_name);
     bind_aset(bind2,2,_args);
     bind_aset(bind2,3,_ary);
@@ -788,9 +1012,8 @@ accept1:
     _ary=bind_aget(bind2,3);;
     __result=it;;
 
-    return it;
 fail:
-    return failobj;
+    return it;
 }
 VALUE Peridot_parser_defname(VALUE self ) {
     VALUE vals[0];
@@ -839,9 +1062,8 @@ VALUE Peridot_parser_defname(VALUE self ) {
     _x=bind_aget(bind2,1);;
     __result=it;;
 
-    return it;
 fail:
-    return failobj;
+    return it;
 }
 VALUE Peridot_parser_expr(VALUE self ) {
     VALUE vals[0];
@@ -858,7 +1080,10 @@ alt1_1:
     it=rb_obj_clone(s__d41d);
     arg0=it;
     it=rb_funcall(self,sy_token,1,arg0);
-    FAILTEST(alt1_2);
+    if (it==failobj) {
+        it=failobj;
+        goto alt1_2;
+    }
     switch((unsigned char)*ame_curstr2(ptr)) {
     case UC(0) ... '@':
         ;
@@ -868,7 +1093,10 @@ alt1_1:
         ;
     case '{' ... UC(255):
         ;
-        goto alt1_2;
+        if (1) {
+            it=failobj;
+            goto alt1_2;
+        }
         break;
     case 'A' ... 'Z':
         ;
@@ -877,16 +1105,25 @@ alt1_1:
     case 'a' ... 'z':
         ;
         it=rb_funcall(self,sy_name,0);
-        FAILTEST(alt1_2);
+        if (it==failobj) {
+            it=failobj;
+            goto alt1_2;
+        }
         _name=it;;
         break;
     }
     it=rb_obj_clone(s___assign_43ec);
     arg0=it;
     it=rb_funcall(self,sy_seq,1,arg0);
-    FAILTEST(alt1_2);
+    if (it==failobj) {
+        it=failobj;
+        goto alt1_2;
+    }
     it=rb_funcall(self,sy_expr,0);
-    FAILTEST(alt1_2);
+    if (it==failobj) {
+        it=failobj;
+        goto alt1_2;
+    }
     _expr=it;;
     bind_aset(bind2,1,_name);
     bind_aset(bind2,2,_expr);
@@ -900,20 +1137,25 @@ alt1_1:
 alt1_2:
     ptr->pos=oldpos1;
     it=rb_funcall(self,sy_expr_ar1,0);
-    FAILTEST(alt1_3);
+    if (it==failobj) {
+        it=failobj;
+        goto alt1_3;
+    }
     __result=it;;
 
     ;
     goto accept1;
 alt1_3:
     ptr->pos=oldpos1;
-    goto fail;
+    if (1) {
+        it=failobj;
+        goto fail;
+    };
 accept1:
     ;
 
-    return it;
 fail:
-    return failobj;
+    return it;
 }
 VALUE Peridot_parser_expr_ar1(VALUE self ) {
     VALUE vals[0];
@@ -924,7 +1166,10 @@ VALUE Peridot_parser_expr_ar1(VALUE self ) {
     cstruct *ptr;
     Data_Get_Struct(self,cstruct,ptr);
     it=rb_funcall(self,sy_expr_ar2,0);
-    FAILTEST(fail);
+    if (it==failobj) {
+        it=failobj;
+        goto fail;
+    }
     _a=it;;
     int stop1=0;
     while(!stop1) {
@@ -939,7 +1184,10 @@ alt2_1:
         it=rb_obj_clone(s___plus_26b1);
         arg0=it;
         it=rb_funcall(self,sy_token,1,arg0);
-        FAILTEST(alt2_2);
+        if (it==failobj) {
+            it=failobj;
+            goto alt2_2;
+        }
         _op=it;;
 
         ;
@@ -949,18 +1197,27 @@ alt2_2:
         it=rb_obj_clone(s___minus_336d);
         arg0=it;
         it=rb_funcall(self,sy_token,1,arg0);
-        FAILTEST(alt2_3);
+        if (it==failobj) {
+            it=failobj;
+            goto alt2_3;
+        }
         _op=it;;
 
         ;
         goto accept2;
 alt2_3:
         ptr->pos=oldpos2;
-        goto alt1_2;
+        if (1) {
+            it=failobj;
+            goto alt1_2;
+        };
 accept2:
         ;
         it=rb_funcall(self,sy_expr_ar2,0);
-        FAILTEST(alt1_2);
+        if (it==failobj) {
+            it=failobj;
+            goto alt1_2;
+        }
         _b=it;;
         bind_aset(bind2,1,_op);
         bind_aset(bind2,2,_a);
@@ -980,16 +1237,18 @@ alt1_2:
         goto accept1;
 alt1_3:
         ptr->pos=oldpos1;
-        goto fail;
+        if (1) {
+            it=failobj;
+            goto fail;
+        };
 accept1:
         ;
     }
     it=_a;
     __result=it;;
 
-    return it;
 fail:
-    return failobj;
+    return it;
 }
 VALUE Peridot_parser_expr_ar2(VALUE self ) {
     VALUE vals[0];
@@ -1000,7 +1259,10 @@ VALUE Peridot_parser_expr_ar2(VALUE self ) {
     cstruct *ptr;
     Data_Get_Struct(self,cstruct,ptr);
     it=rb_funcall(self,sy_expr_ar3,0);
-    FAILTEST(fail);
+    if (it==failobj) {
+        it=failobj;
+        goto fail;
+    }
     _a=it;;
     int stop1=0;
     while(!stop1) {
@@ -1015,7 +1277,10 @@ alt2_1:
         it=rb_obj_clone(s___times_3389);
         arg0=it;
         it=rb_funcall(self,sy_token,1,arg0);
-        FAILTEST(alt2_2);
+        if (it==failobj) {
+            it=failobj;
+            goto alt2_2;
+        }
         _op=it;;
 
         ;
@@ -1025,18 +1290,27 @@ alt2_2:
         it=rb_obj_clone(s___divide_6666);
         arg0=it;
         it=rb_funcall(self,sy_token,1,arg0);
-        FAILTEST(alt2_3);
+        if (it==failobj) {
+            it=failobj;
+            goto alt2_3;
+        }
         _op=it;;
 
         ;
         goto accept2;
 alt2_3:
         ptr->pos=oldpos2;
-        goto alt1_2;
+        if (1) {
+            it=failobj;
+            goto alt1_2;
+        };
 accept2:
         ;
         it=rb_funcall(self,sy_expr_ar3,0);
-        FAILTEST(alt1_2);
+        if (it==failobj) {
+            it=failobj;
+            goto alt1_2;
+        }
         _b=it;;
         bind_aset(bind2,1,_op);
         bind_aset(bind2,2,_a);
@@ -1056,16 +1330,18 @@ alt1_2:
         goto accept1;
 alt1_3:
         ptr->pos=oldpos1;
-        goto fail;
+        if (1) {
+            it=failobj;
+            goto fail;
+        };
 accept1:
         ;
     }
     it=_a;
     __result=it;;
 
-    return it;
 fail:
-    return failobj;
+    return it;
 }
 VALUE Peridot_parser_expr_ar3(VALUE self ) {
     VALUE vals[0];
@@ -1076,7 +1352,10 @@ VALUE Peridot_parser_expr_ar3(VALUE self ) {
     cstruct *ptr;
     Data_Get_Struct(self,cstruct,ptr);
     it=rb_funcall(self,sy_expr_ar4,0);
-    FAILTEST(fail);
+    if (it==failobj) {
+        it=failobj;
+        goto fail;
+    }
     _a=it;;
     int stop1=0;
     while(!stop1) {
@@ -1087,10 +1366,16 @@ alt1_1:
         it=rb_obj_clone(s___times__times_514f);
         arg0=it;
         it=rb_funcall(self,sy_token,1,arg0);
-        FAILTEST(alt1_2);
+        if (it==failobj) {
+            it=failobj;
+            goto alt1_2;
+        }
         _op=it;;
         it=rb_funcall(self,sy_expr_ar4,0);
-        FAILTEST(alt1_2);
+        if (it==failobj) {
+            it=failobj;
+            goto alt1_2;
+        }
         _b=it;;
         bind_aset(bind2,1,_op);
         bind_aset(bind2,2,_a);
@@ -1110,16 +1395,18 @@ alt1_2:
         goto accept1;
 alt1_3:
         ptr->pos=oldpos1;
-        goto fail;
+        if (1) {
+            it=failobj;
+            goto fail;
+        };
 accept1:
         ;
     }
     it=_a;
     __result=it;;
 
-    return it;
 fail:
-    return failobj;
+    return it;
 }
 VALUE Peridot_parser_expr_ar4(VALUE self ) {
     VALUE vals[0];
@@ -1130,12 +1417,14 @@ VALUE Peridot_parser_expr_ar4(VALUE self ) {
     cstruct *ptr;
     Data_Get_Struct(self,cstruct,ptr);
     it=rb_funcall(self,sy_expr_postfixed,0);
-    FAILTEST(fail);
+    if (it==failobj) {
+        it=failobj;
+        goto fail;
+    }
     __result=it;;
 
-    return it;
 fail:
-    return failobj;
+    return it;
 }
 VALUE Peridot_parser_expr_postfixed(VALUE self ) {
     VALUE vals[0];
@@ -1146,7 +1435,10 @@ VALUE Peridot_parser_expr_postfixed(VALUE self ) {
     cstruct *ptr;
     Data_Get_Struct(self,cstruct,ptr);
     it=rb_funcall(self,sy_atom,0);
-    FAILTEST(fail);
+    if (it==failobj) {
+        it=failobj;
+        goto fail;
+    }
     _a=it;;
     int stop1=0;
     while(!stop1) {
@@ -1157,26 +1449,41 @@ alt1_1:
         it=rb_obj_clone(s___lb_8154);
         arg0=it;
         it=rb_funcall(self,sy_seq,1,arg0);
-        FAILTEST(alt1_2);
+        if (it==failobj) {
+            it=failobj;
+            goto alt1_2;
+        }
         it=rb_funcall(self,sy_args,0);
-        FAILTEST(alt1_2);
+        if (it==failobj) {
+            it=failobj;
+            goto alt1_2;
+        }
         _autovar=it;;
         int oldpos2=ptr->pos;
         int cut2=0;
 alt2_1:
         ;
-        it=_autovar;
-        _arg=it;;
         it=rb_obj_clone(s___rb_0fbd);
         arg0=it;
         it=rb_funcall(self,sy_token,1,arg0);
-        FAILTEST(alt2_2);
+        if (it==failobj) {
+            it=failobj;
+            goto alt2_2;
+        }
         it=rb_obj_clone(s___assign_43ec);
         arg0=it;
         it=rb_funcall(self,sy_token,1,arg0);
-        FAILTEST(alt2_2);
+        if (it==failobj) {
+            it=failobj;
+            goto alt2_2;
+        }
+        it=_autovar;
+        _arg=it;;
         it=rb_funcall(self,sy_expr,0);
-        FAILTEST(alt2_2);
+        if (it==failobj) {
+            it=failobj;
+            goto alt2_2;
+        }
         _arg2=it;;
         bind_aset(bind2,1,_a);
         bind_aset(bind2,2,_arg);
@@ -1191,12 +1498,15 @@ alt2_1:
         goto accept2;
 alt2_2:
         ptr->pos=oldpos2;
-        it=_autovar;
-        _arg=it;;
         it=rb_obj_clone(s___rb_0fbd);
         arg0=it;
         it=rb_funcall(self,sy_token,1,arg0);
-        FAILTEST(alt2_3);
+        if (it==failobj) {
+            it=failobj;
+            goto alt2_3;
+        }
+        it=_autovar;
+        _arg=it;;
         bind_aset(bind2,1,_a);
         bind_aset(bind2,2,_arg);
         it=rb_funcall(self,sy__Call__lb4,1,bind2);
@@ -1208,7 +1518,10 @@ alt2_2:
         goto accept2;
 alt2_3:
         ptr->pos=oldpos2;
-        goto alt1_2;
+        if (1) {
+            it=failobj;
+            goto alt1_2;
+        };
 accept2:
         ;
 
@@ -1219,7 +1532,10 @@ alt1_2:
         it=rb_obj_clone(s_6);
         arg0=it;
         it=rb_funcall(self,sy_seq,1,arg0);
-        FAILTEST(alt1_3);
+        if (it==failobj) {
+            it=failobj;
+            goto alt1_3;
+        }
         switch((unsigned char)*ame_curstr2(ptr)) {
         case UC(0) ... '@':
             ;
@@ -1229,7 +1545,10 @@ alt1_2:
             ;
         case '{' ... UC(255):
             ;
-            goto alt1_3;
+            if (1) {
+                it=failobj;
+                goto alt1_3;
+            }
             break;
         case 'A' ... 'Z':
             ;
@@ -1238,25 +1557,37 @@ alt1_2:
         case 'a' ... 'z':
             ;
             it=rb_funcall(self,sy_name,0);
-            FAILTEST(alt1_3);
+            if (it==failobj) {
+                it=failobj;
+                goto alt1_3;
+            }
             _autovar_2=it;;
             int oldpos3=ptr->pos;
             int cut3=0;
 alt3_1:
             ;
-            it=_autovar_2;
-            _name=it;;
             it=rb_obj_clone(s_);
             arg0=it;
             it=rb_funcall(self,sy_seq,1,arg0);
-            FAILTEST(alt3_2);
+            if (it==failobj) {
+                it=failobj;
+                goto alt3_2;
+            }
+            it=_autovar_2;
+            _name=it;;
             it=rb_funcall(self,sy_args,0);
-            FAILTEST(alt3_2);
+            if (it==failobj) {
+                it=failobj;
+                goto alt3_2;
+            }
             _arg=it;;
             it=rb_obj_clone(s_2);
             arg0=it;
             it=rb_funcall(self,sy_seq,1,arg0);
-            FAILTEST(alt3_2);
+            if (it==failobj) {
+                it=failobj;
+                goto alt3_2;
+            }
             bind_aset(bind2,1,_name);
             bind_aset(bind2,2,_a);
             bind_aset(bind2,3,_arg);
@@ -1279,11 +1610,17 @@ alt4_1:
             it=rb_obj_clone(s_);
             arg0=it;
             it=rb_funcall(self,sy_seq,1,arg0);
-            FAILTEST(alt4_2);
+            if (it==failobj) {
+                it=failobj;
+                goto alt4_2;
+            }
             it=rb_obj_clone(s_2);
             arg0=it;
             it=rb_funcall(self,sy_token,1,arg0);
-            FAILTEST(alt4_2);
+            if (it==failobj) {
+                it=failobj;
+                goto alt4_2;
+            }
             ;
             goto accept4;
 alt4_2:
@@ -1293,7 +1630,10 @@ alt4_2:
             goto accept4;
 alt4_3:
             ptr->pos=oldpos4;
-            goto alt3_3;
+            if (1) {
+                it=failobj;
+                goto alt3_3;
+            };
 accept4:
             ;
             bind_aset(bind2,1,_name);
@@ -1307,7 +1647,10 @@ accept4:
             goto accept3;
 alt3_3:
             ptr->pos=oldpos3;
-            goto alt1_3;
+            if (1) {
+                it=failobj;
+                goto alt1_3;
+            };
 accept3:
             ;
             break;
@@ -1321,16 +1664,18 @@ alt1_3:
         goto accept1;
 alt1_4:
         ptr->pos=oldpos1;
-        goto fail;
+        if (1) {
+            it=failobj;
+            goto fail;
+        };
 accept1:
         ;
     }
     it=_a;
     __result=it;;
 
-    return it;
 fail:
-    return failobj;
+    return it;
 }
 VALUE Peridot_parser_method(VALUE self ) {
     VALUE vals[0];
@@ -1349,7 +1694,10 @@ VALUE Peridot_parser_method(VALUE self ) {
         ;
     case '{' ... UC(255):
         ;
-        goto fail;
+        if (1) {
+            it=failobj;
+            goto fail;
+        }
         break;
     case 'A' ... 'Z':
         ;
@@ -1358,13 +1706,15 @@ VALUE Peridot_parser_method(VALUE self ) {
     case 'a' ... 'z':
         ;
         it=rb_funcall(self,sy_name,0);
-        FAILTEST(fail);
+        if (it==failobj) {
+            it=failobj;
+            goto fail;
+        }
         __result=it;;
         break;
     }
-    return it;
 fail:
-    return failobj;
+    return it;
 }
 VALUE Peridot_parser_name(VALUE self ) {
     VALUE vals[0];
@@ -1383,7 +1733,10 @@ VALUE Peridot_parser_name(VALUE self ) {
         ;
     case '{' ... UC(255):
         ;
-        goto fail;
+        if (1) {
+            it=failobj;
+            goto fail;
+        }
         break;
     case 'A' ... 'Z':
         ;
@@ -1436,9 +1789,8 @@ VALUE Peridot_parser_name(VALUE self ) {
         __result=it;;
         break;
     }
-    return it;
 fail:
-    return failobj;
+    return it;
 }
 VALUE Peridot_parser_root(VALUE self ) {
     VALUE vals[0];
@@ -1461,7 +1813,10 @@ alt1_1:
 alt2_1:
         ;
         it=rb_funcall(self,sy_body,0);
-        FAILTEST(alt2_2);
+        if (it==failobj) {
+            it=failobj;
+            goto alt2_2;
+        }
         _autovar_2=it;;
 
         ;
@@ -1469,7 +1824,10 @@ alt2_1:
 alt2_2:
         ptr->pos=oldpos2;
         it=rb_funcall(self,sy_defi,0);
-        FAILTEST(alt2_3);
+        if (it==failobj) {
+            it=failobj;
+            goto alt2_3;
+        }
         _autovar_2=it;;
 
         ;
@@ -1477,14 +1835,20 @@ alt2_2:
 alt2_3:
         ptr->pos=oldpos2;
         it=rb_funcall(self,sy_sequence,0);
-        FAILTEST(alt2_4);
+        if (it==failobj) {
+            it=failobj;
+            goto alt2_4;
+        }
         _autovar_2=it;;
 
         ;
         goto accept2;
 alt2_4:
         ptr->pos=oldpos2;
-        goto alt1_2;
+        if (1) {
+            it=failobj;
+            goto alt1_2;
+        };
 accept2:
         ;
         it=AmethystCore_append(self,_autovar,_autovar_2);
@@ -1497,20 +1861,21 @@ alt1_2:
         goto accept1;
 alt1_3:
         ptr->pos=oldpos1;
-        goto fail;
+        if (1) {
+            it=failobj;
+            goto fail;
+        };
 accept1:
         ;
     }
     it=_autovar;
     _a=it;;
-    it=rb_ary_new3(0);
     ptr->pos=ptr->len;
     it=_a;
     __result=it;;
 
-    return it;
 fail:
-    return failobj;
+    return it;
 }
 VALUE Peridot_parser_sequence(VALUE self ) {
     VALUE vals[0];
@@ -1523,10 +1888,12 @@ VALUE Peridot_parser_sequence(VALUE self ) {
     it=rb_ary_new3(0);
     _ary=it;;
     it=rb_funcall(self,sy_expr,0);
-    FAILTEST(fail);
+    if (it==failobj) {
+        it=failobj;
+        goto fail;
+    }
     _autovar=it;;
     it=AmethystCore_append(self,_ary,_autovar);
-    it=rb_ary_new3(0);
     int stop1=0;
     while(!stop1) {
         int oldpos1=ptr->pos;
@@ -1534,9 +1901,15 @@ VALUE Peridot_parser_sequence(VALUE self ) {
 alt1_1:
         ;
         it=rb_funcall(self,sy_newline,0);
-        FAILTEST(alt1_2);
+        if (it==failobj) {
+            it=failobj;
+            goto alt1_2;
+        }
         it=rb_funcall(self,sy_expr,0);
-        FAILTEST(alt1_2);
+        if (it==failobj) {
+            it=failobj;
+            goto alt1_2;
+        }
         _autovar_2=it;;
         it=AmethystCore_append(self,_ary,_autovar_2);
         ;
@@ -1548,7 +1921,10 @@ alt1_2:
         goto accept1;
 alt1_3:
         ptr->pos=oldpos1;
-        goto fail;
+        if (1) {
+            it=failobj;
+            goto fail;
+        };
 accept1:
         ;
     }
@@ -1557,9 +1933,8 @@ accept1:
     _ary=bind_aget(bind2,1);;
     __result=it;;
 
-    return it;
 fail:
-    return failobj;
+    return it;
 }
 void Init_peridot_c() {
     cls_Peridot_parser=rb_define_class("Peridot_parser",rb_const_get(rb_cObject,rb_intern("Amethyst")));
@@ -1659,5 +2034,5 @@ void Init_peridot_c() {
     rb_define_method(cls_Peridot_parser,"name",Peridot_parser_name,0);
     rb_define_method(cls_Peridot_parser,"root",Peridot_parser_root,0);
     rb_define_method(cls_Peridot_parser,"sequence",Peridot_parser_sequence,0);
-    rb_eval_string("testversionperidot('3e97476ddde023146fcfc7328a6b7c63')");
+    rb_eval_string("testversionperidot('af479a47739fd493ce79f865c1c865a3')");
 }

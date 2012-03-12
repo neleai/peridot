@@ -74,17 +74,16 @@ end
 
 end
 
-
 def peridot_compiled_by
-'bc8b9836da9a8f546598a8c83101f2c6'
+'df338f494311d9fef4d66c14b8d23514'
 end
 def peridot_source_hash
-'62b55f25108f30e4f11e3f4943a88c50'
+'f6ffe43df1f8247387f871951cea388c'
 end
 def testversionperidot(r)
  raise "invalid version" if r!=peridot_version
 end
 def peridot_version
-'3e97476ddde023146fcfc7328a6b7c63'
+'af479a47739fd493ce79f865c1c865a3'
 end
 require File.expand_path(File.dirname(__FILE__))+"/#{RUBY_VERSION}/peridot_c"

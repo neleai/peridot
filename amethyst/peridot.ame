@@ -1,5 +1,5 @@
 amethyst Peridot_parser{
-	root = (body|defi|sequence)*:a .* {a}
+	root = (body | defi | sequence)*:a .* {a}
 	
 	body = "class" "" name:name defi*:ary "end" @Klass
 	
