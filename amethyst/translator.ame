@@ -8,7 +8,7 @@ amethyst Peridot_translator{
 	
 	trans = Klass[{@@init=[];@@clas=@name; @@cls=Object.peridot_class(@name)} trans*:r  { r*""+"init_#{@name}(){#{@@init*""}}"   }]
         | Def[{@@fnames<<@name} {@@names=["placeholder"]} trans:body {$methods<<@name unless $methods.include?(@name);$translated<<[@@cls,$methods.index(@name),"_#{@name}_#{@@clas}"]; @@init<<""} 
-                                {"obj _#{@name}_#{@@clas}(#{@args*""}){obj #{@@names.uniq*","}; #{body};}\n" }]
+                                {"obj _#{@name}_#{@@clas}(#{@args*""}){obj_Binding *bnd=(obj_Binding*)Binding();obj #{@@names.uniq*","}; #{body};}\n" }]
         | Call[ @name:n &{n=="bind_get"} {r="";@@names.size.times{|i| r<< "bnd->locals[i]=#{@@names[i]};" };r } ]
         | Call[ @name:n &{n=="bind_set"} {r="";@@names.size.times{|i| r<< "#{@@names[i]}=bnd->locals[i];" };r } ]
 
