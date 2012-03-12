@@ -23,6 +23,8 @@ static VALUE s_3;
 static VALUE s_4;
 static VALUE s_5;
 static VALUE s_6;
+static VALUE s_7;
+static VALUE s_8;
 static VALUE s_;
 static VALUE s___assign_43ec;
 static VALUE s___divide_6666;
@@ -52,6 +54,7 @@ static VALUE sy__Call__lb;
 static VALUE sy__Def;
 static VALUE sy__If__lb;
 static VALUE sy__Klass;
+static VALUE sy__Lambda__lbb_8fb6;
 static VALUE sy__Seq;
 static VALUE sy__Var;
 static VALUE sy____lb;
@@ -169,7 +172,7 @@ alt1_2:
         goto accept1;
 alt1_3:
         ptr->pos=oldpos1;
-        it=rb_obj_clone(s_);
+        it=rb_obj_clone(s_4);
         arg0=it;
         it=rb_funcall(self,sy_seq,1,arg0);
         if (it==failobj) {
@@ -182,30 +185,25 @@ alt1_3:
             goto alt1_4;
         }
         _e=it;;
-        it=rb_obj_clone(s_2);
+        it=rb_obj_clone(s_5);
         arg0=it;
         it=rb_funcall(self,sy_token,1,arg0);
         if (it==failobj) {
             it=failobj;
             goto alt1_4;
         }
-        it=_e;
+        bind_aset(bind2,1,_e);
+        it=rb_funcall(self,sy__Lambda__lbb_8fb6,1,bind2);
+        _e=bind_aget(bind2,1);;
         __result=it;;
 
         ;
         goto accept1;
 alt1_4:
         ptr->pos=oldpos1;
-        it=rb_obj_clone(s_if_39c8);
-        arg0=it;
-        it=rb_funcall(self,sy_seq,1,arg0);
-        if (it==failobj) {
-            it=failobj;
-            goto alt1_5;
-        }
         it=rb_obj_clone(s_);
         arg0=it;
-        it=rb_funcall(self,sy_token,1,arg0);
+        it=rb_funcall(self,sy_seq,1,arg0);
         if (it==failobj) {
             it=failobj;
             goto alt1_5;
@@ -215,7 +213,7 @@ alt1_4:
             it=failobj;
             goto alt1_5;
         }
-        _expr=it;;
+        _e=it;;
         it=rb_obj_clone(s_2);
         arg0=it;
         it=rb_funcall(self,sy_token,1,arg0);
@@ -223,10 +221,44 @@ alt1_4:
             it=failobj;
             goto alt1_5;
         }
+        it=_e;
+        __result=it;;
+
+        ;
+        goto accept1;
+alt1_5:
+        ptr->pos=oldpos1;
+        it=rb_obj_clone(s_if_39c8);
+        arg0=it;
+        it=rb_funcall(self,sy_seq,1,arg0);
+        if (it==failobj) {
+            it=failobj;
+            goto alt1_6;
+        }
+        it=rb_obj_clone(s_);
+        arg0=it;
+        it=rb_funcall(self,sy_token,1,arg0);
+        if (it==failobj) {
+            it=failobj;
+            goto alt1_6;
+        }
+        it=rb_funcall(self,sy_expr,0);
+        if (it==failobj) {
+            it=failobj;
+            goto alt1_6;
+        }
+        _expr=it;;
+        it=rb_obj_clone(s_2);
+        arg0=it;
+        it=rb_funcall(self,sy_token,1,arg0);
+        if (it==failobj) {
+            it=failobj;
+            goto alt1_6;
+        }
         it=rb_funcall(self,sy_block,0);
         if (it==failobj) {
             it=failobj;
-            goto alt1_5;
+            goto alt1_6;
         }
         _block=it;;
         bind_aset(bind2,1,_expr);
@@ -238,14 +270,14 @@ alt1_4:
 
         ;
         goto accept1;
-alt1_5:
+alt1_6:
         ptr->pos=oldpos1;
-        it=rb_obj_clone(s_4);
+        it=rb_obj_clone(s_6);
         arg0=it;
         it=rb_funcall(self,sy_seq,1,arg0);
         if (it==failobj) {
             it=failobj;
-            goto alt1_6;
+            goto alt1_7;
         }
         int stop1=0;
         while(!stop1) {
@@ -253,7 +285,7 @@ alt1_5:
             int cut2=0;
 alt2_1:
             ;
-            it=rb_obj_clone(s_5);
+            it=rb_obj_clone(s_7);
             arg0=it;
             it=rb_funcall(self,sy_seq,1,arg0);
             if (it==failobj) {
@@ -268,10 +300,10 @@ alt2_2:
             ptr->pos=oldpos2;
             if (cut2) {
                 it=failobj;
-                goto alt1_6;
+                goto alt1_7;
             }
             int oldpos3=ptr->pos;
-            it=rb_obj_clone(s_4);
+            it=rb_obj_clone(s_6);
             arg0=it;
             it=rb_funcall(self,sy_seq,1,arg0);
             if (it==failobj) {
@@ -317,7 +349,7 @@ alt2_4:
             ptr->pos=oldpos2;
             if (1) {
                 it=failobj;
-                goto alt1_6;
+                goto alt1_7;
             };
 accept2:
             ;
@@ -329,7 +361,7 @@ accept2:
 
         ;
         goto accept1;
-alt1_6:
+alt1_7:
         ptr->pos=oldpos1;
         int oldpos4=ptr->pos;
         int cut3=0;
@@ -353,7 +385,7 @@ alt3_2:
         ptr->pos=oldpos4;
         if (cut3) {
             it=failobj;
-            goto alt1_7;
+            goto alt1_8;
         }
         it=Qnil;
         ;
@@ -362,7 +394,7 @@ alt3_3:
         ptr->pos=oldpos4;
         if (1) {
             it=failobj;
-            goto alt1_7;
+            goto alt1_8;
         };
 accept4:
         ;
@@ -377,7 +409,7 @@ accept4:
             ;
             if (1) {
                 it=failobj;
-                goto alt1_7;
+                goto alt1_8;
             }
             break;
         case 'A' ... 'Z':
@@ -389,7 +421,7 @@ accept4:
             it=rb_funcall(self,sy_name,0);
             if (it==failobj) {
                 it=failobj;
-                goto alt1_7;
+                goto alt1_8;
             }
             _name=it;;
             break;
@@ -401,7 +433,7 @@ accept4:
 
         ;
         goto accept1;
-alt1_7:
+alt1_8:
         ptr->pos=oldpos1;
         if (1) {
             it=failobj;
@@ -459,7 +491,7 @@ alt4_2:
         goto accept5;
 alt4_3:
         ptr->pos=oldpos5;
-        it=rb_obj_clone(s_);
+        it=rb_obj_clone(s_4);
         arg0=it;
         it=rb_funcall(self,sy_seq,1,arg0);
         if (it==failobj) {
@@ -472,30 +504,25 @@ alt4_3:
             goto alt4_4;
         }
         _e=it;;
-        it=rb_obj_clone(s_2);
+        it=rb_obj_clone(s_5);
         arg0=it;
         it=rb_funcall(self,sy_token,1,arg0);
         if (it==failobj) {
             it=failobj;
             goto alt4_4;
         }
-        it=_e;
+        bind_aset(bind2,1,_e);
+        it=rb_funcall(self,sy__Lambda__lbb_8fb6,1,bind2);
+        _e=bind_aget(bind2,1);;
         __result=it;;
 
         ;
         goto accept5;
 alt4_4:
         ptr->pos=oldpos5;
-        it=rb_obj_clone(s_if_39c8);
-        arg0=it;
-        it=rb_funcall(self,sy_seq,1,arg0);
-        if (it==failobj) {
-            it=failobj;
-            goto alt4_5;
-        }
         it=rb_obj_clone(s_);
         arg0=it;
-        it=rb_funcall(self,sy_token,1,arg0);
+        it=rb_funcall(self,sy_seq,1,arg0);
         if (it==failobj) {
             it=failobj;
             goto alt4_5;
@@ -505,7 +532,7 @@ alt4_4:
             it=failobj;
             goto alt4_5;
         }
-        _expr=it;;
+        _e=it;;
         it=rb_obj_clone(s_2);
         arg0=it;
         it=rb_funcall(self,sy_token,1,arg0);
@@ -513,10 +540,44 @@ alt4_4:
             it=failobj;
             goto alt4_5;
         }
+        it=_e;
+        __result=it;;
+
+        ;
+        goto accept5;
+alt4_5:
+        ptr->pos=oldpos5;
+        it=rb_obj_clone(s_if_39c8);
+        arg0=it;
+        it=rb_funcall(self,sy_seq,1,arg0);
+        if (it==failobj) {
+            it=failobj;
+            goto alt4_6;
+        }
+        it=rb_obj_clone(s_);
+        arg0=it;
+        it=rb_funcall(self,sy_token,1,arg0);
+        if (it==failobj) {
+            it=failobj;
+            goto alt4_6;
+        }
+        it=rb_funcall(self,sy_expr,0);
+        if (it==failobj) {
+            it=failobj;
+            goto alt4_6;
+        }
+        _expr=it;;
+        it=rb_obj_clone(s_2);
+        arg0=it;
+        it=rb_funcall(self,sy_token,1,arg0);
+        if (it==failobj) {
+            it=failobj;
+            goto alt4_6;
+        }
         it=rb_funcall(self,sy_block,0);
         if (it==failobj) {
             it=failobj;
-            goto alt4_5;
+            goto alt4_6;
         }
         _block=it;;
         bind_aset(bind2,1,_expr);
@@ -528,14 +589,14 @@ alt4_4:
 
         ;
         goto accept5;
-alt4_5:
+alt4_6:
         ptr->pos=oldpos5;
-        it=rb_obj_clone(s_4);
+        it=rb_obj_clone(s_6);
         arg0=it;
         it=rb_funcall(self,sy_seq,1,arg0);
         if (it==failobj) {
             it=failobj;
-            goto alt4_6;
+            goto alt4_7;
         }
         int stop2=0;
         while(!stop2) {
@@ -543,7 +604,7 @@ alt4_5:
             int cut5=0;
 alt5_1:
             ;
-            it=rb_obj_clone(s_5);
+            it=rb_obj_clone(s_7);
             arg0=it;
             it=rb_funcall(self,sy_seq,1,arg0);
             if (it==failobj) {
@@ -558,10 +619,10 @@ alt5_2:
             ptr->pos=oldpos6;
             if (cut5) {
                 it=failobj;
-                goto alt4_6;
+                goto alt4_7;
             }
             int oldpos7=ptr->pos;
-            it=rb_obj_clone(s_4);
+            it=rb_obj_clone(s_6);
             arg0=it;
             it=rb_funcall(self,sy_seq,1,arg0);
             if (it==failobj) {
@@ -607,7 +668,7 @@ alt5_4:
             ptr->pos=oldpos6;
             if (1) {
                 it=failobj;
-                goto alt4_6;
+                goto alt4_7;
             };
 accept6:
             ;
@@ -619,12 +680,12 @@ accept6:
 
         ;
         goto accept5;
-alt4_6:
+alt4_7:
         ptr->pos=oldpos5;
         it=rb_funcall(self,sy_name,0);
         if (it==failobj) {
             it=failobj;
-            goto alt4_7;
+            goto alt4_8;
         }
         _autovar_3=it;;
         it=rb_obj_clone(s_);
@@ -632,7 +693,7 @@ alt4_6:
         it=rb_funcall(self,sy_seq,1,arg0);
         if (it==failobj) {
             it=failobj;
-            goto alt4_7;
+            goto alt4_8;
         }
         int oldpos8=ptr->pos;
         int cut6=0;
@@ -684,14 +745,14 @@ alt6_3:
         ptr->pos=oldpos8;
         if (1) {
             it=failobj;
-            goto alt4_7;
+            goto alt4_8;
         };
 accept8:
         ;
 
         ;
         goto accept5;
-alt4_7:
+alt4_8:
         ptr->pos=oldpos5;
         int oldpos9=ptr->pos;
         int cut7=0;
@@ -715,7 +776,7 @@ alt7_2:
         ptr->pos=oldpos9;
         if (cut7) {
             it=failobj;
-            goto alt4_8;
+            goto alt4_9;
         }
         it=Qnil;
         ;
@@ -724,7 +785,7 @@ alt7_3:
         ptr->pos=oldpos9;
         if (1) {
             it=failobj;
-            goto alt4_8;
+            goto alt4_9;
         };
 accept9:
         ;
@@ -739,7 +800,7 @@ accept9:
             ;
             if (1) {
                 it=failobj;
-                goto alt4_8;
+                goto alt4_9;
             }
             break;
         case 'A' ... 'Z':
@@ -751,7 +812,7 @@ accept9:
             it=rb_funcall(self,sy_name,0);
             if (it==failobj) {
                 it=failobj;
-                goto alt4_8;
+                goto alt4_9;
             }
             _name=it;;
             break;
@@ -763,7 +824,7 @@ accept9:
 
         ;
         goto accept5;
-alt4_8:
+alt4_9:
         ptr->pos=oldpos5;
         if (1) {
             it=failobj;
@@ -784,7 +845,7 @@ VALUE Peridot_parser_block(VALUE self ) {
     VALUE arg0,arg1,arg2,arg3;
     cstruct *ptr;
     Data_Get_Struct(self,cstruct,ptr);
-    it=rb_obj_clone(s_4);
+    it=rb_obj_clone(s_6);
     arg0=it;
     it=rb_funcall(self,sy_token,1,arg0);
     if (it==failobj) {
@@ -797,7 +858,7 @@ VALUE Peridot_parser_block(VALUE self ) {
         goto fail;
     }
     _s=it;;
-    it=rb_obj_clone(s_5);
+    it=rb_obj_clone(s_7);
     arg0=it;
     it=rb_funcall(self,sy_seq,1,arg0);
     if (it==failobj) {
@@ -1529,7 +1590,7 @@ accept2:
         goto accept1;
 alt1_2:
         ptr->pos=oldpos1;
-        it=rb_obj_clone(s_6);
+        it=rb_obj_clone(s_8);
         arg0=it;
         it=rb_funcall(self,sy_seq,1,arg0);
         if (it==failobj) {
@@ -1944,12 +2005,16 @@ void Init_peridot_c() {
     rb_global_variable(&s_2);
     s_3=rb_str_new2("\"");
     rb_global_variable(&s_3);
-    s_4=rb_str_new2("{");
+    s_4=rb_str_new2("(|");
     rb_global_variable(&s_4);
-    s_5=rb_str_new2("}");
+    s_5=rb_str_new2("|)");
     rb_global_variable(&s_5);
-    s_6=rb_str_new2(".");
+    s_6=rb_str_new2("{");
     rb_global_variable(&s_6);
+    s_7=rb_str_new2("}");
+    rb_global_variable(&s_7);
+    s_8=rb_str_new2(".");
+    rb_global_variable(&s_8);
     s_=rb_str_new2("(");
     rb_global_variable(&s_);
     s___assign_43ec=rb_str_new2("=");
@@ -1993,6 +2058,7 @@ void Init_peridot_c() {
     sy__Def=rb_intern("_Def");
     sy__If__lb=rb_intern("_If__lb");
     sy__Klass=rb_intern("_Klass");
+    sy__Lambda__lbb_8fb6=rb_intern("_Lambda__lbb_8fb6");
     sy__Seq=rb_intern("_Seq");
     sy__Var=rb_intern("_Var");
     sy____lb=rb_intern("___lb");
@@ -2034,5 +2100,5 @@ void Init_peridot_c() {
     rb_define_method(cls_Peridot_parser,"name",Peridot_parser_name,0);
     rb_define_method(cls_Peridot_parser,"root",Peridot_parser_root,0);
     rb_define_method(cls_Peridot_parser,"sequence",Peridot_parser_sequence,0);
-    rb_eval_string("testversionperidot('af479a47739fd493ce79f865c1c865a3')");
+    rb_eval_string("testversionperidot('3c5ea09342da5ce3bd8422c5a02dc114')");
 }

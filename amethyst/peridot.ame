@@ -10,6 +10,7 @@ amethyst Peridot_parser{
 	atom = ""
        ( number:n         -> CCode["Int(#{n})"]
        | '"' until('"'):s -> CCode["Str(#{s.inspect})"]
+       | '(|' expr:e "|)" -> Lambda[e]
 			 | '(' expr:e ")" {e}
 			 | 'if' "(" expr:expr ")" block:block {If[{:expr=>expr,:block=>block}]}
 			 | '{' ('}' break | &'{' atom:{'{'+it[0]+'}'}:s[] | .:s[])* {CCode[s*""]}

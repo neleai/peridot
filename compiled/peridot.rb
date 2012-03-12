@@ -53,6 +53,10 @@ end
 def _Klass(bind)
 Klass.create( {:ary=>bind[2],:name=>bind[1] })
 end
+def _Lambda__lbb_8fb6(bind)
+Lambda[bind[1]]
+
+end
 def _Seq(bind)
 Seq.create( {:ary=>bind[1] })
 end
@@ -78,12 +82,12 @@ def peridot_compiled_by
 'df338f494311d9fef4d66c14b8d23514'
 end
 def peridot_source_hash
-'f6ffe43df1f8247387f871951cea388c'
+'a48e69bcc068329c5b4d70b7d722a5e0'
 end
 def testversionperidot(r)
  raise "invalid version" if r!=peridot_version
 end
 def peridot_version
-'af479a47739fd493ce79f865c1c865a3'
+'3c5ea09342da5ce3bd8422c5a02dc114'
 end
 require File.expand_path(File.dirname(__FILE__))+"/#{RUBY_VERSION}/peridot_c"
