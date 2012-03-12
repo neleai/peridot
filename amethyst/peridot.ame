@@ -14,19 +14,19 @@ amethyst Peridot_parser{
 			 | '(' expr:e ")" {e}
 			 | 'if' "(" expr:expr ")" block:block {If[{:expr=>expr,:block=>block}]}
 			 | '{' ('}' break | &'{' atom:{'{'+it[0]+'}'}:s[] | .:s[])* {CCode[s*""]}
-			 | name:name '(' args:arg ')' -> Call[{:name=>leterize(name) ,:ary=>["self",arg]}]
+			 | name:name '(' args:arg ')' -> Call[{:name=>leterize(name) ,:ary=>["self",*arg]}]
  			 | name:name '(' ")"          -> Call[{:name=>leterize(name) ,:ary=>["self"]}]
 
 		   | ~'end' name:name @Var
 			 )
 
-	args = expr
+	args = listOf('expr',',')
 	method = name
 	
 	expr_postfixed = atom:a ( 
-                           ( '[' args:arg "]" "=" expr:arg2        -> Call[{:name=>leterize("[]="),:ary=>[a,arg,arg2]}]
-													 | '[' args:arg "]"                      -> Call[{:name=>leterize("[]") ,:ary=>[a,arg]}]
-													 | '.' name:name '(' args:arg ')'        -> Call[{:name=>leterize(name) ,:ary=>[a,arg]}]
+                           ( '[' args:arg "]" "=" expr:arg2        -> Call[{:name=>leterize("[]="),:ary=>[a,*arg,arg2]}]
+													 | '[' args:arg "]"                      -> Call[{:name=>leterize("[]") ,:ary=>[a,*arg]}]
+													 | '.' name:name '(' args:arg ')'        -> Call[{:name=>leterize(name) ,:ary=>[a,*arg]}]
 													 | '.' name:name ( '(' ")" )?            -> Call[{:name=>leterize(name) ,:ary=>[a]}]
                            ):a
 	                        )* {a}

@@ -18,7 +18,7 @@ def _CCode__lbbi_c1c3(bind)
 CCode[bind[1]*""]
 end
 def _Call__lb(bind)
-Call[{:name=>leterize(bind[1]) ,:ary=>["self",bind[2]]}]
+Call[{:name=>leterize(bind[1]) ,:ary=>["self",*bind[2]]}]
 
 end
 def _Call__lb2(bind)
@@ -26,15 +26,15 @@ Call[{:name=>leterize(bind[1]) ,:ary=>["self"]}]
 
 end
 def _Call__lb3(bind)
-Call[{:name=>leterize("[]="),:ary=>[bind[1],bind[2],bind[3]]}]
+Call[{:name=>leterize("[]="),:ary=>[bind[1],*bind[2],bind[3]]}]
 
 end
 def _Call__lb4(bind)
-Call[{:name=>leterize("[]") ,:ary=>[bind[1],bind[2]]}]
+Call[{:name=>leterize("[]") ,:ary=>[bind[1],*bind[2]]}]
 
 end
 def _Call__lb5(bind)
-Call[{:name=>leterize(bind[1]) ,:ary=>[bind[2],bind[3]]}]
+Call[{:name=>leterize(bind[1]) ,:ary=>[bind[2],*bind[3]]}]
 
 end
 def _Call__lb6(bind)
@@ -79,15 +79,15 @@ end
 end
 
 def peridot_compiled_by
-'df338f494311d9fef4d66c14b8d23514'
+'086973cf9a09db51fdd3787ea2f5dd4d'
 end
 def peridot_source_hash
-'a48e69bcc068329c5b4d70b7d722a5e0'
+'905598c146878051843fc62def7632c3'
 end
 def testversionperidot(r)
  raise "invalid version" if r!=peridot_version
 end
 def peridot_version
-'3c5ea09342da5ce3bd8422c5a02dc114'
+'38a423e5186a274467b359f9677771cb'
 end
 require File.expand_path(File.dirname(__FILE__))+"/#{RUBY_VERSION}/peridot_c"

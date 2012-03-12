@@ -25,6 +25,7 @@ static VALUE s_5;
 static VALUE s_6;
 static VALUE s_7;
 static VALUE s_8;
+static VALUE s_9;
 static VALUE s_;
 static VALUE s___assign_43ec;
 static VALUE s___divide_6666;
@@ -38,6 +39,7 @@ static VALUE s__d41d;
 static VALUE s_class_a2f2;
 static VALUE s_def_4ed9;
 static VALUE s_end_7f02;
+static VALUE s_expr_8d1d;
 static VALUE s_if_39c8;
 static VALUE sy__;
 static VALUE sy__Assign;
@@ -73,6 +75,7 @@ static VALUE sy_expr_ar2;
 static VALUE sy_expr_ar3;
 static VALUE sy_expr_ar4;
 static VALUE sy_expr_postfixed;
+static VALUE sy_listOf;
 static VALUE sy_name;
 static VALUE sy_newline;
 static VALUE sy_number;
@@ -93,7 +96,11 @@ VALUE Peridot_parser_args(VALUE self ) {
     VALUE arg0,arg1,arg2,arg3;
     cstruct *ptr;
     Data_Get_Struct(self,cstruct,ptr);
-    it=rb_funcall(self,sy_expr,0);
+    it=rb_obj_clone(s_expr_8d1d);
+    arg0=it;
+    it=rb_obj_clone(s_8);
+    arg1=it;
+    it=rb_funcall(self,sy_listOf,2,arg0,arg1);
     if (it==failobj) {
         it=failobj;
         goto fail;
@@ -1590,7 +1597,7 @@ accept2:
         goto accept1;
 alt1_2:
         ptr->pos=oldpos1;
-        it=rb_obj_clone(s_8);
+        it=rb_obj_clone(s_9);
         arg0=it;
         it=rb_funcall(self,sy_seq,1,arg0);
         if (it==failobj) {
@@ -2013,8 +2020,10 @@ void Init_peridot_c() {
     rb_global_variable(&s_6);
     s_7=rb_str_new2("}");
     rb_global_variable(&s_7);
-    s_8=rb_str_new2(".");
+    s_8=rb_str_new2(",");
     rb_global_variable(&s_8);
+    s_9=rb_str_new2(".");
+    rb_global_variable(&s_9);
     s_=rb_str_new2("(");
     rb_global_variable(&s_);
     s___assign_43ec=rb_str_new2("=");
@@ -2041,6 +2050,8 @@ void Init_peridot_c() {
     rb_global_variable(&s_def_4ed9);
     s_end_7f02=rb_str_new2("end");
     rb_global_variable(&s_end_7f02);
+    s_expr_8d1d=rb_str_new2("expr");
+    rb_global_variable(&s_expr_8d1d);
     s_if_39c8=rb_str_new2("if");
     rb_global_variable(&s_if_39c8);
     sy__=rb_intern("_");
@@ -2077,6 +2088,7 @@ void Init_peridot_c() {
     sy_expr_ar3=rb_intern("expr_ar3");
     sy_expr_ar4=rb_intern("expr_ar4");
     sy_expr_postfixed=rb_intern("expr_postfixed");
+    sy_listOf=rb_intern("listOf");
     sy_name=rb_intern("name");
     sy_newline=rb_intern("newline");
     sy_number=rb_intern("number");
@@ -2100,5 +2112,5 @@ void Init_peridot_c() {
     rb_define_method(cls_Peridot_parser,"name",Peridot_parser_name,0);
     rb_define_method(cls_Peridot_parser,"root",Peridot_parser_root,0);
     rb_define_method(cls_Peridot_parser,"sequence",Peridot_parser_sequence,0);
-    rb_eval_string("testversionperidot('3c5ea09342da5ce3bd8422c5a02dc114')");
+    rb_eval_string("testversionperidot('38a423e5186a274467b359f9677771cb')");
 }
