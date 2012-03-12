@@ -1,3 +1,8 @@
+class Lambda
+  def call()
+    {return ((obj_Lambda *)self)->lam( ((obj_Lambda *)self)->bnd);}
+  end
+end
 class Fixint
 	def +(obj_Fixint *b)
 		{return Int(obj2int(self)+b->in);}
@@ -17,7 +22,9 @@ class Fixint
   def to_s()
     {char *c=(char*)malloc(20); sprintf(c,"%i",obj2int(self)); return Str(c);}
   end
-
+  def times(obj_Lambda* l)
+    { int i;for(i=0;i<((obj_Fixint *)self)->in;i++) _call_Lambda((obj) l);}
+  end
 end
 class Array
 	def  [](obj_Fixint* b)
@@ -35,15 +42,7 @@ class String
     {return self;}
   end
 end
-class Lambda
-  def call()
-    {return ((obj_Lambda *)self)->lam( ((obj_Lambda *)self)->bnd);}
-  end
-end
 class TopLevel
-  def times(obj_Fixint *f,obj_Lambda* l)
-    { int i;for(i=0;i<f->in;i++) _call_Lambda((obj) l);}
-  end
   def _puts(obj b)
     c={b}.to_s
     {printf("%s\n",obj2str(c))}
@@ -76,7 +75,7 @@ def _start()
 	_puts(c[2])
 	_puts(c[2])
   l=(| c[2]=c[2]+1 |)
-  times(3,l)
+  3.times(l)
   l.call()
  	_puts(c[2])
   l.call()
