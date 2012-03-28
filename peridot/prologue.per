@@ -19,6 +19,12 @@ class Fixint
   def %(obj_Fixint *b)
 		{return Int(obj2int(self)%b->in);}
 	end
+  def **(obj_Fixint *b)
+    {int i,p=1;
+     for(i=0;i<obj2int(b);i++) p*=obj2int(self);
+     return Int(p);
+    }
+  end
   def to_s()
     {char *c=(char*)malloc(20); sprintf(c,"%i",obj2int(self)); return Str(c);}
   end
