@@ -7,8 +7,8 @@ class Fixint
 	def +(obj_Fixint *b)
 		{return Int(obj2int(self)+b->in);}
 	end
-	def -(obj_Fixint *b)
-		{return Int(obj2int(self)-b->in);}
+	def -()
+		{return Int(-obj2int(self));}
 	end
 	def *(obj_Fixint *b)
 		{return Int(obj2int(self)*b->in);}

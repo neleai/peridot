@@ -3,7 +3,7 @@ amethyst Peridot_parser{
 	
 	body = "class" "" name:name defi*:ary "end" @Klass
 	
-	defi = "def" "" defname:name {["obj self"]}:args  '(' ( ')' break | {args=args+[','] if args.size==1} .:args[])*  sequence:ary[] "end" @Def
+	defi = "def" "" defname:name {["obj self"]}:args  '(' ( ')' break | {args=args+[','] if args.size==1} .:[args])*  sequence:[ary] "end" @Def
 	name = <a-zA-Z_>:s <a-zA-Z0-9_>*:{s+it*""}
 	defname = (<^ \t\r\n()>)*:x {leterize(x*"")}
 	
@@ -13,7 +13,7 @@ amethyst Peridot_parser{
        | '(|' expr:e "|)" -> Lambda[e]
 			 | '(' expr:e ")" {e}
 			 | 'if' "(" expr:expr ")" block:block {If[{:expr=>expr,:block=>block}]}
-			 | '{' ('}' break | &'{' atom:{'{'+it[0]+'}'}:s[] | .:s[])* {CCode[s*""]}
+			 | '{' ('}' break | &'{' atom:{'{'+it[0]+'}'}:[s] | .:[s])* {CCode[s*""]}
 			 | name:name '(' args:arg ')' -> Call[{:name=>leterize(name) ,:ary=>["self",*arg]}]
  			 | name:name '(' ")"          -> Call[{:name=>leterize(name) ,:ary=>["self"]}]
 
@@ -35,12 +35,15 @@ amethyst Peridot_parser{
   expr = "" name:name '=' expr:expr @Assign
 			 | expr_ar1
 
-	expr_ar1 = expr_ar2:a (("+"|"-"):op expr_ar2:b {Call[{:name=>leterize(op),:ary=>[a,b]}]}:a)* {a}
+	expr_ar1 = expr_ar2:a (("+" expr_ar2
+                         |"-" expr_ar2:{Call[{:name=>leterize('-'),:ary=>[it]}]}):b {Call[{:name=>leterize('+'),:ary=>[a,b]}]}:a)* {a}
 	expr_ar2 = expr_ar3:a (("*"|"/"):op expr_ar3:b {Call[{:name=>leterize(op),:ary=>[a,b]}]}:a)* {a}
 	expr_ar3 = expr_ar4:a (("**"):op    expr_ar4:b {Call[{:name=>leterize(op),:ary=>[a,b]}]}:a)* {a}
-  expr_ar4 = expr_postfixed  
+  expr_ar4 = "+" expr_ar4
+           | "-" expr_ar4:{Call[{:name=>leterize('-'),:ary=>it}]}
+           | expr_postfixed  
 
 	block = "{" sequence:s '}' {s}
 
-	sequence = expr:ary[] ( newline expr:ary[])* @Seq
+	sequence = expr:[ary] ( newline expr:[ary])* @Seq
 }
