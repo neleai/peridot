@@ -19,11 +19,11 @@ amethyst Peridot_parser{
 			 | '(' expr:e ")" {e}
 			 | 'if' "(" expr:expr ")" block:block {If[{:expr=>expr,:block=>block}]}
 			 | '{' ('}' break | &'{' atom:{'{'+it[0]+'}'}:[s] | .:[s])* {CCode[s*""]}
-			 | name:name '(' args:arg ')' -> call(name,"self",*arg)
- 			 | name:name '(' ")"          -> call(name,"self")
-
-		   | ~'end' name:name @Var
+			 | name:name '(' (args | {[]}):arg ")" -> call(name,"self",*arg)
+		   | local
 			 )
+
+  local =  ~'end' name:name @Var
 
 	args = listOf('expr',',')
 	method = name
