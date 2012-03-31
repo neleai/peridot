@@ -37,17 +37,23 @@ amethyst Peridot_parser{
 	                        )* {a}
                
   expr = expr_ass
+
+  
+  binary_op(exp,oper) = apply(exp):a (apply(oper):op apply(exp):b {call(op,a,b)}:a)* -> a 
   
   expr_ass = "" name:name '=' expr:expr @Assign
-			     | expr_cmp
+			     | expr_or_l
+  
+  expr_or_l  = binary_op('expr_and_l',(| "||" |))
+  expr_and_l = binary_op('expr_cmp',(| "&&" |))
 
-  expr_cmp = expr_ar1:a ( ("<"|"<="|"<=>"|">="|">" |"=="|"!="):op expr_ar1:b 
-                                                    {call(op,a,b)}:a         )* -> a
-
+  expr_cmp = binary_op('expr_ar1',(| "<"|"<="|"<=>"|">="|">" |"=="|"!=" |))
 	expr_ar1 = expr_ar2:a (("+" expr_ar2
                          |"-" expr_ar2:{call('-',it)}):b {call('+',a,b)}:a   )* -> a
-	expr_ar2 = expr_ar3:a (("*" |"/" |"%" ):op  expr_ar3:b {call(op,a,b )}:a   )* -> a
-	expr_ar3 = expr_ar4:a (("**"|"<<"|">>"):op  expr_ar4:b {call(op,a,b )}:a   )* -> a
+  expr_ar2 = binary_op('expr_or' ,(| "*" |"/" |"%"  |))
+  expr_or  = binary_op('expr_and',(| "|" | "^" |))
+  expr_and = binary_op('expr_ar3',(| "&"  |))
+  expr_ar3 = binary_op('expr_ar4',(| "**"|"<<"|">>" |))
   expr_ar4 = "+" expr_ar4
            | "-" expr_ar4:{call('-',it)}
            | expr_postfixed  
