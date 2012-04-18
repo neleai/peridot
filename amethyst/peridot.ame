@@ -19,6 +19,7 @@ amethyst Peridot_parser{
 			 | '(' expr:e ")" {e}
 			 | 'if' "(" expr:expr ")" block:block {If[{:expr=>expr,:block=>block}]}
 			 | '{' ('}' break | &'{' atom:{'{'+it[0]+'}'}:[s] | .:[s])* {CCode[s*""]}
+       | 'yield' atom:a   -> Yield[a] 
 			 | method("self")
 		   | local
 			 )
@@ -26,7 +27,9 @@ amethyst Peridot_parser{
   local =  ~'end' name:name @Var
 
 	args = listOf('expr',',')
-	method(obj) = name:name '(' (args | {[]}):arg ")" -> call(name,obj,*arg)
+	method(obj) = name:name '(' (args | {[]}):arg ")" ( block:b  -> Iterate[call(name,obj,*arg),b]
+                                                    |          -> call(name,obj,*arg)
+                                                    )
 	
 	expr_postfixed = atom:a ( 
                            ( '[' args:arg "]" "=" expr:arg2           -> call("[]=",a,*arg,arg2)
