@@ -29,10 +29,10 @@ amethyst Peridot_parser{
 	method = name
 	
 	expr_postfixed = atom:a ( 
-                           ( '[' args:arg "]" "=" expr:arg2        -> call("[]=",a,*arg,arg2)
-													 | '[' args:arg "]"                      -> call("[]",a,*arg)
-													 | '.' name:name '(' args:arg ')'        -> call(name,a,*arg)
-													 | '.' name:name ( '(' ")" )?            -> call(name,a)
+                           ( '[' args:arg "]" "=" expr:arg2           -> call("[]=",a,*arg,arg2)
+													 | '[' args:arg "]"                         -> call("[]",a,*arg)
+													 | '.' name:name  '(' (args | {[]}):arg ")" -> call(name,a,*arg)
+													 | '.' name:name                            -> call(name,a)
                            ):a
 	                        )* {a}
                
