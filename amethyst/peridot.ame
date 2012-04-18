@@ -58,9 +58,8 @@ amethyst Peridot_parser{
   prefix_op(oper,exp) = apply(o):op apply(exp):e -> call(op,e)
 
   expr_pfx =             "+"    expr_pfx
-           | prefix_op((|'-'|),'expr_pfx')
-           | prefix_op((|'~'|),'expr_pfx')
-           | prefix_op((|'!'|),'expr_pfx')
+           | prefix_op((|'-' |),'expr_pfx')
+           | prefix_op((|<!~>|),'expr_pfx')
            | expr_postfixed  
 
 	block = "{" sequence:s '}' {s}

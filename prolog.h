@@ -12,6 +12,7 @@ typedef struct {obj_Class class;obj  *ary;} obj_Array;
 typedef struct {obj_Class class;char *ary;} obj_String;
 typedef struct {obj_Class class;obj *args;obj  **locals;} obj_Binding;
 typedef struct {obj_Class class;obj_fn lam;obj_Binding *bnd;} obj_Lambda;
+typedef struct {obj_Class class;obj returned; obj_Lambda *cont;} obj_Continuation;
 
 typedef struct _obj_Class {obj_Class class;char *ary; obj_fn *methods;} _obj_Class;
 obj_Class class_named(char *s);
@@ -22,7 +23,10 @@ obj Str(char *c  ){obj_String *o=malloc(sizeof(obj_String));  o->class=class_nam
 obj Toplevel()    {_obj       *o=malloc(sizeof(_obj));        o->class=class_named("TopLevel");                         return (obj)o;}
 obj Foo()         {_obj       *o=malloc(sizeof(_obj));        o->class=class_named("Foo");                              return (obj)o;}
 obj Binding()     {obj_Binding*o=malloc(sizeof(obj_Binding)); o->class=class_named("Binding" );o->args=(obj *) malloc(400); o->locals=(obj **) malloc(400);return (obj)o;}
-obj Lambda(obj_fn f,obj_Binding * bnd){obj_Lambda*o=malloc(sizeof(obj_Lambda));o->class=class_named("Lambda" ); o->lam=f;o->bnd=bnd; return (obj)o;}
+obj Lambda(obj_fn f,obj_Binding * bnd)
+                  {obj_Lambda*o=malloc(sizeof(obj_Lambda));o->class=class_named("Lambda" ); o->lam=f;o->bnd=bnd; return (obj)o;}
+obj Continuation(obj returned,obj_Lambda *cont)
+                  {obj_Continuation*o=malloc(sizeof(obj_Continuation));o->class=class_named("Continuation");o->returned=returned;o->cont=cont;return (obj)o;}
 obj Class(char *c){_obj_Class *o=malloc(sizeof(_obj_Class));  
 if (!strcmp(c,"Class")) o->class=o; 
 else o->class=class_named("Class"); 
