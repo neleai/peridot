@@ -17,5 +17,7 @@ amethyst Peridot_translator{
         | Var[                       {@@names<<@name unless @@names.include?(@name)}  @name ]
 				| Assign[@expr=>trans:expr   {@@names<<@name unless @@names.include?(@name)}  {"#{@name}=#{expr}"}]
 				| Seq[ trans*:{it*";\n"}]
+        | Yield[ trans:ret ] -> "return Continuation(#{ret});"
+        | Iterate[ trans:fn trans:bl  ] -> a=autovar; "obj #{a} = #{fn}; while(a->class==class_named(\"Continuation\")){#{bl};a=call(((obj_Continuation *)a)->cont,result); } result=a;"
 				| .
 }
