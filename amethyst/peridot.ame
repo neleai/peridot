@@ -19,19 +19,19 @@ amethyst Peridot_parser{
 			 | '(' expr:e ")" {e}
 			 | 'if' "(" expr:expr ")" block:block {If[{:expr=>expr,:block=>block}]}
 			 | '{' ('}' break | &'{' atom:{'{'+it[0]+'}'}:[s] | .:[s])* {CCode[s*""]}
-			 | name:name '(' (args | {[]}):arg ")" -> call(name,"self",*arg)
+			 | method("self")
 		   | local
 			 )
 
   local =  ~'end' name:name @Var
 
 	args = listOf('expr',',')
-	method = name
+	method(obj) = name:name '(' (args | {[]}):arg ")" -> call(name,obj,*arg)
 	
 	expr_postfixed = atom:a ( 
                            ( '[' args:arg "]" "=" expr:arg2           -> call("[]=",a,*arg,arg2)
 													 | '[' args:arg "]"                         -> call("[]",a,*arg)
-													 | '.' name:name  '(' (args | {[]}):arg ")" -> call(name,a,*arg)
+													 | '.' method(a)
 													 | '.' name:name                            -> call(name,a)
                            ):a
 	                        )* {a}
@@ -55,7 +55,7 @@ amethyst Peridot_parser{
   expr_and = binary_op('expr_ar3',(| '&'            |))
   expr_ar3 = binary_op('expr_pfx',(| '**'|'<<'|'>>' |))
 
-  prefix_op(oper,exp) = apply(o):op apply(exp):e -> call(op,e)
+  prefix_op(oper,exp) = apply(oper):op apply(exp):e -> call(op,e)
 
   expr_pfx =             "+"    expr_pfx
            | prefix_op((|'-' |),'expr_pfx')
