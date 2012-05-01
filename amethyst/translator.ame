@@ -11,7 +11,7 @@ amethyst Peridot_translator{
 	
 	trans = Klass[{@@init=[];@@clas=@name; @@cls=Object.peridot_class(@name)} trans*:r  { r*""+"init_#{@name}(){#{@@init*""}}"   }]
         | Def[{@@fnames<<@name} {@@names=["placeholder"]} trans:body {$methods<<@name unless $methods.include?(@name);$translated<<[@@cls,$methods.index(@name),"_#{@name}_#{@@clas}"]; @@init<<""} 
-                                {"obj _#{@name}_#{@@clas}(#{@args*""}){obj_Binding *bnd=(obj_Binding*)Binding();obj #{@@names*","}; #{r="";@@names.size.times{|i| r<<"bnd->locals[#{i}]=&#{@@names[i]};"};r}  #{body};}\n" }]
+                                {"obj _#{@name}_#{@@clas}(#{@args*","}){obj_Binding *bnd=(obj_Binding*)Binding();obj #{@@names*","}; #{r="";@@names.size.times{|i| r<<"bnd->locals[#{i}]=&#{@@names[i]};"};r}  #{body};}\n" }]
 
 				| Call[trans*:args {autovar}:a {$methods<<@name unless $methods.include?(@name);"(#{a}=#{args[0]})->class->methods[#{$methods.index(@name)}/*#{@name}*/](#{([a]+args[1..-1])*","})"} ]
 				| CCode[ .]
