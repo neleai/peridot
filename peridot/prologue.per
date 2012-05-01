@@ -1,35 +1,35 @@
 class Lambda
   def call()
-    {return ((obj_Lambda *)self)->lam( ((obj_Lambda *)self)->bnd);}
+    {return ((obj_Lambda* )self)->lam( ((obj_Lambda* )self)->bnd);}
   end
 end
 class Fixint
-	def +(obj_Fixint *b)
+	def +(obj_Fixint* b)
 		{return Int(obj2int(self)+b->in);}
 	end
 	def -()
 		{return Int(-obj2int(self));}
 	end
-	def *(obj_Fixint *b)
+	def *(obj_Fixint* b)
 		{return Int(obj2int(self)*b->in);}
 	end
-	def /(obj_Fixint *b)
+	def /(obj_Fixint* b)
 		{return Int(obj2int(self)/b->in);}
 	end
-  def %(obj_Fixint *b)
+  def %(obj_Fixint* b)
 		{return Int(obj2int(self)%b->in);}
 	end
-  def **(obj_Fixint *b)
+  def **(obj_Fixint* b)
     {int i,p=1;
      for(i=0;i<obj2int(b);i++) p*=obj2int(self);
      return Int(p);
     }
   end
   def to_s()
-    {char *c=(char*)malloc(20); sprintf(c,"%i",obj2int(self)); return Str(c);}
+    {char* c=(char*)malloc(20); sprintf(c,"%i",obj2int(self)); return Str(c);}
   end
   def times(obj_Lambda* l)
-    { int i;for(i=0;i<((obj_Fixint *)self)->in;i++) _call_Lambda((obj) l);}
+    { int i;for(i=0;i<((obj_Fixint* )self)->in;i++) _call_Lambda((obj) l);}
   end
 end
 class Array
@@ -42,7 +42,7 @@ class Array
 end
 class String
   def +(obj_String* b)
-    {char *s=malloc(strlen(obj2str(self))+strlen(b->ary)+1);strcpy(s,obj2str(self));strcat(s,b->ary);return Str(s); }
+    {char* s=malloc(strlen(obj2str(self))+strlen(b->ary)+1);strcpy(s,obj2str(self));strcat(s,b->ary);return Str(s); }
   end
   def to_s()
     {return self;}
@@ -53,7 +53,7 @@ class TopLevel
     c={b}.to_s
     {printf("%s\n",obj2str(c))}
   end
-	def puti(obj_Fixint *b)
+	def puti(obj_Fixint* b)
     _puts({b}.to_s)
 	end
   def geti()
