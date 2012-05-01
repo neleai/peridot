@@ -50,11 +50,11 @@ class String
 end
 class TopLevel
   def _puts(obj b)
-    c={b}.to_s
+    c=b.to_s
     {printf("%s\n",obj2str(c))}
   end
 	def puti(obj_Fixint* b)
-    _puts({b}.to_s)
+    _puts(b.to_s)
 	end
   def geti()
     {int i;scanf("%i",&i);return Int(i);}
