@@ -1,0 +1,6 @@
+To open file use command
+
+File["foo"]
+
+File can be treated as an immutable String.
+

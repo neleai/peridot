@@ -1,0 +1,49 @@
+Output
+
+"foo"+"bar" #-> "foobar"
+"foo".puts("bar") #-> "foobar\n"
+
+To format output you could use string interpolation as in the following example:
+
+x=42
+"%{x}
+%b2{x}
+%5{x}
+%05{x}
+%%" 
+
+#->
+42
+#0b101010
+#   42
+#00042
+#%
+
+This example is shortcut for
+
+x.to_s(  "") +"\n"+
+x.to_s("b2") +"\n"+
+x.to_s( "5") +"\n"+
+x.to_s("05") +"\n"+
+"%"
+
+And this translation is done in generic way. Substrings between % and next { are passed to to_s method of result. Formating for specific classes is following
+
+Strings 
+"a".to_s( "5")     #-> "    a"
+"a".to_s("m5")     #-> "  a  "
+"a".to_s("l5")     #-> "a    "
+"aaaaaa".to_s("5") #-> "aaaaaa"
+
+All standard classes accepts this alignment formating. It is good practice for custom classes that redefine to_s to support alignment as well.
+
+Integers extend this formating by two other patterns:
+42.to_s("05")  #->  "00042"
+42.to_s("01")  #->  "42"
+
+42.to_s("b2")  #-> "0b101010"
+42.to_s("bs2") #-> "101010"
+42.to_s("b3")  #-> "0(3)1120"
+Supported bases -36..-2 1..36
+Unless silenced by adding s we write in what base number is written. Base 10 gets no prefix. Bases 2,8,16 we use 0b,0o,0x as prefix. Otherwise we write base b as 0(b).
+
