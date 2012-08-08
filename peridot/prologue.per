@@ -44,6 +44,15 @@ class String
   def +(obj_String* b)
     {char* s=malloc(strlen(obj2str(self))+strlen(b->ary)+1);strcpy(s,obj2str(self));strcat(s,b->ary);return Str(s); }
   end
+  def *(obj_Fixint* b)
+    { char *so=obj2str(self); /*do by binary expansion*/
+      long i, n=obj2int(b), ss=strlen(so);
+      char *s=malloc(n*ss);
+      for(i=0;i<n;i++)
+        strcpy(s+i*ss,so);
+      return Str(s);
+    }
+  end
   def to_s()
     {return self;}
   end
