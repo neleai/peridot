@@ -25,3 +25,5 @@ negative arrays to substract
 contract violation finds most general values
 
 A value/object distinction. A object has identity, value immutable except in raw form. Commit and accessors return frozen values.
+
+split prologue.per into files
